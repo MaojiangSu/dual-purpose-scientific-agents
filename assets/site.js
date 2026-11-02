@@ -1,37 +1,70 @@
 "use strict";
-const items = [
-  { benchmark: .94, learning: .15, cost: 2 },
-  { benchmark: .58, learning: .68, cost: 2 },
-  { benchmark: .18, learning: .93, cost: 2 }
+// Constructed examples explain the allocation protocol; these are not experimental records.
+const illustrationTasks = [
+  {id:1, variants:["VDGV","ADGA"], bench:.94, learn:.15, fitness:[1.20,.55], answers:{Terra:["A","A","B"],Sol:["B","B","B"]}},
+  {id:2, variants:["VDGA","FDGV"], bench:.58, learn:.68, fitness:[.35,1.05], answers:{Terra:["B","A","B"],Sol:["A","A","B"]}},
+  {id:3, variants:["ADGV","VDGW"], bench:.18, learn:.93, fitness:[.86,.63], answers:{Terra:["A","B","A"],Sol:["B","B","A"]}}
 ];
-const slider = document.getElementById("preference");
-function updatePreference() {
-  const lambda = Math.max(0, Math.min(1, Number(slider.value) / 100));
-  const scores = items.map(x => (lambda*x.benchmark + (1-lambda)*x.learning)/x.cost);
-  const best = scores.indexOf(Math.max(...scores));
-  document.getElementById("lambda-value").value = lambda.toFixed(2);
-  slider.setAttribute("aria-valuetext", Math.round(lambda*100)+" percent benchmarking, "+Math.round((1-lambda)*100)+" percent learning");
-  scores.forEach((value,i) => {
-    document.querySelector('[data-item="'+i+'"]').classList.toggle("selected", i===best);
-    document.querySelector('[data-score="'+i+'"]').textContent = value.toFixed(3);
-    document.querySelector('[data-fill="'+i+'"]').style.width = (100*value/.5)+"%";
-  });
-  const preference = lambda<.25 ? "Learning-focused" : lambda>.75 ? "Benchmarking-focused" : "Balanced";
-  document.getElementById("demo-outcome").textContent = preference+" preference selects Item "+(best+1)+".";
+let preference = .5;
+let verified = false;
+function currentTask() {
+  return illustrationTasks.reduce((best,item)=>
+    preference*item.bench+(1-preference)*item.learn > preference*best.bench+(1-preference)*best.learn ? item : best);
 }
-slider.addEventListener("input",updatePreference);
-updatePreference();
-document.getElementById("copy-citation").addEventListener("click",async () => {
-  const text = document.getElementById("citation").textContent;
-  const status = document.getElementById("copy-status");
-  try {
-    await navigator.clipboard.writeText(text);
-    status.textContent = "Citation copied.";
-  } catch {
-    const range=document.createRange();
-    range.selectNodeContents(document.getElementById("citation"));
-    const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);
-    status.textContent = "Citation selected. Use your copy shortcut.";
+function renderSelection() {
+  const selected=currentTask();
+  const winner=selected.fitness[0]>selected.fitness[1]?"A":"B";
+  document.getElementById("candidate-pool").innerHTML=illustrationTasks.map(item=>{
+    const selectedHere=item.id===selected.id;
+    const status=selectedHere?(verified?"Verified":"Selected Next"):"";
+    return '<article class="candidate'+(selectedHere?' is-selected':'')+(selectedHere&&verified?' is-verified':'')+'" data-task-id="'+item.id+'">'+
+      '<div class="candidate-header"><strong>Task '+item.id+'</strong><span class="candidate-status">'+status+'</span></div>'+
+      '<div class="candidate-pair">'+item.variants[0]+' / '+item.variants[1]+'</div>'+
+      '<div class="candidate-values"><div class="value-row"><span>Benchmark</span><div class="value-track"><div class="value-fill" style="width:'+100*item.bench+'%"></div></div><small>'+item.bench.toFixed(2)+'</small></div>'+
+      '<div class="value-row learning"><span>Learning</span><div class="value-track"><div class="value-fill" style="width:'+100*item.learn+'%"></div></div><small>'+item.learn.toFixed(2)+'</small></div></div></article>';
+  }).join("");
+  document.querySelectorAll("[data-preference]").forEach(button=>{
+    button.setAttribute("aria-pressed",String(Number(button.dataset.preference)===preference));
+    button.disabled=verified;
+  });
+  document.getElementById("selected-task-name").textContent="Task "+selected.id;
+  document.getElementById("selected-task-state").textContent=verified?"Verified":"Selected Next";
+  const explanation=preference===1?"It has the highest predicted benchmarking value.":preference===0?"It has the highest predicted learning value.":"It has the highest combined score with equal weight on both values.";
+  document.getElementById("selection-reason").textContent=explanation+" All three pairs cost two measurements.";
+  document.getElementById("selected-pair").textContent="Variant A: "+selected.variants[0].split("").join(" ")+"  |  Variant B: "+selected.variants[1].split("").join(" ");
+  document.getElementById("selected-runs").innerHTML=Object.entries(selected.answers).map(([agent,answers])=>{
+    const correct=answers.filter(x=>x===winner).length;
+    return '<tr><td>'+agent+'</td>'+answers.map(answer=>'<td><span class="vote'+(verified?(answer===winner?' is-correct':' is-wrong'):'')+'">'+answer+'</span></td>').join("")+
+      '<td class="score-cell">'+(verified?correct+'/3':'Hidden')+'</td></tr>';
+  }).join("");
+  for(const [index,letter] of [[0,"a"],[1,"b"]]){
+    document.getElementById("fitness-"+letter).textContent=verified?selected.fitness[index].toFixed(2):"Hidden";
+    document.getElementById("fitness-box-"+letter).classList.toggle("is-winner",verified&&letter.toUpperCase()===winner);
   }
+  const verifyButton=document.getElementById("verify-task");verifyButton.disabled=verified;
+  verifyButton.textContent=verified?"Verified: Variant "+winner+" Wins":"Verify Selected Pair \u00b7 Cost 2";
+  document.getElementById("query-ledger").textContent="This step: "+(verified?1:0)+" task"+(verified?"":"s")+" verified";
+  document.getElementById("measurement-ledger").textContent=(verified?2:0)+" measurements revealed";
+  document.getElementById("benchmark-feedback").textContent=verified?
+    Object.entries(selected.answers).map(([agent,answers])=>agent+": "+answers.filter(x=>x===winner).length+"/3 runs correct").join(". ")+". The same measured winner scores both agents.":
+    "After verification, compare every cached A/B answer with the measured winner.";
+  document.getElementById("memory-feedback").textContent=verified?
+    "Both variant fitness values are added to the training store. This is 1 of 8 new items toward the next memory proposal; the active memory is unchanged at this step.":
+    "Both labeled variants become training evidence for the target's external fitness predictor.";
+  const observation=document.getElementById("demo-observation");observation.hidden=!verified;
+  observation.textContent=verified?"One purchased pair supplied two measured values: they score six cached answers and add two labeled variants for learning. No extra experiment is needed for the second use.":"";
+}
+document.querySelectorAll("[data-preference]").forEach(button=>button.addEventListener("click",()=>{
+  if(verified)return;preference=Number(button.dataset.preference);renderSelection();
+}));
+document.getElementById("verify-task").addEventListener("click",()=>{
+  if(verified)return;verified=true;renderSelection();
 });
+document.getElementById("reset-demo").addEventListener("click",()=>{verified=false;preference=.5;renderSelection();});
+document.getElementById("copy-citation").addEventListener("click",async()=>{
+  const text=document.getElementById("citation").textContent,status=document.getElementById("copy-status");
+  try{await navigator.clipboard.writeText(text);status.textContent="Citation copied.";}
+  catch{const range=document.createRange();range.selectNodeContents(document.getElementById("citation"));const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);status.textContent="Citation selected. Use your copy shortcut.";}
+});
+renderSelection();
 document.documentElement.dataset.ready="true";

@@ -1,0 +1,68 @@
+.experiment-plots {display:grid;gap:28px;margin:28px 0;font-family:inherit}
+.experiment-plot {margin:0;border:1px solid #e0e5e9;border-radius:12px;background:#fff;overflow:hidden;color:#26323e}
+.experiment-plot-heading {padding:24px 26px 10px}
+.experiment-eyebrow {display:block;font-size:11px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:#74818d;margin-bottom:9px}
+.experiment-plot h3 {font-size:21px!important;line-height:1.35!important;margin:0 0 11px!important;font-weight:600!important;letter-spacing:-.015em}
+.experiment-plot-heading p {font-size:15px!important;line-height:1.65!important;color:#566674;margin:0!important;max-width:760px}
+.experiment-chart-wrap {padding:2px 16px 0}
+.experiment-chart {display:block;width:100%;max-width:940px;height:auto;margin:0 auto;overflow:visible;font-family:inherit}
+.experiment-chart-mobile {display:none}
+.experiment-chart text {font-family:inherit}
+.experiment-grid-line {stroke:#e5eaee;stroke-width:1;stroke-dasharray:3 4}
+.experiment-axis-line {fill:none;stroke:#9aa8b5;stroke-width:1}
+.experiment-axis-tick {font-size:13px;fill:#6d7b88}
+.experiment-axis-title {font-size:14px;fill:#445562}
+.experiment-direction-label {font-size:12px;fill:#758391}
+.experiment-warmup-zone {fill:#f3f6f8}
+.experiment-warmup-boundary {stroke:#c6d0d9;stroke-dasharray:4 4;stroke-width:1}
+.experiment-warmup-label {font-size:13px;fill:#7b8995}
+.experiment-policy-line {fill:none;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
+.experiment-marker {fill:#fff;stroke:var(--point);stroke-width:2.5}
+.experiment-data-point {cursor:help;outline:none}
+.experiment-data-point:focus .experiment-marker,.experiment-data-point:hover .experiment-marker {stroke-width:4;filter:drop-shadow(0 0 2px #d1dce7)}
+.experiment-point-number {font-size:10px;fill:#344a60;text-anchor:middle;font-weight:700;pointer-events:none}
+.experiment-end-value {font-size:13px;font-weight:650}
+.experiment-point-label {font-size:13px;font-weight:550}
+.experiment-tooltip {display:none;pointer-events:none}
+.experiment-data-point:hover .experiment-tooltip,.experiment-data-point:focus .experiment-tooltip {display:block}
+.experiment-tooltip rect {fill:#fff;stroke:#c6d1db;stroke-width:1}
+.experiment-tooltip text {font-size:11px;fill:#324857}
+.experiment-legend {list-style:none;padding:0 26px;margin:0;display:grid;gap:10px 20px;font-size:14px;line-height:1.4}
+.experiment-legend li {display:flex;align-items:center;gap:9px;min-width:0}
+.experiment-curve-legend {grid-template-columns:repeat(3,1fr)}
+.experiment-curve-legend strong {font-size:13px;font-weight:600;margin-left:auto;font-variant-numeric:tabular-nums;color:#455969}
+.experiment-key {width:22px;height:3px;flex:0 0 22px;background:var(--policy);border-radius:3px}
+.experiment-scatter-legend {grid-template-columns:repeat(3,1fr)}
+.experiment-number-key {display:inline-grid;place-items:center;width:21px;height:21px;flex:0 0 21px;border:1.5px solid var(--policy);border-radius:50%;font-size:11px;font-weight:650;color:var(--policy);background:#fff}
+.experiment-axis-note {font-size:12px!important;line-height:1.65!important;color:#75828e;margin:18px 26px!important}
+.experiment-plot-caption {padding:18px 26px;font-size:14px;line-height:1.7;color:#536573;border-top:1px solid #e7ecef;background:#fafbfc}
+.experiment-data {padding:15px 26px 20px;border-top:1px solid #e7ecef}
+.experiment-data summary {font-size:13px;font-weight:600;color:#47749b;cursor:pointer}
+.experiment-data-scroll {overflow-x:auto;margin-top:14px}
+.experiment-data table {width:100%;border-collapse:collapse;font-size:13px;line-height:1.5;font-variant-numeric:tabular-nums}
+.experiment-data caption {text-align:left;font-size:12px;color:#71808c;padding:0 0 10px}
+.experiment-data th,.experiment-data td {padding:9px 10px;border-bottom:1px solid #e2e8ed;text-align:right;white-space:nowrap}
+.experiment-data th:first-child {text-align:left;font-weight:500}
+.experiment-data thead th {font-size:12px;font-weight:600;background:#f5f7f9}
+@media(max-width:680px) {
+ .experiment-plot-heading {padding:21px 20px 7px}
+ .experiment-plot h3 {font-size:19px!important}
+ .experiment-plot-heading p {font-size:14px!important}
+ .experiment-chart-wrap {padding:1px 9px 0}
+ .experiment-chart-desktop {display:none}.experiment-chart-mobile {display:block;max-width:420px}
+ .experiment-chart-mobile .experiment-axis-tick {font-size:13px}
+ .experiment-chart-mobile .experiment-axis-title {font-size:13px}
+ .experiment-chart-mobile .experiment-direction-label {font-size:12px}
+ .experiment-chart-mobile .experiment-warmup-label {font-size:13px}
+ .experiment-chart-mobile .experiment-tooltip text {font-size:12px}
+ .experiment-chart-mobile .experiment-policy-line {stroke-width:2.4}
+ .experiment-legend {padding:0 20px;font-size:13px;gap:11px 16px}
+ .experiment-curve-legend {grid-template-columns:1fr}
+ .experiment-curve-legend strong {font-size:13px}
+ .experiment-scatter-legend {grid-template-columns:1fr 1fr;font-size:12px;line-height:1.45}
+ .experiment-number-key {width:19px;height:19px;flex-basis:19px;font-size:10px}
+ .experiment-axis-note {font-size:11px!important;margin:17px 20px!important}
+ .experiment-plot-caption {padding:16px 20px;font-size:13px}
+ .experiment-data {padding:15px 20px 18px}
+ .experiment-data th,.experiment-data td {font-size:12px;padding:9px 8px}
+}
