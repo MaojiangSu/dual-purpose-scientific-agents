@@ -19,3 +19,8 @@
 .hero h1{max-width:1040px;margin-bottom:25px;font-size:clamp(42px,5.3vw,62px);line-height:1.12}
 @media(max-width:800px){.hero h1{font-size:48px}}
 @media(max-width:540px){.hero h1{font-size:40px;letter-spacing:-.03em;line-height:1.14}}
+
+/* Body sections share one left edge; Abstract keeps its centered reading column. */
+.section:not(#abstract)>.container{text-align:left}.hero-explanation{max-width:none;margin:24px 0 0;text-align:left}.footer{padding:30px 0 45px;text-align:left}
+
+.hero{padding-left:0;padding-right:0}.footer p{margin:6px 0}

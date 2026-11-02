@@ -28,3 +28,5 @@ Interface text should remain at least16CSSpx, including phone layouts. Remove re
 The overview is code-native HTML/CSS with vector arrows (assets/workflow.css and assets/workflow.js). It remains after the abstract and before Motivation. Keep outcomes and batch-level gains distinct, show within-agent multi-runs, and label memory fitting as a batch update.
 
 The hero uses the exact full manuscript title as one h1, with responsive natural wrapping. Keep the author line and remove any redundant subtitle.
+
+Except for the Abstract reading column, all body sections share the full main container and a consistent left edge. Keep hero explanatory prose, footer and diagram-node prose left-aligned. The paper title/authors, display math and numerical/sequence cells retain their appropriate alignment.
