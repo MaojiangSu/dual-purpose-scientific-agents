@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-design-version="18">
+<html lang="en" data-design-version="19">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dual-Purpose Experimental Design for Benchmarking and Improving Scientific Agents</title>
@@ -8,11 +8,11 @@
 <meta property="og:url" content="https://maojiangsu.github.io/dual-purpose-scientific-agents/"><meta property="og:type" content="website">
 <meta property="og:title" content="Dual-Purpose Experimental Design for Benchmarking and Improving Scientific Agents">
 <meta name="theme-color" content="#008e87">
-<link rel="stylesheet" href="assets/katex.min.css"><link rel="stylesheet" href="assets/site.css?v=16">
-<link rel="stylesheet" href="assets/figures.css?v=16"><link rel="stylesheet" href="assets/experiment-plots.css?v=16">
-<link rel="stylesheet" href="assets/workflow.css?v=16"><script defer src="assets/workflow.js?v=16"></script>
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><script defer src="assets/site.js?v=16"></script>
-<link rel="stylesheet" href="assets/benchmark-results.css?v=16"><script defer src="assets/benchmark-results.js?v=16"></script>
+<link rel="stylesheet" href="assets/katex.min.css"><link rel="stylesheet" href="assets/site.css?v=19">
+<link rel="stylesheet" href="assets/figures.css?v=19"><link rel="stylesheet" href="assets/experiment-plots.css?v=19">
+<link rel="stylesheet" href="assets/workflow.css?v=19"><script defer src="assets/workflow.js?v=19"></script>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><script defer src="assets/site.js?v=19"></script>
+<link rel="stylesheet" href="assets/benchmark-results.css?v=19"><script defer src="assets/benchmark-results.js?v=19"></script>
 </head>
 <body>
 <a class="skip-link" href="#abstract">Skip to the abstract</a>
@@ -90,10 +90,10 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"/></svg><
 <p class="section-intro">Some pairs may help distinguish the reference agents. Other pairs may teach the current target more. We predict these two values, combine them with a chosen preference, and buy the next pair's measurements.</p>
 <div class="selection-demo" id="selection-demo">
 <div class="demo-header"><strong>Try One Selection Step</strong><p>Constructed example: choose a preference, then reveal the selected pair.</p><div class="preference-controls" role="group" aria-label="Selection preference"><button class="preference-button" data-preference="1" aria-pressed="false">Benchmarking</button><button class="preference-button" data-preference="0.5" aria-pressed="true">Balance Both</button><button class="preference-button" data-preference="0" aria-pressed="false">Learning</button></div></div>
-<div class="demo-workspace"><div class="pool-panel"><div class="panel-label">Three Candidate Tasks</div><div class="pool-candidates" id="candidate-pool"></div><p class="small-note">Predicted values on a 0&ndash;1 scale; all tasks have equal cost.</p></div>
-<div class="demo-detail"><div class="selected-heading"><h3 id="selected-task-name">Task 2</h3></div><p class="selection-reason" id="selection-reason"></p><div id="selected-pair" class="candidate-pair"></div><table class="run-bank"><caption class="small-note">Three Cached Runs Per Agent</caption><thead><tr><th>Agent</th><th>1</th><th>2</th><th>3</th><th>Correct</th></tr></thead><tbody id="selected-runs"></tbody></table><div class="revealed-fitness"><div class="fitness-box" id="fitness-box-a"><span>Variant A Fitness</span><strong id="fitness-a">Hidden</strong></div><div class="fitness-box" id="fitness-box-b"><span>Variant B Fitness</span><strong id="fitness-b">Hidden</strong></div></div><button class="verify-button" id="verify-task">Verify Selected Pair &middot; Cost 2</button><button class="reset-button" id="reset-demo">Reset demonstration</button></div></div>
+<div class="demo-workspace"><div class="pool-panel"><div class="panel-label">Four Candidate Items</div><div class="pool-candidates" id="candidate-pool"></div><p class="small-note">Predicted values on a 0&ndash;1 scale; all items have equal cost.</p></div>
+<div class="demo-detail"><div class="selected-heading"><h3 id="selected-task-name">Item 2</h3></div><p class="selection-reason" id="selection-reason"></p><div id="selected-pair" class="candidate-pair"></div><table class="run-bank"><caption class="small-note">Three Cached Runs Per Agent</caption><thead><tr><th>Agent</th><th>1</th><th>2</th><th>3</th><th>Correct</th></tr></thead><tbody id="selected-runs"></tbody></table><div class="revealed-fitness"><div class="fitness-box" id="fitness-box-a"><span>Variant A Fitness</span><strong id="fitness-a">Hidden</strong></div><div class="fitness-box" id="fitness-box-b"><span>Variant B Fitness</span><strong id="fitness-b">Hidden</strong></div></div><button class="verify-button" id="verify-task">Verify Selected Pair &middot; Cost 2</button><button class="reset-button" id="reset-demo">Reset demonstration</button></div></div>
 <div class="feedback-result" aria-live="polite"><h4>One Result Has Two Uses</h4><div class="feedback-columns"><div><strong>1. Benchmark The Agents</strong><p id="benchmark-feedback">After verification, compare every cached A/B answer with the measured winner.</p></div><div><strong>2. Supply Experimental Memory</strong><p id="memory-feedback">Both labeled variants become training evidence for the target's external fitness predictor.</p></div></div></div>
-<div class="demo-footnote">After warm-up, memory updates are proposed every eight verified tasks.</div>
+<div class="demo-footnote">After warm-up, memory updates are proposed every eight verified items.</div>
 </div>
 <p>In the full algorithm, new assay outcomes refresh benchmarking predictions. After each eight-item batch, a candidate memory is fitted and tested on Development; accepted and rejected update gains train the learning-value predictor.</p>
 </div></section>

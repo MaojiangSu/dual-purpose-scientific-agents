@@ -54,3 +54,8 @@
 @media(max-width:540px){#experiments .experiment-block h3.experiment-number{font-size:25px}#experiments .experiment-block h4,#experiments .experiment-block h5,#experiments .experiment-block h6,#additional-diagnostics .experiment-plot-heading h4{font-size:19px}.transfer-accuracy-chart{padding:22px 20px}}
 
 #additional-diagnostics .experiment-chart-mobile text{font-size:22px}
+
+/* A dominated candidate stays legible and visibly outside the useful trade-offs. */
+.candidate.is-dominated{border-style:dashed;border-color:#b6c0c9;background:#f8fafb}
+.candidate.is-dominated .candidate-status{color:#4b5560}
+.candidate .candidate-dominance{font-size:16px!important;line-height:1.5!important;color:#46515c;margin:12px 0 0!important}
