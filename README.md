@@ -25,3 +25,13 @@ Layout reference: https://jiale0402.github.io/all-atom-omni/.
 Experiment themes are the actual section headings: use uppercase EXPERIMENT labels at a readable heading size and omit a second rhetorical question. Other navigation/section titles should be concise descriptive nouns. Preserve the sentence-case question inside the concrete task example.
 
 Experiment 2 includes a configuration table and candidate-pool coverage bar. Keep 384 item-level decision rounds, 256 post-warm-up decisions, 32 post-warm-up memory batches and 47 total proposal records distinct. The 768 retrospective measurement charges apply per policy/seed to acquisition only. Pool percentages use 512 as denominator, and unacquired items are unqueried by the selection policy even though the independent evaluator can audit the full pool.
+
+## Construction-Bank Benchmark Results
+
+Experiment 2 now leads with construction-bank SNR by post-warm-up decision round, two final reference-score tables and SNR versus held-out target learning gain. The completed matched panel is K=2 (Terra and Sol); the Qwen follow-up caches use a different split and cannot be merged into this experiment. Tables can switch allocation seeds 101, 211 and 307 while keeping the two compared policies on the same seed.
+
+Table uncertainty is sample SD across three aggregate runs on one fixed benchmark. Curve bands and policy error bars are sample SD across three allocation seeds, not confidence intervals or run SD. Existing construction runs informed acquisition and are intentionally reused to calculate the defined construction objective; no additional runs are required for that descriptive objective. Future-run robustness is a separate question.
+
+At the 384-item endpoint, Joint has 3.88 times Random's construction SNR and 0.85 percentage points higher held-out target accuracy. Static Joint has higher means on both objectives. With epsilon=0.02, the denominator is floor-dominated and higher SNR mainly reflects greater mean-score separation. Reference profiles are on different selected benchmarks; they are not intrinsic ability improvements. Prior learning and independent-run MSE plots remain available in collapsed additional diagnostics, with their measured points preserved.
+
+All displayed results are aggregate cached analysis. No model inference, new selection or training is performed in the browser or added by this update. Paper revision v015 and webpage revision v014 retain private versioned records separately.
