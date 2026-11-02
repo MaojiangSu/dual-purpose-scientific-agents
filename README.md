@@ -7,10 +7,11 @@ This repository contains only the webpage presentation, its interaction code, ex
 ## Reading The Page
 
 1. The visible abstract follows the current paper, followed by the motivation for sharing experimental feedback between benchmarking and learning.
-2. Problem Setup defines scientific items, a fixed reference panel with independent multi-runs, the improving target, two objectives and an explicit benchmarking sample value under one budget.
-3. Adaptive Item Selection explains warm-up, both value estimators, cost-aware acquisition, feedback reuse and validation-gated batch memory updates.
-4. A concrete GB1 protein-variant pair and a constructed selection interaction illustrate the setup and algorithm. The illustrative values are distinguished from measured results.
-5. Recorded memory gains, budget curves and a six-policy trade-off plot show completed experiments. Next steps and a theory disclosure follow.
+2. A responsive overview figure follows the abstract: item pool and cached multi-runs, two value estimates, budget-aware selection, verification, two uses of feedback and a return loop. Its HTML text stays at least 16px; SVG connectors follow the live layout instead of shrinking a bitmap.
+3. Problem Setup defines scientific items, a fixed reference panel with independent multi-runs, the improving target, two objectives and an explicit benchmarking sample value under one budget.
+4. Adaptive Item Selection explains warm-up, both value estimators, cost-aware acquisition, feedback reuse and validation-gated batch memory updates.
+5. A concrete GB1 protein-variant pair and a constructed selection interaction illustrate the setup and algorithm. The illustrative values are distinguished from measured results.
+6. Recorded memory gains, budget curves and a six-policy trade-off plot show completed experiments. Next steps and a theory disclosure follow.
 
 The webpage author line and its BibTeX use Maojiang Su and Han Liu. Preserve the paper-first narrative order; the task example should follow Problem Setup and Method.
 
@@ -23,3 +24,5 @@ All assets are static; no font CDN, LLM endpoint or other runtime API is called.
 Layout and typography reference: https://jiale0402.github.io/all-atom-omni/.
 
 Interface text should remain at least16CSSpx, including phone layouts. Remove redundant counters and repeated status labels instead of shrinking them. SVG chart labels must also be checked at their rendered screen size; retain clear legends, measured values and essential scientific scope.
+
+The overview is code-native HTML/CSS with vector arrows (assets/workflow.css and assets/workflow.js). It remains after the abstract and before Motivation. Keep outcomes and batch-level gains distinct, show within-agent multi-runs, and label memory fitting as a batch update.
