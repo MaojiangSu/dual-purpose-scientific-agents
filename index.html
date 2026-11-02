@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-design-version="17">
+<html lang="en" data-design-version="18">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dual-Purpose Experimental Design for Benchmarking and Improving Scientific Agents</title>
@@ -365,10 +365,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"/></svg><
 <tr><th scope="row">Joint Without Learning Bonus</th><td data-construction-snr="0.0063630923714933551">0.006363</td><td>70.18 &plusmn; 0.23</td><td>17.99</td><td>1.37</td></tr>
 <tr><th scope="row">Adaptive Joint</th><td data-construction-snr="0.0065288903753792657">0.006529</td><td>70.12 &plusmn; 0.59</td><td>14.86</td><td>1.35</td></tr>
 </tbody></table></div><p>The target proposes 47 memory updates by 384 items. Adaptive Joint accepts an average of 4.67. One batch supplies one learning-feedback observation; 384 acquired items do not provide 384 independent learning-value labels.</p></div></details></div></details></div></section>
-<section class="section" id="next"><div class="container">
-<h2>Next Experiments</h2><p>More scale will be useful after we understand the current estimator failures. The next tests focus on the following questions.</p>
-<ol class="next-list"><li><div><h3>Learning-Value Prediction</h3><p>Replay saved batches. Compare predicted gain with measured signed and accepted gain, alongside zero and past-mean baselines. The present predictor has only 47 batch records per campaign and sparse accepted updates.</p></div></li><li><div><h3>Regularization And Benchmark Fidelity</h3><p>Compare regularization scales and independent-run benchmark fidelity. Higher construction-bank SNR and accurate full-pool agent means are distinct properties; report both with the selected criterion fixed.</p></div></li><li><div><h3>Four-Agent Benchmark Comparison</h3><p>Extend the fixed reference panel with Qwen3.5-9B and Qwen3.5-35B-A3B on the same item pool and response protocol, then repeat the equal-budget construction and target-learning comparison.</p></div></li><li><div><h3>Allocator Generalization</h3><p>Freeze the updater, predictors and evaluation target, then compare Random, Static and Adaptive selection on a new variant-disjoint split. Report construction SNR, held-out learning gain and separate benchmark fidelity at the prespecified budget.</p></div></li></ol>
-</div></section>
+
 <section class="section tech-section" id="technical"><div class="container"><details class="details"><summary>Theory And Update Details</summary><div class="details-content"><h3 class="technical-head">Analysis Results</h3><p class="technical-body">Finite-run variability contributes to apparent agent separation. A single valid binary item has the same SNR under either non-tie winner, motivating a set-level marginal. Bounded sample values and feasible query accounting do not imply unbiased benchmark estimates, positive test gain or globally optimal selection.</p><h3 class="technical-head">Memory Update Schedule</h3><p class="technical-body">The first memory fit uses 16 acquired tasks, followed by a proposal every eight tasks. Candidate memories use acquired outcomes only. Evaluation uses a fixed Development response bank, and no per-task LLM editor call is required.</p></div></details></div></section>
 <section class="section" id="bibtex"><div class="container"><div class="citation-header"><h2>Citation</h2><button class="copy-button" type="button" id="copy-citation">Copy BibTeX</button></div><pre class="bibtex" id="citation">@misc{dualpurpose2026,
   title = {Dual-Purpose Experimental Design for
