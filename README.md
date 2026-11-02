@@ -6,10 +6,13 @@ This repository contains only the webpage presentation, its interaction code, ex
 
 ## Reading The Page
 
-1. A concrete GB1 protein-variant pair explains one task and agent multi-runs.
-2. A constructed selection example lets readers change the objective preference, verify one pair, and see the same feedback score all cached answers and add learning evidence. It is explicitly separated from experimental results.
-3. Recorded memory gains, budget curves and a six-policy trade-off plot show completed experiments.
-4. Next steps describe diagnostic questions. Equations, theory and the full abstract are in a disclosure below the examples.
+1. The visible abstract follows the current paper, followed by the motivation for sharing experimental feedback between benchmarking and learning.
+2. Problem Setup defines scientific items, a fixed reference panel with independent multi-runs, the improving target, two objectives and an explicit benchmarking sample value under one budget.
+3. Adaptive Item Selection explains warm-up, both value estimators, cost-aware acquisition, feedback reuse and validation-gated batch memory updates.
+4. A concrete GB1 protein-variant pair and a constructed selection interaction illustrate the setup and algorithm. The illustrative values are distinguished from measured results.
+5. Recorded memory gains, budget curves and a six-policy trade-off plot show completed experiments. Next steps and a theory disclosure follow.
+
+The webpage author line and its BibTeX use Maojiang Su and Han Liu. Preserve the paper-first narrative order; the task example should follow Problem Setup and Method.
 
 ## Typography And Reproduction
 
