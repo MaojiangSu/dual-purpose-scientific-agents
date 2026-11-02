@@ -10,7 +10,10 @@
 <meta property="og:title" content="Dual-Purpose Experimental Design for Benchmarking and Improving Scientific Agents">
 <meta name="theme-color" content="#078d87">
 <title>Dual-Purpose Experimental Design</title>
+<link rel="preload" href="assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/katex.min.css">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/figures.css">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <script defer src="assets/site.js"></script>
 </head>
@@ -36,10 +39,50 @@
 </header>
 
 <div class="container overview-wrap">
-  <figure class="figure">
-    <div class="overview-scroll"><img src="assets/overview.svg" width="1160" height="470" alt="Scientific items pass through adaptive selection and one experimental query. The acquired fitness values score a frozen multi-run reference bank and update the target's experimental memory. New feedback changes subsequent sample values."></div>
-    <figcaption class="caption"><b>One observation, two uses.</b> Experimental feedback turns label-blind agent answers into benchmark scores and supplies evidence for improving a separate target state. The reference agents and underlying language models remain frozen.</figcaption>
-  </figure>
+  <figure class="science-figure science-overview" aria-labelledby="science-overview-title">
+  <div class="science-reference-band">
+    <div class="science-reference-mark" aria-hidden="true">R</div>
+    <div>
+      <p class="science-kicker" id="science-overview-title">Frozen Reference Agents</p>
+      <p class="science-reference-main"><strong>R independent runs per item.</strong> Answers are cached before experimental outcomes are revealed.</p>
+    </div>
+    <span class="science-reference-tag">Multi-Run Bank</span>
+  </div>
+
+  <div class="science-pipeline">
+    <div class="science-stage">
+      <span class="science-step">01 &middot; Scientific Item</span>
+      <h3>A Pair Of Variants</h3>
+      <div class="science-variant-pair" aria-hidden="true"><span>A</span><i>vs.</i><span>B</span></div>
+      <p>Public sequence context.<br>Hidden experimental fitness.</p>
+    </div>
+    <div class="science-stage">
+      <span class="science-step">02 &middot; Adaptive Selection</span>
+      <h3>Choose The Next Item</h3>
+      <p>Balance benchmarking and learning sample values within the remaining query budget.</p>
+    </div>
+    <div class="science-stage science-verification">
+      <span class="science-step">03 &middot; Verify Once</span>
+      <h3>Acquire Two Values</h3>
+      <p>Measure both variants. Reuse the same experimental feedback for two purposes.</p>
+      <span class="science-query-tag">One Item Query</span>
+    </div>
+    <div class="science-outputs">
+      <div class="science-output science-benchmark-output">
+        <span class="science-output-label">Benchmark</span>
+        <p>Score the frozen multi-run response bank.</p>
+      </div>
+      <div class="science-output science-learning-output">
+        <span class="science-output-label">Improve</span>
+        <p>Fit and validate the target's experimental memory.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="science-feedback"><span aria-hidden="true">&#8630;</span><p>New feedback updates both value estimates for the next query.</p></div>
+  <div class="science-evaluation-note"><strong>Independent evaluation:</strong> fresh audit runs measure benchmark fidelity; held-out items measure agent improvement.</div>
+  <figcaption class="science-figure-caption"><strong>One observation, two uses.</strong> The reference panel and language-model weights remain frozen while the target's external experimental memory changes.</figcaption>
+</figure>
 </div>
 
 <main>
@@ -58,12 +101,12 @@
       <article class="objective">
         <h3>Benchmarking Value</h3>
         <p>How does adding this item change separation between agent means relative to variation across repeated runs?</p>
-        <div class="eq" aria-label="Benchmarking sample value is the change in set-level signal-to-noise ratio"><i>v</i><sub>bench</sub>(z | S) = F(S &cup; {z}) &minus; F(S)</div>
+        <div class="math-block" id="benchmark-equation" data-tex="v_{\mathrm{bench}}(z\mid S)=F(S\cup\{z\})-F(S)"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>v</mi><mrow><mi mathvariant="normal">b</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">h</mi></mrow></msub><mo stretchy="false">(</mo><mi>z</mi><mo>∣</mo><mi>S</mi><mo stretchy="false">)</mo><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><mi>S</mi><mo>∪</mo><mo stretchy="false">{</mo><mi>z</mi><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo>−</mo><mi>F</mi><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">v_{\mathrm{bench}}(z\mid S)=F(S\cup\{z\})-F(S)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">bench</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="mclose">})</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mclose">)</span></span></span></span></span></div>
       </article>
       <article class="objective learning">
         <h3>Learning Value</h3>
         <p>How useful is this feedback for updating the current target's experimental memory?</p>
-        <div class="eq">Current item + current memory &rarr; proposed improvement</div>
+        <div class="learning-flow"><span>Verified evidence</span><span class="flow-arrow" aria-hidden="true">&rarr;</span><span>Memory update</span><strong>Measured improvement</strong><small>One feedback observation per update batch</small></div>
       </article>
     </div>
     <div class="leadbox">An informative benchmark item and an informative training item can be different. Their values also change as the verified benchmark and target memory evolve.</div>
@@ -89,10 +132,12 @@
   <div class="container">
     <h2>Explore The Selection Trade-Off</h2>
     <p>Move the preference toward benchmarking or learning to see which item a simple cost-aware scalarization selects.</p>
+    <div class="math-block selection-equation" id="selection-equation" data-tex="q_{\lambda}(z)=\frac{\lambda\bar v_b(z)+(1-\lambda)\bar v_\ell(z)}{c(z)}"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>q</mi><mi>λ</mi></msub><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>λ</mi><msub><mover accent="true"><mi>v</mi><mo>ˉ</mo></mover><mi>b</mi></msub><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>λ</mi><mo stretchy="false">)</mo><msub><mover accent="true"><mi>v</mi><mo>ˉ</mo></mover><mi mathvariant="normal">ℓ</mi></msub><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><mrow><mi>c</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">q_{\lambda}(z)=\frac{\lambda\bar v_b(z)+(1-\lambda)\bar v_\ell(z)}{c(z)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">λ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="mord"><span class="mord katex-accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">λ</span><span class="mclose">)</span><span class="mord"><span class="mord katex-accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">ℓ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div>
+    <p class="demo-note">Normalized benchmarking and learning values are combined per unit query cost.</p>
     <div class="demo">
       <div class="demo-control">
         <h3><label for="preference">Benchmarking Preference</label></h3>
-        <div class="lambda-value"><output id="lambda-value" for="preference">0.50</output> <span>&lambda;</span></div>
+        <div class="lambda-value"><output id="lambda-value" for="preference">0.50</output> <span aria-hidden="true">&lambda;</span></div>
         <input id="preference" type="range" min="0" max="100" value="50" aria-controls="demo-items demo-outcome" aria-label="Weight on benchmarking value">
         <div class="range-labels"><span>Learning</span><span>Benchmarking</span></div>
         <p class="demo-note">Illustrative normalized values and equal costs. These numbers are not experimental measurements.</p>
@@ -138,10 +183,37 @@
         </tbody>
       </table>
     </div>
-    <figure class="results-figure">
-      <img src="assets/memory-results.svg" width="1120" height="435" loading="lazy" alt="Original Terra scores 63.28 percent and the experimental-memory agent scores 69.53 percent. The gain is 6.25 percentage points, with a descriptive paired-item bootstrap interval from 2.53 to 10.16 points.">
-      <figcaption>The gain interval is conditional on one trained snapshot and split. Two executions of each item share experimental labels and are not independent training replicates.</figcaption>
-    </figure>
+    <figure class="science-figure science-results" aria-labelledby="science-results-title">
+  <div class="science-results-grid">
+    <div class="science-accuracy-chart">
+      <p class="science-kicker" id="science-results-title">Held-Out GB1 Accuracy</p>
+      <p class="science-chart-context">256 unseen variant pairs &middot; two fresh executions per pair</p>
+      <div class="science-bar-row">
+        <div class="science-bar-label"><span>Original Terra</span><strong>63.28<span>%</span></strong></div>
+        <div class="science-bar-track" role="img" aria-label="Original Terra: 63.28125 percent accuracy"><div class="science-bar-fill science-baseline-fill" style="width:63.28125%"></div></div>
+      </div>
+      <div class="science-bar-row">
+        <div class="science-bar-label"><span>With Experimental Memory</span><strong class="science-memory-score">69.53<span>%</span></strong></div>
+        <div class="science-bar-track" role="img" aria-label="Terra with experimental memory: 69.53125 percent accuracy"><div class="science-bar-fill science-memory-fill" style="width:69.53125%"></div></div>
+      </div>
+      <div class="science-bar-axis" aria-hidden="true"><span>0</span><span>25</span><span>50</span><span>75</span><span>100%</span></div>
+    </div>
+    <div class="science-gain-panel">
+      <p class="science-kicker">Paired Improvement</p>
+      <p class="science-gain-value">+6.25 <span>pp</span></p>
+      <svg class="science-interval-chart" viewBox="0 0 300 82" role="img" aria-label="Paired gain: 6.25 percentage points. Conditional paired-item bootstrap interval: 2.534 to 10.156 percentage points.">
+        <line x1="24" x2="276" y1="54" y2="54" class="science-axis-line"/>
+        <path d="M24 51v6 M108 51v6 M192 51v6 M276 51v6" class="science-axis-line"/>
+        <line x1="77.214" x2="237.276" y1="29" y2="29" class="science-interval-line"/>
+        <path d="M77.214 22v14 M237.276 22v14" class="science-interval-line"/>
+        <circle cx="155.25" cy="29" r="5" class="science-interval-point"/>
+        <g class="science-axis-labels"><text x="24" y="74">0</text><text x="108" y="74">4</text><text x="192" y="74">8</text><text x="276" y="74">12 pp</text></g>
+      </svg>
+      <p class="science-interval-caption">Paired-item bootstrap interval<br><strong>+2.53 to +10.16 pp</strong></p>
+    </div>
+  </div>
+  <figcaption class="science-figure-caption">The gain interval is conditional on one trained memory snapshot and split. Repeated executions share experimental labels and are not independent training replicates.</figcaption>
+</figure>
     <p>The rule consults memory on 107 of 256 items. Across 512 trial decisions, it changes 60 choices: 44 improve, 12 worsen and four are neutral. The selected memory uses 256 training pairs; the development search acquired 1,024 pairs in total.</p>
     <div class="scope"><strong>Evaluation Scope</strong><p>This is evidence for a useful learning operator in one protein setting. It does not establish cross-protein transfer or improvement for Qwen. The separate allocation comparison below measures the joint trade-off.</p></div>
     <details class="details">
