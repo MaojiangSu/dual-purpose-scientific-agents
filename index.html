@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-design-version="23">
+<html lang="en" data-design-version="24">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dual-Purpose Experimental Design for Benchmarking and Improving Scientific Agents</title>
@@ -90,7 +90,7 @@
 </div>
 <p>In the full algorithm, new assay outcomes refresh benchmarking predictions. After each eight-item batch, a candidate memory is fitted and tested on Development; accepted and rejected update gains train the learning-value predictor.</p>
 </div></section>
-<section class="section" id="experiments"><div class="container"><h2>Experimental Results</h2><p class="section-intro">We first test whether verified feedback improves the target agent, then compare benchmark construction and learning under the same query budget.</p><div class="experiment-block" id="memory-experiment"><h3 class="experiment-number">EXPERIMENT 1 &middot; Harness Improvement</h3><p>We learned an external GB1 fitness predictor from acquired measurements. A fixed routing rule consults this memory when its preference is strong; otherwise it keeps Terra's answer. The LLM weights and fallback prompt stay fixed.</p>
+<section class="section" id="experiments"><div class="container"><h2>Experimental Results</h2><p class="section-intro">We first test whether verified feedback improves the target agent, then compare benchmark construction and learning under the same query budget.</p><div class="experiment-block" id="memory-experiment"><h3 class="experiment-number">EXPERIMENT 1 &middot; Harness Improvement</h3><p>This separate harness study tests Terra with experimental memory on GB1. A fitness predictor is trained from acquired measurements. A fixed routing rule consults this memory when its preference is strong; otherwise it keeps Terra's answer. The LLM weights and fallback prompt stay fixed.</p>
 <figure class="science-figure science-results" aria-label="Held-out GB1 accuracy and paired improvement">
   <div class="science-results-grid">
     <div class="science-accuracy-chart">
@@ -122,7 +122,8 @@
   </div>
   <figcaption class="science-figure-caption">The gain interval is conditional on one trained memory snapshot and split. Repeated executions share experimental labels and are not independent training replicates.</figcaption>
 </figure>
-<p class="scope-note">The selected snapshot uses 256 training pairs. The Development search acquired 1,024 training pairs in total, then froze the memory and routing threshold before testing on 256 held-out pairs with two fresh runs each.</p>
+<p class="scope-note">Development selected a memory trained on 256 pairs (routing threshold 0.80) from snapshots using 64, 256 and 1,024 training pairs. The full search acquired 1,024 training pairs. The selected memory was then frozen and evaluated on 256 held-out pairs with two fresh runs per pair.</p>
+<p class="scope-note">Experiments 2&ndash;4 use a fresh GB1 split with no variants shared with this study and learn memory within each acquisition campaign. This frozen-snapshot result is separate from their round-by-round acquisition curves.</p>
 
 </div><div class="shared-experiment-setup" id="allocation-experiment"><h3 id="reference-panel-heading">Shared Setup For Experiments 2&ndash;4</h3><p>These three result views reuse the same equal-budget campaigns: a 512-item candidate pool, Terra and Sol as the two fixed reference agents, and Terra as the improving target. Each policy acquires 384 items, including 128 shared warm-up items, under each of three allocation seeds.</p><details class="details shared-protocol-details"><summary>Study Configuration, Budget And Decision Rounds</summary><div class="details-content"><div class="study-protocol" id="allocation-protocol">
 <div class="protocol-specification"><h4 id="protocol-table-title">Study Configuration</h4><table class="protocol-table" aria-labelledby="protocol-table-title"><tbody>
