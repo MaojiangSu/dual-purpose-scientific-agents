@@ -26,3 +26,5 @@ Layout and typography reference: https://jiale0402.github.io/all-atom-omni/.
 Interface text should remain at least16CSSpx, including phone layouts. Remove redundant counters and repeated status labels instead of shrinking them. SVG chart labels must also be checked at their rendered screen size; retain clear legends, measured values and essential scientific scope.
 
 The overview is code-native HTML/CSS with vector arrows (assets/workflow.css and assets/workflow.js). It remains after the abstract and before Motivation. Keep outcomes and batch-level gains distinct, show within-agent multi-runs, and label memory fitting as a batch update.
+
+The hero uses the exact full manuscript title as one h1, with responsive natural wrapping. Keep the author line and remove any redundant subtitle.
