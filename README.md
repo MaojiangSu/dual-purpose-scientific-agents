@@ -10,7 +10,7 @@ The full paper title and author line lead into Abstract, a compact method loop, 
 
 The overview is titled The Adaptive Experimental Design Loop. Its central Our Method group contains value estimation and next-item selection. Candidate items, experimental verification and shared feedback provide the surrounding context, and a clear return arrow feeds new information into the next decision. Keep it concise and general: do not add protein variants, fixed measurement costs, run-level execution details or three rows of large panels. Agent updates remain batched.
 
-Problem Setup defines both objectives, followed by the conditional continuation-policy Pareto problem and the separate predicted next-item candidate set. The actual weighted score selects one supported predicted candidate under positive weights; it does not enumerate the entire Pareto set. Uniform exploration may select outside that set.
+Problem Setup defines scientific items, adaptive decision rounds, both objectives and the conditional continuation-policy Pareto problem. The Method section and constructed interaction explain selection and shared feedback. Detailed one-step Pareto candidates and the explicit benchmarking sample-value definition remain in the manuscript.
 
 The selection interaction uses constructed illustrative values. Experiment plots retain recorded values and their scientific scope. The website author line and BibTeX use Maojiang Su and Han Liu.
 
