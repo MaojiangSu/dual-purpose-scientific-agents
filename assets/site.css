@@ -30,7 +30,7 @@
 @media(max-width:540px){.pareto-problem{font-size:16px;padding:20px 7px}}
 
 /* Experimental themes are the headings; omit redundant rhetorical questions. */
-.experiment-block h3.experiment-number{display:block;font-family:var(--body);font-size:20px;font-weight:600;line-height:1.4;letter-spacing:normal;text-transform:none;color:#111;margin:0 0 14px}
+.experiment-block h3.experiment-number{display:block;font-family:Georgia,"Times New Roman",serif;font-size:28px;font-weight:500;line-height:1.25;letter-spacing:-.015em;text-transform:none;color:#111;margin:0 0 16px}
 
 /* Explicit experimental scale and accounting, separate from the general method loop. */
 .study-protocol{display:grid;grid-template-columns:1.05fr 1fr;margin:23px 0;border:1px solid #dfe5ea;border-radius:10px;overflow:hidden;background:#fff}.protocol-specification,.protocol-budget{padding:21px 22px;min-width:0}.protocol-specification{border-right:1px solid #e2e7eb}.study-protocol h4,.protocol-rounds h4{font-size:18px;font-weight:600;line-height:1.5;color:#344b5c;margin:0 0 13px}.protocol-table{width:100%;border-collapse:collapse;font-size:16px;line-height:1.55}.protocol-table th,.protocol-table td{padding:9px 0;border-bottom:1px solid #edf0f3;text-align:left;vertical-align:top}.protocol-table th{font-weight:500;width:46%;padding-right:16px;color:#63727f}.protocol-table td{font-weight:500;color:#344b5c}.experiment-block .protocol-note{font-size:16px;line-height:1.6;color:#667681;margin:14px 0 0}.experiment-block .protocol-pool-label{font-size:16px;line-height:1.5;color:#647582;margin:0 0 13px}.pool-allocation-bar{display:flex;height:17px;border-radius:5px;overflow:hidden;background:#e7ecf0;margin:0 0 14px}.pool-allocation-bar span{display:block;height:100%}.pool-warmup{background:#8fa9c5}.pool-additional{background:#3d927f}.pool-unacquired{background:#e1e7ec}.pool-allocation-legend{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}.pool-allocation-legend strong{display:block;font-size:22px;line-height:1.3;font-weight:600;color:#344b5c;margin-bottom:5px}.pool-allocation-legend span{font-size:16px;line-height:1.5;display:block;color:#627583}.acquisition-charge{display:flex;align-items:center;gap:17px;margin:24px 0 0;padding:19px 0 0;border-top:1px solid #e2e7eb}.acquisition-charge>strong{font-size:34px;font-weight:500;line-height:1.2;color:#2e6e61}.acquisition-charge b{display:block;font-size:17px;font-weight:600;line-height:1.5;color:#344b5c}.acquisition-charge span{display:block;font-size:16px;line-height:1.5;color:#637581}.protocol-rounds{margin:24px 0 17px}.protocol-rounds p{font-size:17px;line-height:1.7}.protocol-rounds p:last-child{margin-bottom:0}
@@ -41,3 +41,16 @@
 
 /* Inline symbols use the same mathematical glyphs as display equations. */
 .inline-math{white-space:nowrap}.inline-math .katex{font-size:1.06em}
+
+/* One primary result per experiment, with a strict heading hierarchy. */
+#experiments .experiment-block{margin:38px 0 50px}
+#experiments .experiment-block h4,#experiments .experiment-block h5,#experiments .experiment-block h6{font-family:var(--body);font-size:20px;font-weight:600;line-height:1.4;letter-spacing:normal}
+.shared-experiment-setup{margin:36px 0 42px;padding-top:25px;border-top:1px solid var(--line)}
+#experiments .shared-experiment-setup>h3{font-family:Georgia,"Times New Roman",serif;font-size:23px;font-weight:500;color:#111;margin:0 0 12px}
+.shared-experiment-setup .protocol-note,.shared-experiment-setup .protocol-pool-label{font-size:16px!important;line-height:1.6!important;color:#667681}
+.shared-protocol-details{margin:19px 0 0}.shared-protocol-details .study-protocol{margin-top:0}
+.transfer-accuracy-chart{padding:27px 30px}.transfer-memory-fill{background:#6a8c9f}
+#additional-diagnostics .experiment-plot-heading h4{font-family:var(--body);font-size:20px;font-weight:600;line-height:1.4;margin:0 0 10px}
+@media(max-width:540px){#experiments .experiment-block h3.experiment-number{font-size:25px}#experiments .experiment-block h4,#experiments .experiment-block h5,#experiments .experiment-block h6,#additional-diagnostics .experiment-plot-heading h4{font-size:19px}.transfer-accuracy-chart{padding:22px 20px}}
+
+#additional-diagnostics .experiment-chart-mobile text{font-size:22px}

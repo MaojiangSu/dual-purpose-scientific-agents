@@ -36,4 +36,10 @@ At the 384-item endpoint, Joint has 3.88 times Random's construction SNR and 0.8
 
 All displayed results are aggregate cached analysis. No model inference, new selection or training is performed in the browser or added by this update. Paper revision v015 and webpage revision v014 retain private versioned records separately.
 
-Formula presentation uses pre-rendered KaTeX HTML/MathML, including the available-information subscript. Conditional Pareto optimization places the operator beside its objective vector and the budget constraint on the second line. EXPERIMENT 1/2/3 use the normal black 20px subtitle style without extra tracking; keep these headings consistent across viewport sizes.
+Formula presentation uses pre-rendered KaTeX HTML/MathML, including the available-information subscript. Conditional Pareto optimization places the operator beside its objective vector and the budget constraint on the second line. Numbered experiment titles use the same black Georgia/Times serif family as the hero, at 28px (25px on phones). Internal headings stay below them, at most 20px (19px on phones).
+
+## Result Blocks And Shared Setup
+
+Each numbered block carries one primary result: learning feasibility, benchmark SNR over rounds, the paired final reference tables, the two-objective trade-off, and the transfer diagnostic. Experiments 2-4 reuse the same equal-budget campaigns; they are result views, not new independent experiments. The shared overview keeps K=2, the 512-item pool, 128 warm-up items, 384-item endpoint and three allocation seeds visible. Full configuration and accounting are available in its expandable panel.
+
+Keep plot titles below the numbered experiment title and avoid repeated internal section titles. Original learning/audit plots and the full strategies table live in additional diagnostics outside the numbered blocks. The transfer bars visualize only the already reported 69.79% and 66.67% accuracies, with the separate-configuration scope retained.

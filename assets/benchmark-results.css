@@ -3,10 +3,10 @@
 .reference-results *{box-sizing:border-box}.reference-results p{font-size:17px!important;line-height:1.7!important;margin:0 0 16px!important;text-align:left}
 .reference-results .reference-header h3{font-size:25px!important;line-height:1.35!important;margin:0 0 13px!important;font-weight:600!important}
 .reference-card,.reference-final{margin:24px 0;border:1px solid #e0e5e9;border-radius:12px;background:#fff;overflow:hidden}
-.reference-results .reference-card-header{padding:23px 26px 4px}.reference-results h4{font-size:21px!important;font-weight:600;line-height:1.4!important;margin:0 0 10px!important;text-align:left}
+.reference-results .reference-card-header{padding:23px 26px 4px}.reference-results h4{font-size:20px!important;font-weight:600;line-height:1.4!important;margin:0 0 10px!important;text-align:left}
 .reference-results .reference-card-header p{font-size:16px!important;color:#566674;margin:0!important}.reference-chart-wrap{padding:3px 12px 0}
 .reference-chart{display:block;width:100%;height:auto;max-width:1000px;margin:0 auto;font-family:inherit;overflow:visible}.reference-chart-mobile{display:none}
-.reference-chart text{font-family:inherit;font-size:29px;fill:#526373}.reference-axis-label{font-weight:500;fill:#344c5d!important}.reference-grid{fill:none;stroke:#e2e8ed;stroke-width:1.3}
+.reference-chart text{font-family:inherit;font-size:24px;fill:#526373}.reference-axis-label{font-weight:500;fill:#344c5d!important}.reference-grid{fill:none;stroke:#e2e8ed;stroke-width:1.3}
 .reference-axis{fill:none;stroke:#9ba9b5;stroke-width:1.4}.reference-sd-band{opacity:.14}.reference-policy-line{fill:none;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
 .reference-curve-point{stroke-width:2.4;outline:none;cursor:help}.reference-tradeoff-point{stroke-width:2;outline:none;cursor:help}.reference-errorbar{stroke-width:2;opacity:.55}
 .reference-curve-point:focus,.reference-curve-point:hover,.reference-tradeoff-point:focus,.reference-tradeoff-point:hover{filter:drop-shadow(0 0 3px #96a8b8);stroke-width:3.5}
@@ -25,3 +25,11 @@
 .reference-model-table tfoot td{text-align:left;font-size:16px;padding-top:14px;color:#455d6e;border-bottom:0}.reference-model-table tfoot strong{font-size:16px;font-weight:650}.reference-results .reference-final .reference-note{font-size:16px!important;padding:0 26px 20px;margin:0!important;color:#5c6e7d}
 .reference-results .reference-note{font-size:16px!important;color:#617180}.reference-results .reference-interpretation{font-size:16px!important;padding:17px 20px;border-left:3px solid #699889;background:#f6faf8;margin:24px 0 16px!important}
 @media(max-width:700px){.reference-results{font-size:16px}.reference-results p{font-size:16px!important}.reference-results .reference-header h3{font-size:23px!important}.reference-results .reference-card-header{padding:21px 20px 4px}.reference-results h4{font-size:20px!important}.reference-chart-wrap{padding:2px 8px 0}.reference-chart-desktop{display:none}.reference-chart-mobile{display:block;max-width:420px}.reference-chart-mobile text{font-size:26px}.reference-chart-mobile .reference-policy-line{stroke-width:3.2}.reference-curve-legend,.reference-policy-legend{padding:0 20px!important}.reference-policy-legend{grid-template-columns:1fr}.reference-results figcaption{padding:16px 20px}.reference-details{padding:16px 20px}.reference-seed-control{padding:17px 20px}.reference-table-grid{grid-template-columns:1fr;gap:25px;padding:0 14px 20px}.reference-table-card h4{padding:0 6px}.reference-model-table caption{padding-left:6px}.reference-model-table th,.reference-model-table td{padding:12px 6px}.reference-results .reference-final .reference-note{padding:0 20px 20px}.reference-results .reference-interpretation{padding:16px 17px}}
+
+/* Figure labels stay below their numbered experiment title. */
+.reference-results{margin:0;color:#293641}.reference-results .experiment-block>.experiment-number{color:#111}
+.reference-results .reference-card,.reference-results .reference-final{margin:20px 0}
+.reference-results .reference-chart-wrap{padding-top:22px}
+.reference-results .reference-table-grid h4{font-size:19px!important}
+@media(min-width:701px) and (max-width:800px){.reference-chart-desktop{display:none}.reference-chart-mobile{display:block;max-width:420px}.reference-chart-mobile text{font-size:26px}}
+@media(max-width:540px){.reference-results h4{font-size:19px!important}.reference-results .reference-chart-wrap{padding-top:19px}}
