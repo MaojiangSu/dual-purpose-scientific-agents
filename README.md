@@ -32,3 +32,5 @@ The hero uses the exact full manuscript title as one h1, with responsive natural
 Except for the Abstract reading column, all body sections share the full main container and a consistent left edge. Keep hero explanatory prose, footer and diagram-node prose left-aligned. The paper title/authors, display math and numerical/sequence cells retain their appropriate alignment.
 
 Emphasize adaptive decision rounds: each post-warm-up choice uses earlier experimental feedback. Repeated agent runs only measure execution variability. Keep batch memory updates separate from item-level decisions and use only completed earlier batch gains for learning predictions.
+
+After defining the two objectives, present the conditional Pareto continuation-policy problem. Keep the predicted one-step Pareto candidate set separate, explain that the existing scalarization selects one supported predicted candidate under positive weights, and retain the random-exploration exception.

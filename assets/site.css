@@ -24,3 +24,7 @@
 .section:not(#abstract)>.container{text-align:left}.hero-explanation{max-width:none;margin:24px 0 0;text-align:left}.footer{padding:30px 0 45px;text-align:left}
 
 .hero{padding-left:0;padding-right:0}.footer p{margin:6px 0}
+
+/* Conditional planning objective and round-level acquisition front. */
+.pareto-problem{font-size:18px;padding:24px 12px}.pareto-problem .katex{font-size:1.06em}
+@media(max-width:540px){.pareto-problem{font-size:16px;padding:20px 7px}}
