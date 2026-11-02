@@ -19,7 +19,6 @@ function renderSelection() {
     const status=selectedHere?(verified?"Verified":"Selected Next"):"";
     return '<article class="candidate'+(selectedHere?' is-selected':'')+(selectedHere&&verified?' is-verified':'')+'" data-task-id="'+item.id+'">'+
       '<div class="candidate-header"><strong>Task '+item.id+'</strong><span class="candidate-status">'+status+'</span></div>'+
-      '<div class="candidate-pair">'+item.variants[0]+' / '+item.variants[1]+'</div>'+
       '<div class="candidate-values"><div class="value-row"><span>Benchmark</span><div class="value-track"><div class="value-fill" style="width:'+100*item.bench+'%"></div></div><small>'+item.bench.toFixed(2)+'</small></div>'+
       '<div class="value-row learning"><span>Learning</span><div class="value-track"><div class="value-fill" style="width:'+100*item.learn+'%"></div></div><small>'+item.learn.toFixed(2)+'</small></div></div></article>';
   }).join("");
@@ -28,10 +27,9 @@ function renderSelection() {
     button.disabled=verified;
   });
   document.getElementById("selected-task-name").textContent="Task "+selected.id;
-  document.getElementById("selected-task-state").textContent=verified?"Verified":"Selected Next";
   const explanation=preference===1?"It has the highest predicted benchmarking value.":preference===0?"It has the highest predicted learning value.":"It has the highest combined score with equal weight on both values.";
-  document.getElementById("selection-reason").textContent=explanation+" All three pairs cost two measurements.";
-  document.getElementById("selected-pair").textContent="Variant A: "+selected.variants[0].split("").join(" ")+"  |  Variant B: "+selected.variants[1].split("").join(" ");
+  document.getElementById("selection-reason").textContent=explanation;
+  document.getElementById("selected-pair").innerHTML="<span>A: "+selected.variants[0].split("").join(" ")+"</span><span>B: "+selected.variants[1].split("").join(" ")+"</span>";
   document.getElementById("selected-runs").innerHTML=Object.entries(selected.answers).map(([agent,answers])=>{
     const correct=answers.filter(x=>x===winner).length;
     return '<tr><td>'+agent+'</td>'+answers.map(answer=>'<td><span class="vote'+(verified?(answer===winner?' is-correct':' is-wrong'):'')+'">'+answer+'</span></td>').join("")+
@@ -43,16 +41,12 @@ function renderSelection() {
   }
   const verifyButton=document.getElementById("verify-task");verifyButton.disabled=verified;
   verifyButton.textContent=verified?"Verified: Variant "+winner+" Wins":"Verify Selected Pair \u00b7 Cost 2";
-  document.getElementById("query-ledger").textContent="This step: "+(verified?1:0)+" task"+(verified?"":"s")+" verified";
-  document.getElementById("measurement-ledger").textContent=(verified?2:0)+" measurements revealed";
   document.getElementById("benchmark-feedback").textContent=verified?
     Object.entries(selected.answers).map(([agent,answers])=>agent+": "+answers.filter(x=>x===winner).length+"/3 runs correct").join(". ")+". The same measured winner scores both agents.":
     "After verification, compare every cached A/B answer with the measured winner.";
   document.getElementById("memory-feedback").textContent=verified?
-    "Both variant fitness values are added to the training store. This is 1 of 8 new items toward the next memory proposal; the active memory is unchanged at this step.":
+    "Both measured variants enter the training data. The active memory changes only after a batch update.":
     "Both labeled variants become training evidence for the target's external fitness predictor.";
-  const observation=document.getElementById("demo-observation");observation.hidden=!verified;
-  observation.textContent=verified?"One purchased pair supplied two measured values: they score six cached answers and add two labeled variants for learning. No extra experiment is needed for the second use.":"";
 }
 document.querySelectorAll("[data-preference]").forEach(button=>button.addEventListener("click",()=>{
   if(verified)return;preference=Number(button.dataset.preference);renderSelection();

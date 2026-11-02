@@ -18,3 +18,5 @@ Typography follows the user's All-Atom Omni reference exactly: Georgia/Times hea
 All assets are static; no font CDN, LLM endpoint or other runtime API is called. Run `python -m http.server 8000` to preview. GitHub Pages publishes the root of `main`. Each acquired task costs two variant measurements; memory first fits at16 items and then proposes updates every8. Preserve the distinction between an agent choosing A/B and the allocator choosing a whole task.
 
 Layout and typography reference: https://jiale0402.github.io/all-atom-omni/.
+
+Interface text should remain at least16CSSpx, including phone layouts. Remove redundant counters and repeated status labels instead of shrinking them. SVG chart labels must also be checked at their rendered screen size; retain clear legends, measured values and essential scientific scope.
