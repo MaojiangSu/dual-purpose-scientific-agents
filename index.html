@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-design-version="21">
+<html lang="en" data-design-version="22">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dual-Purpose Experimental Design for Benchmarking and Improving Scientific Agents</title>
@@ -90,7 +90,7 @@
 </div>
 <p>In the full algorithm, new assay outcomes refresh benchmarking predictions. After each eight-item batch, a candidate memory is fitted and tested on Development; accepted and rejected update gains train the learning-value predictor.</p>
 </div></section>
-<section class="section" id="experiments"><div class="container"><h2>Experimental Results</h2><p class="section-intro">We first test whether verified feedback improves the target agent, then compare benchmark construction and learning under the same query budget.</p><div class="experiment-block" id="memory-experiment"><h3 class="experiment-number">EXPERIMENT 1 &middot; Learning Feasibility</h3><p>We learned an external GB1 fitness predictor from acquired measurements. A fixed routing rule consults this memory when its preference is strong; otherwise it keeps Terra's answer. The LLM weights and fallback prompt stay fixed.</p>
+<section class="section" id="experiments"><div class="container"><h2>Experimental Results</h2><p class="section-intro">We first test whether verified feedback improves the target agent, then compare benchmark construction and learning under the same query budget.</p><div class="experiment-block" id="memory-experiment"><h3 class="experiment-number">EXPERIMENT 1 &middot; Harness Improvement</h3><p>We learned an external GB1 fitness predictor from acquired measurements. A fixed routing rule consults this memory when its preference is strong; otherwise it keeps Terra's answer. The LLM weights and fallback prompt stay fixed.</p>
 <figure class="science-figure science-results" aria-label="Held-out GB1 accuracy and paired improvement">
   <div class="science-results-grid">
     <div class="science-accuracy-chart">

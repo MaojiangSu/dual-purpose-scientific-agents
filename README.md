@@ -40,7 +40,7 @@ Formula presentation uses pre-rendered KaTeX HTML/MathML, including the availabl
 
 ## Result Blocks And Shared Setup
 
-Each numbered block carries one primary result: learning feasibility, benchmark SNR over rounds, the paired final reference tables, the two-objective trade-off, and the transfer diagnostic. Experiments 2-4 reuse the same equal-budget campaigns; they are result views, not new independent experiments. The shared overview keeps K=2, the 512-item pool, 128 warm-up items, 384-item endpoint and three allocation seeds visible. Full configuration and accounting are available in its expandable panel.
+Each numbered block carries one primary result: harness improvement, benchmark SNR over rounds, the paired final reference tables, the two-objective trade-off, and the transfer diagnostic. Experiments 2-4 reuse the same equal-budget campaigns; they are result views, not new independent experiments. The shared overview keeps K=2, the 512-item pool, 128 warm-up items, 384-item endpoint and three allocation seeds visible. Full configuration and accounting are available in its expandable panel.
 
 Keep plot titles below the numbered experiment title and avoid repeated internal section titles. Original learning/audit plots and the full strategies table live in additional diagnostics outside the numbered blocks. The transfer bars visualize only the already reported 69.79% and 66.67% accuracies, with the separate-configuration scope retained.
 
