@@ -21,3 +21,5 @@ Preserve the user's All-Atom Omni reference typography: Georgia/Times headings, 
 All assets are static, with no runtime LLM or font API. Preview with `python -m http.server 8000`; GitHub Pages publishes the root of main. The workflow is implemented in assets/workflow.css and assets/workflow.js.
 
 Layout reference: https://jiale0402.github.io/all-atom-omni/.
+
+Experiment themes are the actual section headings: use uppercase EXPERIMENT labels at a readable heading size and omit a second rhetorical question. Other navigation/section titles should be concise descriptive nouns. Preserve the sentence-case question inside the concrete task example.
