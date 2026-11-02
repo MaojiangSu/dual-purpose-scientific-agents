@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-design-version="12">
+<html lang="en" data-design-version="13">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dual-Purpose Experimental Design for Benchmarking and Improving Scientific Agents</title>
@@ -8,10 +8,10 @@
 <meta property="og:url" content="https://maojiangsu.github.io/dual-purpose-scientific-agents/"><meta property="og:type" content="website">
 <meta property="og:title" content="Dual-Purpose Experimental Design for Benchmarking and Improving Scientific Agents">
 <meta name="theme-color" content="#008e87">
-<link rel="stylesheet" href="assets/katex.min.css"><link rel="stylesheet" href="assets/site.css?v=12">
-<link rel="stylesheet" href="assets/figures.css?v=12"><link rel="stylesheet" href="assets/experiment-plots.css?v=12">
-<link rel="stylesheet" href="assets/workflow.css?v=12"><script defer src="assets/workflow.js?v=12"></script>
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><script defer src="assets/site.js?v=12"></script>
+<link rel="stylesheet" href="assets/katex.min.css"><link rel="stylesheet" href="assets/site.css?v=13">
+<link rel="stylesheet" href="assets/figures.css?v=13"><link rel="stylesheet" href="assets/experiment-plots.css?v=13">
+<link rel="stylesheet" href="assets/workflow.css?v=13"><script defer src="assets/workflow.js?v=13"></script>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><script defer src="assets/site.js?v=13"></script>
 </head>
 <body>
 <a class="skip-link" href="#abstract">Skip to the abstract</a>
@@ -135,8 +135,25 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z"/></svg><
 <div class="result-summary"><div class="result-takeaway positive"><strong>What Worked</strong><p>Held-out accuracy increased from 63.28% to 69.53%: a gain of 6.25 percentage points on unseen combinations within GB1.</p></div><div class="result-takeaway"><strong>What This Does Not Establish</strong><p>This confirms a useful external memory in one protein setting. It does not prove that adaptive item selection beats Random.</p></div></div>
 </div>
 <div class="experiment-block" id="allocation-experiment"><h3 class="experiment-number">EXPERIMENT 2 &middot; EQUAL-BUDGET SELECTION</h3><p>A new split gives every policy the same candidate pool, updater and query costs. We compare six selection strategies using Terra and Sol as fixed reference agents, with Terra as the improving target.</p>
-<div class="plain-protocol"><div class="protocol-stat"><strong>512</strong><span>Candidate pairs</span></div><div class="protocol-stat"><strong>128</strong><span>Shared warm-up pairs</span></div><div class="protocol-stat"><strong>384</strong><span>Pairs at main endpoint</span></div><div class="protocol-stat"><strong>256</strong><span>Held-out test pairs</span></div></div>
-<p class="scope-note">Each reference agent runs three times per candidate before verification. Two fresh audit runs evaluate benchmark fidelity. Three allocation seeds repeat selection while sharing these response banks; they are not three independent protein experiments.</p>
+<div class="study-protocol" id="allocation-protocol">
+<div class="protocol-specification"><h4 id="protocol-table-title">Study Configuration</h4><table class="protocol-table" aria-labelledby="protocol-table-title"><tbody>
+<tr><th scope="row">Scientific setting</th><td>One GB1 IgG-binding assay</td></tr>
+<tr><th scope="row">Item type</th><td>One pair of protein variants</td></tr>
+<tr><th scope="row">Pool / Development / Test</th><td>512 / 96 / 256 pairs</td></tr>
+<tr><th scope="row">Reference agents / Target</th><td>Terra and Sol / Terra</td></tr>
+<tr><th scope="row">Runs per item</th><td>3 reference construction;<br>2 independent audit;<br>2 final target runs</td></tr>
+<tr><th scope="row">Policies / Allocation seeds</th><td>6 / 3</td></tr>
+</tbody></table><p class="protocol-note">The 512 candidates are instances of one task type in one assay, rather than distinct scientific environments. Variant identities are disjoint across the pool, Development and test sets.</p></div>
+<div class="protocol-budget"><h4>Acquisition Budget Per Campaign</h4><p class="protocol-pool-label">Coverage of the 512-item candidate pool</p>
+<div class="pool-allocation-bar" role="img" aria-label="512 candidate items: 128 warm-up, 256 additional acquisition, and 128 not acquired by this policy"><span class="pool-warmup" style="width:25%"></span><span class="pool-additional" style="width:50%"></span><span class="pool-unacquired" style="width:25%"></span></div>
+<div class="pool-allocation-legend"><div><strong>128</strong><span>Warm-Up (25%)</span></div><div><strong>256</strong><span>Additional (50%)</span></div><div><strong>128</strong><span>Not Acquired (25%)</span></div></div>
+<div class="acquisition-charge"><strong>768</strong><div><b>Variant Measurements</b><span>Per Policy And Allocation Seed</span></div></div>
+<p class="protocol-note">384 acquired pairs &times; 2 measurements, including warm-up. Development, independent audit and final-test labels are counted separately, as are LLM API costs. These are retrospective query charges.</p>
+<p class="protocol-note">Pool percentages use 512 as the denominator. The remaining 128 items are unqueried by this policy; the evaluator can still use their labels in the full-pool audit.</p></div></div>
+<div class="protocol-rounds"><h4>Decision Rounds And Update Batches</h4>
+<p>Each campaign has <strong>384 item-level decision rounds: 128 warm-up + 256 post-warm-up</strong>. In Adaptive Joint, benchmarking values and outcome predictions refresh after each acquired item, so feedback can change the next selection.</p>
+<p>The first memory fit occurs at 16 items, followed by a proposal every 8 items. This gives <strong>47 proposal records: 15 during warm-up and 32 afterward</strong>. The 256 post-warm-up decisions therefore form <strong>32 update batches of 8 items</strong>. Development gating determines which proposals are accepted.</p></div>
+<p class="scope-note">Repeated agent runs share each item's experimental label. Allocation seeds repeat selection while sharing response banks; they are not independent proteins or assays.</p>
 <!-- Measured plots generated directly from medium_v010/policy_summary.csv. -->
 <div class="experiment-plots">
 <figure class="experiment-plot" aria-labelledby="experiment-curve-heading">

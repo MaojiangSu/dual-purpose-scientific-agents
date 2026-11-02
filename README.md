@@ -23,3 +23,5 @@ All assets are static, with no runtime LLM or font API. Preview with `python -m 
 Layout reference: https://jiale0402.github.io/all-atom-omni/.
 
 Experiment themes are the actual section headings: use uppercase EXPERIMENT labels at a readable heading size and omit a second rhetorical question. Other navigation/section titles should be concise descriptive nouns. Preserve the sentence-case question inside the concrete task example.
+
+Experiment 2 includes a configuration table and candidate-pool coverage bar. Keep 384 item-level decision rounds, 256 post-warm-up decisions, 32 post-warm-up memory batches and 47 total proposal records distinct. The 768 retrospective measurement charges apply per policy/seed to acquisition only. Pool percentages use 512 as denominator, and unacquired items are unqueried by the selection policy even though the independent evaluator can audit the full pool.
