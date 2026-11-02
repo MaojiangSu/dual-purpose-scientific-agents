@@ -2,35 +2,22 @@
 
 Public project website: https://maojiangsu.github.io/dual-purpose-scientific-agents/
 
-This repository contains only the webpage presentation, its interaction code, explanatory figures and mathematical fonts. Manuscript PDFs, LaTeX, experimental-code bundles and private assay/response records are not published here.
+This repository publishes only the static webpage, its browser-local interaction and presentation assets. Manuscript PDFs/LaTeX, experimental-code bundles and private assay/response records are not included.
 
 ## Reading The Page
 
-1. The visible abstract follows the current paper, followed by the motivation for sharing experimental feedback between benchmarking and learning.
-2. A responsive overview figure follows the abstract: item pool and cached multi-runs, two value estimates, budget-aware selection, verification, two uses of feedback and a return loop. Its HTML text stays at least 16px; SVG connectors follow the live layout instead of shrinking a bitmap.
-3. Problem Setup defines scientific items, a fixed reference panel with independent multi-runs, the improving target, two objectives and an explicit benchmarking sample value under one budget.
-4. Adaptive Item Selection explains warm-up, both value estimators, cost-aware acquisition, feedback reuse and validation-gated batch memory updates.
-5. A concrete GB1 protein-variant pair and a constructed selection interaction illustrate the setup and algorithm. The illustrative values are distinguished from measured results.
-6. Recorded memory gains, budget curves and a six-policy trade-off plot show completed experiments. Next steps and a theory disclosure follow.
+The full paper title and author line lead into Abstract, a compact method loop, Motivation, Problem Setup, Method, the concrete protein example, the selection interaction and measured experiments. Abstract keeps its narrow reading column; all other body sections share a consistent left edge.
 
-The webpage author line and its BibTeX use Maojiang Su and Han Liu. Preserve the paper-first narrative order; the task example should follow Problem Setup and Method.
+The overview is titled The Adaptive Experimental Design Loop. Its central Our Method group contains value estimation and next-item selection. Candidate items, experimental verification and shared feedback provide the surrounding context, and a clear return arrow feeds new information into the next decision. Keep it concise and general: do not add protein variants, fixed measurement costs, run-level execution details or three rows of large panels. Agent updates remain batched.
 
-## Typography And Reproduction
+Problem Setup defines both objectives, followed by the conditional continuation-policy Pareto problem and the separate predicted next-item candidate set. The actual weighted score selects one supported predicted candidate under positive weights; it does not enumerate the entire Pareto set. Uniform exploration may select outside that set.
 
-Typography follows the user's All-Atom Omni reference exactly: Georgia/Times headings (weight500), system sans-serif body, and17px paragraphs at1.62 line-height. Do not substitute Inter or another text family without a user request. KaTeX0.19.1 pre-rendered HTML/MathML supplies equations; its local fonts and MIT license are bundled.
+The selection interaction uses constructed illustrative values. Experiment plots retain recorded values and their scientific scope. The website author line and BibTeX use Maojiang Su and Han Liu.
 
-All assets are static; no font CDN, LLM endpoint or other runtime API is called. Run `python -m http.server 8000` to preview. GitHub Pages publishes the root of `main`. Each acquired task costs two variant measurements; memory first fits at16 items and then proposes updates every8. Preserve the distinction between an agent choosing A/B and the allocator choosing a whole task.
+## Typography And Preview
 
-Layout and typography reference: https://jiale0402.github.io/all-atom-omni/.
+Preserve the user's All-Atom Omni reference typography: Georgia/Times headings, system sans-serif body and 17px paragraphs. Ordinary interface text stays at least 16px on phones. Use responsive native HTML/CSS and vector arrows; do not shrink a wide bitmap to fit mobile. KaTeX supplies pre-rendered HTML/MathML and local mathematical fonts.
 
-Interface text should remain at least16CSSpx, including phone layouts. Remove redundant counters and repeated status labels instead of shrinking them. SVG chart labels must also be checked at their rendered screen size; retain clear legends, measured values and essential scientific scope.
+All assets are static, with no runtime LLM or font API. Preview with `python -m http.server 8000`; GitHub Pages publishes the root of main. The workflow is implemented in assets/workflow.css and assets/workflow.js.
 
-The overview is code-native HTML/CSS with vector arrows (assets/workflow.css and assets/workflow.js). It remains after the abstract and before Motivation. Keep outcomes and batch-level gains distinct, show within-agent multi-runs, and label memory fitting as a batch update.
-
-The hero uses the exact full manuscript title as one h1, with responsive natural wrapping. Keep the author line and remove any redundant subtitle.
-
-Except for the Abstract reading column, all body sections share the full main container and a consistent left edge. Keep hero explanatory prose, footer and diagram-node prose left-aligned. The paper title/authors, display math and numerical/sequence cells retain their appropriate alignment.
-
-Emphasize adaptive decision rounds: each post-warm-up choice uses earlier experimental feedback. Repeated agent runs only measure execution variability. Keep batch memory updates separate from item-level decisions and use only completed earlier batch gains for learning predictions.
-
-After defining the two objectives, present the conditional Pareto continuation-policy problem. Keep the predicted one-step Pareto candidate set separate, explain that the existing scalarization selects one supported predicted candidate under positive weights, and retain the random-exploration exception.
+Layout reference: https://jiale0402.github.io/all-atom-omni/.

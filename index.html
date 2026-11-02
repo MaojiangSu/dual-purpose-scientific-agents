@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-design-version="10">
+<html lang="en" data-design-version="11">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dual-Purpose Experimental Design for Benchmarking and Improving Scientific Agents</title>
@@ -8,10 +8,10 @@
 <meta property="og:url" content="https://maojiangsu.github.io/dual-purpose-scientific-agents/"><meta property="og:type" content="website">
 <meta property="og:title" content="Dual-Purpose Experimental Design for Benchmarking and Improving Scientific Agents">
 <meta name="theme-color" content="#008e87">
-<link rel="stylesheet" href="assets/katex.min.css"><link rel="stylesheet" href="assets/site.css?v=10">
-<link rel="stylesheet" href="assets/figures.css?v=10"><link rel="stylesheet" href="assets/experiment-plots.css?v=10">
-<link rel="stylesheet" href="assets/workflow.css?v=10"><script defer src="assets/workflow.js?v=10"></script>
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><script defer src="assets/site.js?v=10"></script>
+<link rel="stylesheet" href="assets/katex.min.css"><link rel="stylesheet" href="assets/site.css?v=11">
+<link rel="stylesheet" href="assets/figures.css?v=11"><link rel="stylesheet" href="assets/experiment-plots.css?v=11">
+<link rel="stylesheet" href="assets/workflow.css?v=11"><script defer src="assets/workflow.js?v=11"></script>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><script defer src="assets/site.js?v=11"></script>
 </head>
 <body>
 <a class="skip-link" href="#abstract">Skip to the abstract</a>
@@ -26,29 +26,24 @@
 <main>
 <section class="section article-abstract" id="abstract"><div class="container reading"><h2>Abstract</h2><p>Experimental feedback serves two purposes in scientific design: benchmarking scientific agents and providing verified evidence for subsequent learning. However, under a limited experimental query budget, the items most useful for distinguishing agents may not be those most useful for improving them. To address this trade-off, we study dual-purpose experimental design, where the same acquired experimental feedback supports both agent benchmarking and subsequent improvement. We propose an adaptive sampling strategy that balances benchmarking and learning through separate sample-value estimates. At each adaptive round, the strategy uses experimental outcomes from earlier rounds to update its value estimates and select the next item to verify. We analyze finite-run variability, the outcome dependence of benchmarking values, and the distinction between a selection proxy and benchmark reliability. We evaluate a lightweight learning operator that updates external experimental memory while keeping the underlying language model frozen. On held-out GB1 variant pairs, this memory improves the target agent's accuracy from 63.3% to 69.5%; at a matched 384-item budget, adaptive Joint selection reaches 70.12% versus 69.27% for random selection, but has higher benchmark mean-score error. These results demonstrate useful experimental-memory learning while exposing a limitation of the current dual-objective estimator.</p></div></section>
 <section class="section workflow-section" id="overview"><div class="container">
-<h2>Adaptive Rounds, Shared Feedback</h2><p class="section-intro">After warm-up, each decision round uses earlier experimental outcomes to select one new item. Its feedback supports both benchmarking and target improvement.</p>
-<figure class="workflow-figure" aria-labelledby="workflow-caption">
-<div class="workflow-board" id="workflow-board">
+<h2>The Adaptive Experimental Design Loop</h2><p class="section-intro">Our algorithm uses earlier feedback to estimate two values and choose the next item. The same verified outcome supports benchmarking and agent improvement.</p>
+<figure class="workflow-figure" aria-labelledby="workflow-caption"><div class="workflow-board" id="workflow-board">
 <svg class="workflow-connectors" id="workflow-connectors" aria-hidden="true" focusable="false"><defs>
 <marker id="workflow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#82939e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
 <marker id="workflow-arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#4d7fb3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
 <marker id="workflow-arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#218575" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
 </defs><g id="workflow-paths"></g></svg>
-<div class="workflow-budget">Adaptive Decision Rounds <span>One Shared Query Budget</span></div>
 <div class="workflow-main">
-<div class="workflow-stage" id="flow-pool"><div class="workflow-step"><span>1</span><h3>Scientific Item Pool</h3></div><div class="workflow-pair" aria-label="Each item compares variant A with variant B"><b>Variant A</b><span>vs</span><b>Variant B</b></div><p>Experimental outcomes are hidden.</p><div class="workflow-runs"><strong>Cached Reference Answers</strong><div><span>Run 1</span><span>Run 2</span><span>Run 3</span></div><p>Repeated runs measure agent variability.</p></div></div>
-<div class="workflow-stage" id="flow-values"><div class="workflow-step"><span>2</span><h3>Predict Two Values</h3></div><div class="workflow-value workflow-blue"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 25V15M15 25V6M25 25V11"/></svg><div><strong>Benchmarking</strong><span>Agent Discrimination</span></div></div><div class="workflow-value workflow-teal"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 25L13 16L19 20L28 7M20 7H28V15"/></svg><div><strong>Learning</strong><span>Potential Improvement</span></div></div></div>
-<div class="workflow-stage workflow-select" id="flow-select"><div class="workflow-step"><span>3</span><h3>Select The Next Item</h3></div><div class="workflow-balance" aria-hidden="true"><span></span><span></span></div><p>Balance both predicted values, uncertainty and query cost.</p><strong class="workflow-emphasis">One Affordable Item</strong></div>
-<div class="workflow-stage" id="flow-verify"><div class="workflow-step"><span>4</span><h3>Verify Once</h3></div><svg class="workflow-assay" viewBox="0 0 100 54" aria-hidden="true"><path d="M12 6H36M17 6V30A7 7 0 0 0 31 30V6M64 6H88M69 6V30A7 7 0 0 0 83 30V6"/><path class="workflow-liquid" d="M18 23H30V31A6 6 0 0 1 18 31ZM70 17H82V31A6 6 0 0 1 70 31Z"/><path class="workflow-check" d="M42 39L49 46L62 30"/></svg><p>Reveal both fitness values.</p><strong class="workflow-emphasis">Cost: 2 Measurements</strong></div>
+<div class="workflow-stage workflow-input" id="flow-pool"><h3>Candidate Items</h3><svg class="workflow-context-icon" viewBox="0 0 36 36" aria-hidden="true"><path d="M5 8H26V29H5ZM10 4H31V25M10 15H21M10 21H21"/></svg><p>Unknown outcomes</p></div>
+<div class="workflow-method" id="flow-method"><div class="workflow-method-label">Our Method</div><div class="workflow-method-steps">
+<div class="workflow-method-step" id="flow-values"><h3>Estimate Values</h3><div class="workflow-value-label workflow-blue">Benchmarking</div><div class="workflow-value-label workflow-teal">Learning</div></div>
+<div class="workflow-method-step" id="flow-select"><h3>Select Next Item</h3><div class="workflow-balance" aria-hidden="true"><span></span><span></span></div><p>Balance both objectives within budget.</p></div>
+</div></div>
+<div class="workflow-stage" id="flow-verify"><h3>Experimental Verification</h3><svg class="workflow-context-icon" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="13"/><path d="M11 18L16 23L25 13"/></svg><p>Acquire the outcome</p></div>
+<div class="workflow-stage workflow-shared" id="flow-shared"><h3>Shared Feedback</h3><div class="workflow-feedback-use workflow-blue" id="flow-benchmark">Benchmark Agents</div><div class="workflow-feedback-use workflow-teal" id="flow-learning">Improve Target</div><p>Agent updates use batches.</p></div>
 </div>
-<div class="workflow-outcomes">
-<div class="workflow-outcome workflow-benchmark" id="flow-benchmark"><span class="workflow-lane-label">Benchmarking</span><h3>Score Every Cached Run</h3><p>Compare the fixed reference agents using the measured winner.</p></div>
-<div class="workflow-outcome workflow-learning" id="flow-learning"><span class="workflow-lane-label">Learning</span><h3>Update Experimental Memory</h3><p>Accumulate evidence. Fit and validate the target's memory <strong>after each batch</strong>.</p></div>
-</div>
-<div class="workflow-feedback" id="flow-feedback"><div class="workflow-feedback-labels"><span>New Experimental Outcomes</span><span>Batch-Level Learning Gains</span></div><strong>Use This Feedback In The Next Round</strong></div>
-</div>
-<figcaption id="workflow-caption">Each round verifies one protein pair; warm-up rounds count toward the budget. Development gates batch memory updates, and independent audits assess benchmark reliability. Reference agents and LLM weights stay fixed.</figcaption>
-</figure>
+<div class="workflow-feedback" id="flow-feedback"><strong>Update Values For The Next Round</strong></div>
+</div><figcaption id="workflow-caption">Each round uses earlier feedback to choose one item. Experimental outcomes refresh benchmarking estimates; batch learning gains refine learning estimates.</figcaption></figure>
 </div></section>
 <section class="section" id="motivation"><div class="container"><h2>Why Dual-Purpose Experimental Design?</h2><p>Experimental ground truth supports two scientific uses: comparing agents and improving a target agent. Both depend on verified outcomes, and both compete for a limited experimental query budget.</p><p>A task that clearly separates competing agents may provide little new evidence for learning. A useful training item may contribute little to benchmark discrimination. We therefore choose which items to verify by treating benchmarking and learning as two objectives that evolve with the acquired feedback.</p></div></section>
 <section class="section" id="problem"><div class="container"><h2>Problem Setup</h2><p class="section-intro">We start with a pool of scientific items whose experimental outcomes are hidden. A policy selects items sequentially under one query budget; each acquired outcome supports both the fixed reference panel and an improving target.</p>
