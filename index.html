@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Dual-purpose experimental design uses the same verified observations to benchmark scientific agents and improve a frozen target through experimental memory.">
+<link rel="canonical" href="https://maojiangsu.github.io/dual-purpose-scientific-agents/">
+<meta property="og:url" content="https://maojiangsu.github.io/dual-purpose-scientific-agents/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dual-Purpose Experimental Design for Benchmarking and Improving Scientific Agents">
+<meta name="theme-color" content="#078d87">
+<title>Dual-Purpose Experimental Design</title>
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script defer src="assets/site.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#abstract">Skip to content</a>
+<header class="hero">
+  <div class="container">
+    <p class="eyebrow">Scientific Agents &middot; Experimental Design</p>
+    <h1>Dual-Purpose Experimental Design <span>for Benchmarking and Improving Scientific Agents</span></h1>
+    <p class="subtitle">One experimental query. Two scientific uses.</p>
+    <div class="authors"><span>AAA</span><span>Han Liu</span></div>
+    <p class="affiliation">Center for Foundation Models and Generative AI<br>Northwestern University</p>
+    <nav class="links" aria-label="Project resources">
+      
+      
+      <a class="pill" href="#method">Method</a>
+      <a class="pill" href="#results">Results</a>
+      <a class="pill" href="#theory">Theory</a>
+      <a class="pill" href="#bibtex">BibTeX</a>
+    </nav>
+    <p class="hero-note"><strong>63.3% &rarr; 69.5%</strong> held-out GB1 accuracy with experimental memory.<br>A learning-operator result, evaluated separately from adaptive allocation.</p>
+  </div>
+</header>
+
+<div class="container overview-wrap">
+  <figure class="figure">
+    <div class="overview-scroll"><img src="assets/overview.svg" width="1160" height="470" alt="Scientific items pass through adaptive selection and one experimental query. The acquired fitness values score a frozen multi-run reference bank and update the target's experimental memory. New feedback changes subsequent sample values."></div>
+    <figcaption class="caption"><b>One observation, two uses.</b> Experimental feedback turns label-blind agent answers into benchmark scores and supplies evidence for improving a separate target state. The reference agents and underlying language models remain frozen.</figcaption>
+  </figure>
+</div>
+
+<main>
+<section class="section abstract" id="abstract">
+  <div class="container reading">
+    <h2>Abstract</h2>
+    <p>Experimental feedback serves two purposes in scientific design: benchmarking scientific agents and providing verified evidence for subsequent learning. Under a limited experimental query budget, the items most useful for distinguishing agents may not be those most useful for improving them. We study <strong>dual-purpose experimental design</strong>, where each agent performs multiple runs on the same scientific item and acquired measurements support both outputs. Our adaptive strategy estimates benchmarking and learning sample values separately, then selects which item to verify next. A lightweight learning operator updates external experimental memory while keeping the language model frozen. On held-out GB1 variant pairs, the memory improves the target agent's accuracy from 63.3% to 69.5%. At a matched 384-item budget, Adaptive Joint reaches 70.12% versus 69.27% for Random, but has higher benchmark mean-score error. The results support experimental-memory learning and identify a limitation of the current acquisition estimator.</p>
+  </div>
+</section>
+
+<section class="section" id="problem">
+  <div class="container">
+    <h2>Why One Budget Has Two Objectives</h2>
+    <p>A protein-variant pair is easy to ask about and costly to verify. Once its two fitness values are acquired, every cached agent answer can be scored, and the same evidence can improve the target's next decisions.</p>
+    <div class="objectives">
+      <article class="objective">
+        <h3>Benchmarking Value</h3>
+        <p>How does adding this item change separation between agent means relative to variation across repeated runs?</p>
+        <div class="eq" aria-label="Benchmarking sample value is the change in set-level signal-to-noise ratio"><i>v</i><sub>bench</sub>(z | S) = F(S &cup; {z}) &minus; F(S)</div>
+      </article>
+      <article class="objective learning">
+        <h3>Learning Value</h3>
+        <p>How useful is this feedback for updating the current target's experimental memory?</p>
+        <div class="eq">Current item + current memory &rarr; proposed improvement</div>
+      </article>
+    </div>
+    <div class="leadbox">An informative benchmark item and an informative training item can be different. Their values also change as the verified benchmark and target memory evolve.</div>
+  </div>
+</section>
+
+<section class="section" id="method">
+  <div class="container reading">
+    <h2>Adaptive Item Selection</h2>
+    <p>Each item contains public context and two candidate variants. Verification reveals both fitness measurements. The method alternates item selection with small-batch memory updates.</p>
+    <ol class="method-list">
+      <li><div><h3>Cache Multiple Runs Of Fixed Agents</h3><p>Collect label-blind reference answers before revealing assay results. Repeated runs capture variability of the same agent on the same item.</p></div></li>
+      <li><div><h3>Estimate Two Sample Values</h3><p>Predict the set-level benchmarking marginal from outcome probabilities. Estimate learning potential from actual batch-level update feedback and the current memory state.</p></div></li>
+      <li><div><h3>Verify The Next Affordable Item</h3><p>Combine the normalized values with a fixed preference and optional exploration. Pay the declared query cost and reuse the acquired measurements for both purposes.</p></div></li>
+      <li><div><h3>Update Memory Through A Validation Gate</h3><p>Fit residue-pattern interactions from acquired evidence. Retain a candidate only when its complete decision rule improves development performance; keep acquired evidence even when an update is rejected.</p></div></li>
+    </ol>
+    <h3>Learning Feedback Without Per-Item LLM Editing</h3>
+    <p>The fallback prompt stays fixed. A cached development response bank can therefore evaluate new experimental memories using CPU inference. Each batch produces one signed update gain and one accepted gain, rather than duplicated labels for all its items.</p>
+  </div>
+</section>
+
+<section class="section" id="tradeoff">
+  <div class="container">
+    <h2>Explore The Selection Trade-Off</h2>
+    <p>Move the preference toward benchmarking or learning to see which item a simple cost-aware scalarization selects.</p>
+    <div class="demo">
+      <div class="demo-control">
+        <h3><label for="preference">Benchmarking Preference</label></h3>
+        <div class="lambda-value"><output id="lambda-value" for="preference">0.50</output> <span>&lambda;</span></div>
+        <input id="preference" type="range" min="0" max="100" value="50" aria-controls="demo-items demo-outcome" aria-label="Weight on benchmarking value">
+        <div class="range-labels"><span>Learning</span><span>Benchmarking</span></div>
+        <p class="demo-note">Illustrative normalized values and equal costs. These numbers are not experimental measurements.</p>
+      </div>
+      <div>
+        <div class="demo-items" id="demo-items">
+          <article class="demo-item" data-item="0"><div class="demo-row"><strong>Item 1</strong><span class="demo-selected">Selected Next</span><span data-score="0">0.273</span></div><div class="demo-values">Benchmarking 0.94 &middot; Learning 0.15 &middot; Cost 2</div><div class="utility-track"><div class="utility-fill" data-fill="0"></div></div></article>
+          <article class="demo-item selected" data-item="1"><div class="demo-row"><strong>Item 2</strong><span class="demo-selected">Selected Next</span><span data-score="1">0.315</span></div><div class="demo-values">Benchmarking 0.58 &middot; Learning 0.68 &middot; Cost 2</div><div class="utility-track"><div class="utility-fill" data-fill="1"></div></div></article>
+          <article class="demo-item" data-item="2"><div class="demo-row"><strong>Item 3</strong><span class="demo-selected">Selected Next</span><span data-score="2">0.278</span></div><div class="demo-values">Benchmarking 0.18 &middot; Learning 0.93 &middot; Cost 2</div><div class="utility-track"><div class="utility-fill" data-fill="2"></div></div></article>
+        </div>
+        <p class="demo-outcome" id="demo-outcome" aria-live="polite">Balanced preference selects Item 2.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="theory">
+  <div class="container">
+    <h2>What The Analysis Establishes</h2>
+    <p>The analysis explains the quantities used for selection and the evidence needed to interpret them.</p>
+    <div class="theory-grid">
+      <article class="theory-point"><h3>Multiple Runs Expose Noise</h3><p>For a fixed evaluation set independent of its response bank, finite-run variability contributes to observed between-agent separation. A numerator correction does not make the full SNR ratio unbiased.</p></article>
+      <article class="theory-point"><h3>Singleton SNR Can Be Uninformative</h3><p>With valid binary answers, flipping the experimental winner complements all scores and preserves single-item SNR. The set-level marginal retains interaction with earlier verified items.</p></article>
+      <article class="theory-point"><h3>Selection And Reliability Differ</h3><p>Sample values are bounded, but can be negative. Budget checks guarantee feasible expenditure. Benchmark accuracy and held-out learning gain require independent measurement.</p></article>
+    </div>
+    
+  </div>
+</section>
+
+<section class="section" id="results">
+  <div class="container">
+    <h2>Experimental Memory: Verified Learning Gain</h2>
+    <p>A frozen Terra agent is evaluated on unseen combinations from the GB1 IgG-binding landscape. The external memory and decision threshold are selected on Development and frozen before confirmation.</p>
+    <div class="results-meta"><span>256 held-out pairs</span><span>2 fresh executions per pair</span><span>Same frozen LLM</span><span>Within-protein generalization</span></div>
+    <div class="table-scroll">
+      <table class="results-table">
+        <caption>Accuracy (%) on the same held-out items. The last row reports paired gains in percentage points.</caption>
+        <thead><tr><th scope="col">Agent</th><th scope="col">Run 1</th><th scope="col">Run 2</th><th scope="col">Mean</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Original Terra</th><td>63.67</td><td>62.89</td><td>63.28</td></tr>
+          <tr class="featured"><th scope="row">With Experimental Memory</th><td class="best">69.53</td><td class="best">69.53</td><td class="best">69.53</td></tr>
+          <tr class="gain-row"><th scope="row">Paired Gain (pp)</th><td>+5.86</td><td>+6.64</td><td>+6.25</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figure class="results-figure">
+      <img src="assets/memory-results.svg" width="1120" height="435" loading="lazy" alt="Original Terra scores 63.28 percent and the experimental-memory agent scores 69.53 percent. The gain is 6.25 percentage points, with a descriptive paired-item bootstrap interval from 2.53 to 10.16 points.">
+      <figcaption>The gain interval is conditional on one trained snapshot and split. Two executions of each item share experimental labels and are not independent training replicates.</figcaption>
+    </figure>
+    <p>The rule consults memory on 107 of 256 items. Across 512 trial decisions, it changes 60 choices: 44 improve, 12 worsen and four are neutral. The selected memory uses 256 training pairs; the development search acquired 1,024 pairs in total.</p>
+    <div class="scope"><strong>Evaluation Scope</strong><p>This is evidence for a useful learning operator in one protein setting. It does not establish cross-protein transfer or improvement for Qwen. The separate allocation comparison below measures the joint trade-off.</p></div>
+    <details class="details">
+      <summary>Cross-Protein Diagnostic</summary>
+      <p>A separate stability experiment uses 96 final pairs from 12 unseen UniProt groups and two executions per item. Its feature-based memory does not improve performance. It is a different learning configuration from the within-GB1 interaction model.</p>
+      <div class="table-scroll"><table class="results-table"><thead><tr><th scope="col">Configuration</th><th scope="col">Accuracy (%)</th></tr></thead><tbody><tr><th scope="row">Original Terra</th><td>69.79</td></tr><tr><th scope="row">Fixed Comparison Procedure</th><td>67.19</td></tr><tr><th scope="row">Cross-Protein Feature Memory</th><td>66.67</td></tr></tbody></table></div>
+    </details>
+    
+  </div>
+</section>
+
+<section class="section" id="protocol">
+  <div class="container">
+    <h2>Evaluating Dual-Purpose Allocation</h2>
+    <p>The acquisition protocol measures benchmark fidelity and held-out agent improvement at the same consumed query budget. New items exclude every variant used in the preceding component study.</p>
+    <div class="setup-grid">
+      <div class="setup-stat"><strong>512</strong><span>Candidate Items</span></div>
+      <div class="setup-stat"><strong>3</strong><span>Allocation Seeds</span></div>
+      <div class="setup-stat"><strong>3 + 2</strong><span>Construction + Audit Runs</span></div>
+      <div class="setup-stat"><strong>6</strong><span>Selection Controls</span></div>
+    </div>
+    <table class="setup-table"><tbody>
+      <tr><th scope="row">Development / Test</th><td>96 / 256 variant-disjoint pairs</td></tr>
+      <tr><th scope="row">Query Checkpoints</th><td>128, 256 and 384 items; two measurements per item</td></tr>
+      <tr><th scope="row">Common Warm-Up</th><td>128 uniform items, with regular memory updates</td></tr>
+      <tr><th scope="row">Update Frequency</th><td>Every eight items; one feedback record per batch</td></tr>
+      <tr><th scope="row">Controls</th><td>Random, Benchmarking-Only, Learning-Only, Static Joint, Joint Without Learning Bonus, Adaptive Joint</td></tr>
+      <tr><th scope="row">Reference Panel Extension</th><td>Qwen3.5-9B, Qwen3.5-35B-A3B, GPT-6.1 Terra and GPT-6.1 Sol</td></tr>
+      <tr><th scope="row">Independent Measurements</th><td>Mean-score MSE, ranking fidelity, held-out learning gain and prequential value-prediction error</td></tr>
+    </tbody></table>
+    <h3>Measured Allocation Outcomes</h3>
+    <p>At the prespecified 384-item endpoint, Adaptive Joint improves held-out accuracy over Random by 0.85 percentage points. It also has larger benchmark mean-score error. Static Joint reaches slightly higher accuracy than the adaptive version.</p>
+    <div class="table-scroll"><table class="results-table"><caption>Three paired allocation seeds on common response banks. Accuracy is mean &plusmn; allocation-seed SD (%); benchmark MSE is displayed in units of 10<sup>&minus;4</sup>. Lower MSE is better.</caption><thead><tr><th scope="col">Selection</th><th scope="col">Held-Out Accuracy</th><th scope="col">Benchmark MSE</th><th scope="col">Learning MSE / Zero</th></tr></thead><tbody>
+<tr><th scope="row">Uniform Random</th><td>69.27 &plusmn; 0.81</td><td>0.69</td><td>1.34</td></tr>
+<tr><th scope="row">Benchmarking-Only</th><td>69.73 &plusmn; 0.39</td><td>2.97</td><td>1.40</td></tr>
+<tr><th scope="row">Learning-Only</th><td>69.08 &plusmn; 0.49</td><td>9.26</td><td>1.29</td></tr>
+<tr><th scope="row">Static Joint</th><td>70.31 &plusmn; 0.98</td><td>11.16</td><td>1.17</td></tr>
+<tr><th scope="row">Joint Without Learning Bonus</th><td>70.18 &plusmn; 0.23</td><td>17.99</td><td>1.37</td></tr>
+<tr><th scope="row">Adaptive Joint</th><td>70.12 &plusmn; 0.59</td><td>14.86</td><td>1.35</td></tr>
+</tbody></table></div>
+    <div class="scope"><strong>What This Establishes</strong><p>Experimental memory can improve this frozen agent. The present acquisition estimator does not establish a better joint trade-off: Random has the lowest benchmark MSE, and every learning-prediction MSE ratio is above one. The complete allocation stage costs $12.58 in usage-priced API calls.</p></div>
+    
+    <p class="demo-note">Repeated runs of an agent estimate execution variability. Allocation seeds repeat item selection. Neither creates independent protein replicates. The component result above is reported separately from the allocation protocol.</p>
+  </div>
+</section>
+
+<section class="section" id="bibtex">
+  <div class="container reading">
+    <div class="citation-header"><h2>Citation</h2><button class="copy-button" type="button" id="copy-citation">Copy BibTeX</button></div>
+    <pre class="bibtex" id="citation">@misc{dualpurpose2026,
+  title = {Dual-Purpose Experimental Design for
+           Benchmarking and Improving Scientific Agents},
+  author = {AAA and Han Liu},
+  year = {2026},
+  note = {Research manuscript}
+}</pre>
+    <span id="copy-status" role="status" aria-live="polite"></span>
+    <div class="resource-links"><a href="https://github.com/MaojiangSu/dual-purpose-scientific-agents">Website Repository</a></div>
+  </div>
+</section>
+</main>
+<footer class="footer">
+  <p>Dual-Purpose Experimental Design &middot; Research Manuscript</p>
+  <p>Layout adapted from the <a href="https://jiale0402.github.io/all-atom-omni/">All-Atom Omni project page</a>.</p>
+</footer>
+</body>
+</html>
