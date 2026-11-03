@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-design-version="34">
+<html lang="en" data-design-version="35">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dual-Purpose Experimental Design for Benchmarking and Improving Scientific Agents</title>
@@ -8,11 +8,11 @@
 <meta property="og:url" content="https://maojiangsu.github.io/dual-purpose-scientific-agents/"><meta property="og:type" content="website">
 <meta property="og:title" content="Dual-Purpose Experimental Design for Benchmarking and Improving Scientific Agents">
 <meta name="theme-color" content="#008e87">
-<link rel="stylesheet" href="assets/katex.min.css"><link rel="stylesheet" href="assets/site.css?v=34">
-<link rel="stylesheet" href="assets/figures.css?v=34"><link rel="stylesheet" href="assets/experiment-plots.css?v=34">
-<link rel="stylesheet" href="assets/workflow.css?v=34"><script defer src="assets/workflow.js?v=34"></script>
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><script defer src="assets/site.js?v=34"></script>
-<link rel="stylesheet" href="assets/benchmark-results.css?v=34"><script defer src="assets/benchmark-results.js?v=34"></script>
+<link rel="stylesheet" href="assets/katex.min.css"><link rel="stylesheet" href="assets/site.css?v=35">
+<link rel="stylesheet" href="assets/figures.css?v=35"><link rel="stylesheet" href="assets/experiment-plots.css?v=35">
+<link rel="stylesheet" href="assets/workflow.css?v=35"><script defer src="assets/workflow.js?v=35"></script>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><script defer src="assets/site.js?v=35"></script>
+<link rel="stylesheet" href="assets/benchmark-results.css?v=35"><script defer src="assets/benchmark-results.js?v=35"></script>
 </head>
 <body>
 <a class="skip-link" href="#abstract">Skip to the abstract</a>
@@ -156,7 +156,7 @@
   <div class="experiment-chart-wrap">
 <svg class="experiment-chart experiment-chart-desktop" viewBox="0 0 860 420" role="group" aria-labelledby="experiment-curve-desktop-title experiment-curve-desktop-desc">
 <title id="experiment-curve-desktop-title">Held-Out Accuracy Every Eight Verified Items</title>
-<desc id="experiment-curve-desktop-desc">Random and Adaptive Joint are evaluated at all 33 checkpoints from 128 to 384 verified items, every eight items. The plotted accuracy is the mean of three paired allocation seeds, using offline re-evaluations of the original retained memory states. Steps change only when an accepted memory update changes performance. The accuracy axis is truncated, from 66 to 71.5 percent. No confidence intervals are shown.</desc>
+<desc id="experiment-curve-desktop-desc">Random and Adaptive Joint are evaluated at all 33 checkpoints from 128 to 384 verified items, every eight items. The plotted accuracy is the mean of three paired allocation seeds, using offline re-evaluations of the original retained memory states. Markers are evaluated checkpoint values. Straight connecting lines are visual guides between checkpoints. The accuracy axis is truncated, from 66 to 71.5 percent. No confidence intervals are shown.</desc>
 <line x1="72" x2="810" y1="326" y2="326" class="experiment-grid-line"/><text x="62" y="332" text-anchor="end" class="experiment-axis-tick">66</text>
 <line x1="72" x2="810" y1="274.364" y2="274.364" class="experiment-grid-line"/><text x="62" y="280.364" text-anchor="end" class="experiment-axis-tick">67</text>
 <line x1="72" x2="810" y1="222.727" y2="222.727" class="experiment-grid-line"/><text x="62" y="228.727" text-anchor="end" class="experiment-axis-tick">68</text>
@@ -172,8 +172,8 @@
 <path d="M72 42V326H810" class="experiment-axis-line"/>
 <text x="72" y="23" class="experiment-axis-title">Held-Out Accuracy (%)</text>
 <text x="441" y="391" text-anchor="middle" class="experiment-axis-title">Verified Items</text>
-<path d="M72 237.788 H95.062V234.426 H118.125V200.809 H141.188V200.809 H164.25V200.809 H187.312V200.809 H210.375V184 H233.438V184 H256.5V184 H279.562V184 H302.625V184 H325.688V184 H348.75V184 H371.812V184 H394.875V184 H417.938V184 H441V184 H464.062V184 H487.125V184 H510.188V170.553 H533.25V153.744 H556.312V153.744 H579.375V153.744 H602.438V153.744 H625.5V153.744 H648.562V167.191 H671.625V167.191 H694.688V167.191 H717.75V167.191 H740.812V167.191 H763.875V167.191 H786.938V157.106 H810V157.106" class="experiment-policy-line" data-policy="random" stroke="#65788b" stroke-dasharray="7 5"/>
-<path d="M72 237.788 H95.062V237.788 H118.125V237.788 H141.188V237.788 H164.25V220.979 H187.312V220.979 H210.375V220.979 H233.438V220.979 H256.5V220.979 H279.562V224.341 H302.625V224.341 H325.688V224.341 H348.75V224.341 H371.812V224.341 H394.875V224.341 H417.938V184 H441V170.553 H464.062V170.553 H487.125V170.553 H510.188V170.553 H533.25V143.659 H556.312V143.659 H579.375V143.659 H602.438V123.489 H625.5V123.489 H648.562V123.489 H671.625V103.318 H694.688V103.318 H717.75V113.403 H740.812V113.403 H763.875V113.403 H786.938V113.403 H810V113.403" class="experiment-policy-line" data-policy="joint" stroke="#3273dc"/>
+<path d="M72 237.788 L95.062 234.426 L118.125 200.809 L141.188 200.809 L164.25 200.809 L187.312 200.809 L210.375 184 L233.438 184 L256.5 184 L279.562 184 L302.625 184 L325.688 184 L348.75 184 L371.812 184 L394.875 184 L417.938 184 L441 184 L464.062 184 L487.125 184 L510.188 170.553 L533.25 153.744 L556.312 153.744 L579.375 153.744 L602.438 153.744 L625.5 153.744 L648.562 167.191 L671.625 167.191 L694.688 167.191 L717.75 167.191 L740.812 167.191 L763.875 167.191 L786.938 157.106 L810 157.106" class="experiment-policy-line" data-policy="random" stroke="#65788b" stroke-dasharray="7 5"/>
+<path d="M72 237.788 L95.062 237.788 L118.125 237.788 L141.188 237.788 L164.25 220.979 L187.312 220.979 L210.375 220.979 L233.438 220.979 L256.5 220.979 L279.562 224.341 L302.625 224.341 L325.688 224.341 L348.75 224.341 L371.812 224.341 L394.875 224.341 L417.938 184 L441 170.553 L464.062 170.553 L487.125 170.553 L510.188 170.553 L533.25 143.659 L556.312 143.659 L579.375 143.659 L602.438 123.489 L625.5 123.489 L648.562 123.489 L671.625 103.318 L694.688 103.318 L717.75 113.403 L740.812 113.403 L763.875 113.403 L786.938 113.403 L810 113.403" class="experiment-policy-line" data-policy="joint" stroke="#3273dc"/>
 <g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 128 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds." data-budget="128" data-policy="random" data-accuracy-mean="0.6770833333333334">
 <title>Random; 128 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds.</title>
 <rect x="65" y="229.788" width="14" height="16" fill="transparent" pointer-events="all"/>
@@ -507,7 +507,7 @@
 </svg>
 <svg class="experiment-chart experiment-chart-mobile" viewBox="0 0 360 368" role="group" aria-labelledby="experiment-curve-mobile-title experiment-curve-mobile-desc">
 <title id="experiment-curve-mobile-title">Held-Out Accuracy Every Eight Verified Items</title>
-<desc id="experiment-curve-mobile-desc">Random and Adaptive Joint are evaluated at all 33 checkpoints from 128 to 384 verified items, every eight items. The plotted accuracy is the mean of three paired allocation seeds, using offline re-evaluations of the original retained memory states. Steps change only when an accepted memory update changes performance. The accuracy axis is truncated, from 66 to 71.5 percent. No confidence intervals are shown.</desc>
+<desc id="experiment-curve-mobile-desc">Random and Adaptive Joint are evaluated at all 33 checkpoints from 128 to 384 verified items, every eight items. The plotted accuracy is the mean of three paired allocation seeds, using offline re-evaluations of the original retained memory states. Markers are evaluated checkpoint values. Straight connecting lines are visual guides between checkpoints. The accuracy axis is truncated, from 66 to 71.5 percent. No confidence intervals are shown.</desc>
 <line x1="52" x2="335" y1="282" y2="282" class="experiment-grid-line"/><text x="42" y="288" text-anchor="end" class="experiment-axis-tick">66</text>
 <line x1="52" x2="335" y1="238.545" y2="238.545" class="experiment-grid-line"/><text x="42" y="244.545" text-anchor="end" class="experiment-axis-tick">67</text>
 <line x1="52" x2="335" y1="195.091" y2="195.091" class="experiment-grid-line"/><text x="42" y="201.091" text-anchor="end" class="experiment-axis-tick">68</text>
@@ -521,8 +521,8 @@
 <path d="M52 43V282H335" class="experiment-axis-line"/>
 <text x="52" y="23" class="experiment-axis-title">Held-Out Accuracy (%)</text>
 <text x="193.5" y="347" text-anchor="middle" class="experiment-axis-title">Verified Items</text>
-<path d="M52 207.765 H60.844V204.936 H69.688V176.645 H78.531V176.645 H87.375V176.645 H96.219V176.645 H105.062V162.5 H113.906V162.5 H122.75V162.5 H131.594V162.5 H140.438V162.5 H149.281V162.5 H158.125V162.5 H166.969V162.5 H175.812V162.5 H184.656V162.5 H193.5V162.5 H202.344V162.5 H211.188V162.5 H220.031V151.184 H228.875V137.038 H237.719V137.038 H246.562V137.038 H255.406V137.038 H264.25V137.038 H273.094V148.355 H281.938V148.355 H290.781V148.355 H299.625V148.355 H308.469V148.355 H317.312V148.355 H326.156V139.867 H335V139.867" class="experiment-policy-line" data-policy="random" stroke="#65788b" stroke-dasharray="7 5"/>
-<path d="M52 207.765 H60.844V207.765 H69.688V207.765 H78.531V207.765 H87.375V193.62 H96.219V193.62 H105.062V193.62 H113.906V193.62 H122.75V193.62 H131.594V196.449 H140.438V196.449 H149.281V196.449 H158.125V196.449 H166.969V196.449 H175.812V196.449 H184.656V162.5 H193.5V151.184 H202.344V151.184 H211.188V151.184 H220.031V151.184 H228.875V128.551 H237.719V128.551 H246.562V128.551 H255.406V111.577 H264.25V111.577 H273.094V111.577 H281.938V94.602 H290.781V94.602 H299.625V103.089 H308.469V103.089 H317.312V103.089 H326.156V103.089 H335V103.089" class="experiment-policy-line" data-policy="joint" stroke="#3273dc"/>
+<path d="M52 207.765 L60.844 204.936 L69.688 176.645 L78.531 176.645 L87.375 176.645 L96.219 176.645 L105.062 162.5 L113.906 162.5 L122.75 162.5 L131.594 162.5 L140.438 162.5 L149.281 162.5 L158.125 162.5 L166.969 162.5 L175.812 162.5 L184.656 162.5 L193.5 162.5 L202.344 162.5 L211.188 162.5 L220.031 151.184 L228.875 137.038 L237.719 137.038 L246.562 137.038 L255.406 137.038 L264.25 137.038 L273.094 148.355 L281.938 148.355 L290.781 148.355 L299.625 148.355 L308.469 148.355 L317.312 148.355 L326.156 139.867 L335 139.867" class="experiment-policy-line" data-policy="random" stroke="#65788b" stroke-dasharray="7 5"/>
+<path d="M52 207.765 L60.844 207.765 L69.688 207.765 L78.531 207.765 L87.375 193.62 L96.219 193.62 L105.062 193.62 L113.906 193.62 L122.75 193.62 L131.594 196.449 L140.438 196.449 L149.281 196.449 L158.125 196.449 L166.969 196.449 L175.812 196.449 L184.656 162.5 L193.5 151.184 L202.344 151.184 L211.188 151.184 L220.031 151.184 L228.875 128.551 L237.719 128.551 L246.562 128.551 L255.406 111.577 L264.25 111.577 L273.094 111.577 L281.938 94.602 L290.781 94.602 L299.625 103.089 L308.469 103.089 L317.312 103.089 L326.156 103.089 L335 103.089" class="experiment-policy-line" data-policy="joint" stroke="#3273dc"/>
 <g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 128 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds." data-budget="128" data-policy="random" data-accuracy-mean="0.6770833333333334">
 <title>Random; 128 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds.</title>
 <rect x="48" y="199.765" width="8" height="16" fill="transparent" pointer-events="all"/>
@@ -860,7 +860,7 @@
 <li><span class="experiment-key" style="--policy:#3273dc"></span><span>Adaptive Joint</span><strong>70.12%</strong></li>
   </ul>
   <p class="experiment-axis-note">Accuracy axis: 66&ndash;71.5% (truncated). All 33 checkpoints, every 8 verified items.</p>
-  <figcaption class="experiment-plot-caption">Offline re-evaluation of the original retained memory states, averaged over three paired allocation seeds. The step curves change only when accepted memory updates change held-out performance.</figcaption>
+  <figcaption class="experiment-plot-caption">Offline re-evaluation of the original retained memory states, averaged over three paired allocation seeds. Markers show all 33 evaluated checkpoints; straight lines are visual guides between them.</figcaption>
   <details class="experiment-data"><summary>See All 33 Accuracy Checkpoints</summary><div class="experiment-data-scroll"><table><caption>Held-Out Accuracy. Means over three paired allocation seeds.</caption><thead><tr><th scope="col">Verified Items</th><th scope="col">Random</th><th scope="col">Adaptive Joint</th></tr></thead><tbody>
 <tr><th scope="row">128</th><td data-accuracy-mean="0.6770833333333334" title="Exact mean fraction: 0.6770833333333334">67.71%</td><td data-accuracy-mean="0.6770833333333334" title="Exact mean fraction: 0.6770833333333334">67.71%</td></tr>
 <tr><th scope="row">136</th><td data-accuracy-mean="0.677734375" title="Exact mean fraction: 0.677734375">67.77%</td><td data-accuracy-mean="0.6770833333333334" title="Exact mean fraction: 0.6770833333333334">67.71%</td></tr>
@@ -897,6 +897,7 @@
 <tr><th scope="row">384</th><td data-accuracy-mean="0.6927083333333334" title="Exact mean fraction: 0.6927083333333334">69.27%</td><td data-accuracy-mean="0.701171875" title="Exact mean fraction: 0.701171875">70.12%</td></tr>
 </tbody></table></div></details>
 </figure>
+
 </article><article class="experiment-block" id="objective-tradeoff-experiment" aria-labelledby="reference-tradeoff-heading"><h3 class="experiment-number" id="reference-tradeoff-heading">EXPERIMENT 4 &middot; Dual-Purpose Trade-off</h3><p>Four main policies are compared at 384 verified items. The two coordinates are construction SNR and held-out target improvement relative to the same 66.60% initial accuracy.</p><figure class="reference-card" aria-labelledby="reference-tradeoff-heading"><div class="reference-chart-wrap"><svg class="reference-chart reference-chart-desktop" viewBox="0 0 1000 480" role="img" aria-labelledby="reference-tradeoff-desktop-title reference-tradeoff-desktop-desc"><title id="reference-tradeoff-desktop-title">Final construction SNR and held-out learning gain for four main policies</title><desc id="reference-tradeoff-desktop-desc">Four main policies are displayed at 384 verified items: Random, Adaptive Joint, Benchmark-Only and Learning-Only. Markers are means over three paired allocation seeds; error bars are sample SD across seeds. Full six-policy results and ablations are retained in Additional Diagnostics. The target baseline is 66.6015625 percent.</desc>
 <path class="reference-grid" d="M95 324.459H965"/><text x="83" y="333.459" text-anchor="end">2</text>
 <path class="reference-grid" d="M95 237.973H965"/><text x="83" y="246.973" text-anchor="end">3</text>
