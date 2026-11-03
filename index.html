@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-design-version="33">
+<html lang="en" data-design-version="34">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dual-Purpose Experimental Design for Benchmarking and Improving Scientific Agents</title>
@@ -8,11 +8,11 @@
 <meta property="og:url" content="https://maojiangsu.github.io/dual-purpose-scientific-agents/"><meta property="og:type" content="website">
 <meta property="og:title" content="Dual-Purpose Experimental Design for Benchmarking and Improving Scientific Agents">
 <meta name="theme-color" content="#008e87">
-<link rel="stylesheet" href="assets/katex.min.css"><link rel="stylesheet" href="assets/site.css?v=33">
-<link rel="stylesheet" href="assets/figures.css?v=33"><link rel="stylesheet" href="assets/experiment-plots.css?v=33">
-<link rel="stylesheet" href="assets/workflow.css?v=33"><script defer src="assets/workflow.js?v=33"></script>
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><script defer src="assets/site.js?v=33"></script>
-<link rel="stylesheet" href="assets/benchmark-results.css?v=33"><script defer src="assets/benchmark-results.js?v=33"></script>
+<link rel="stylesheet" href="assets/katex.min.css"><link rel="stylesheet" href="assets/site.css?v=34">
+<link rel="stylesheet" href="assets/figures.css?v=34"><link rel="stylesheet" href="assets/experiment-plots.css?v=34">
+<link rel="stylesheet" href="assets/workflow.css?v=34"><script defer src="assets/workflow.js?v=34"></script>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><script defer src="assets/site.js?v=34"></script>
+<link rel="stylesheet" href="assets/benchmark-results.css?v=34"><script defer src="assets/benchmark-results.js?v=34"></script>
 </head>
 <body>
 <a class="skip-link" href="#abstract">Skip to the abstract</a>
@@ -152,81 +152,752 @@
 <g class="reference-curve-point" tabindex="0" role="img" aria-label="Adaptive Joint, 384 verified items: SNR 0.006529; allocation SD 0.000288." data-policy="joint" data-items="384" data-snr="0.006528890375379266" fill="white" stroke="#3273dc"><title>Adaptive Joint, 384 verified items: SNR 0.006529; allocation SD 0.000288.</title><path d="M400.000 299.620l6 6-6 6-6-6z"/></g>
 </svg></div><ul class="reference-curve-legend"><li><span class="reference-key reference-key-random" style="--reference-color:#65788b"></span>Random</li><li><span class="reference-key reference-key-joint" style="--reference-color:#3273dc"></span>Adaptive Joint</li></ul><figcaption>Lines are means across three paired allocation seeds; shaded bands show their sample SD. The curves begin after 128 shared warm-up items and end at 384 items, covering 75% of the 512-item pool.</figcaption><details class="reference-details"><summary>128, 256 and 384 Item Checkpoints</summary><div class="reference-checkpoints"><table><thead><tr><th scope="col">Items</th><th scope="col">Random SNR</th><th scope="col">Joint SNR</th></tr></thead><tbody><tr><th scope="row">128</th><td>0.001400</td><td>0.001400</td></tr><tr><th scope="row">256</th><td>0.001832</td><td>0.014318</td></tr><tr><th scope="row">384</th><td>0.001682</td><td>0.006529</td></tr></tbody></table></div></details></figure><p class="reference-interpretation">At full coverage, every policy would verify the same 512 candidates. With the same fixed reference-run bank and SNR definition, their benchmarks and construction-bank SNR would therefore coincide. The plotted experiments stop at 384 items; full-coverage equality is an implication of the setup.</p>
 <p class="reference-note">With &#949; = 0.02, regularization dominates the SNR denominator. The larger SNR here mainly reflects wider mean score gaps; it does not demonstrate a substantial reduction in run noise.</p>
-<p class="reference-note">Construction-bank SNR reuses the runs that informed acquisition. It describes discrimination on this cached bank; future independent-run performance is a separate evaluation. Scores on different selected benchmarks are not direct estimates of intrinsic model capability.</p></article><article class="experiment-block" id="final-reference-experiment" aria-labelledby="reference-final-heading"><h3 class="experiment-number" id="reference-final-heading">EXPERIMENT 2 &middot; Benchmark Discrimination: Final Results</h3><p>Both policies finish with 384 verified items. Choose the same allocation seed to compare the two fixed benchmarks; table uncertainty is run SD over three cached runs.</p><div class="reference-final" aria-labelledby="reference-final-heading"><div class="reference-seed-control"><label for="reference-seed">Allocation Seed</label><select id="reference-seed" aria-controls="reference-random-rows reference-joint-rows"><option value="101" selected>101</option><option value="211">211</option><option value="307">307</option></select></div><div class="reference-table-grid"><div class="reference-table-card"><h4>Random Selection</h4><table class="reference-model-table"><caption id="reference-random-caption">384 Items &#183; Allocation Seed 101</caption><thead><tr><th scope="col">Reference Agent</th><th scope="col">Accuracy (%)</th><th scope="col">Rank</th></tr></thead><tbody id="reference-random-rows"><tr><th scope="row">GPT-6.1 Terra</th><td>62.63 <span aria-label="plus or minus">&#177;</span> 0.26</td><td>1</td></tr><tr><th scope="row">GPT-6.1 Sol</th><td>61.59 <span aria-label="plus or minus">&#177;</span> 0.26</td><td>2</td></tr></tbody><tfoot><tr><td colspan="3">Set-Level SNR: <strong id="reference-random-snr">0.001356</strong></td></tr></tfoot></table></div><div class="reference-table-card"><h4>Adaptive Joint Selection</h4><table class="reference-model-table"><caption id="reference-joint-caption">384 Items &#183; Allocation Seed 101</caption><thead><tr><th scope="col">Reference Agent</th><th scope="col">Accuracy (%)</th><th scope="col">Rank</th></tr></thead><tbody id="reference-joint-rows"><tr><th scope="row">GPT-6.1 Terra</th><td>59.29 <span aria-label="plus or minus">&#177;</span> 0.40</td><td>1</td></tr><tr><th scope="row">GPT-6.1 Sol</th><td>56.94 <span aria-label="plus or minus">&#177;</span> 0.54</td><td>2</td></tr></tbody><tfoot><tr><td colspan="3">Set-Level SNR: <strong id="reference-joint-snr">0.006861</strong></td></tr></tfoot></table></div></div><p class="reference-note" id="reference-run-uncertainty">Accuracy is mean &#177; sample SD across three benchmark-level runs on the selected set. This SD describes agent runs within one benchmark; it does not combine allocation seeds. Ranks are within the same selected set. Each row profiles a fixed reference agent on that benchmark; target learning gain uses the separate held-out evaluation.</p></div></article><article class="experiment-block" id="learning-performance-experiment" aria-labelledby="experiment-curve-heading"><h3 class="experiment-number" id="experiment-curve-heading">EXPERIMENT 3 &middot; Learning Performance: Acquisition Process</h3><p>With the same learner and 128-item warm-up, we compare how Adaptive Joint and Random improve held-out accuracy as the query budget grows.</p><figure class="experiment-plot learning-curve-main" aria-labelledby="experiment-curve-heading">
-
-  <div class="experiment-chart-wrap"><svg class="experiment-chart experiment-chart-desktop" viewBox="0 0 860 420" role="group" aria-labelledby="experiment-curve-desktop-title experiment-curve-desktop-desc">
-<title id="experiment-curve-desktop-title">Held-out accuracy at 128, 256 and 384 acquired protein pairs</title>
-<desc id="experiment-curve-desktop-desc">The accuracy scale is truncated, from 66 to 71.5 percent. Random and Adaptive Joint share the same 128-pair warm-up. Points are recorded means across three paired allocation seeds with shared response banks. No confidence intervals are shown.</desc>
-<rect x="65" y="40" width="226.154" height="287" class="experiment-warmup-zone"/>
-<line x1="65" x2="800" y1="327.000" y2="327.000" class="experiment-grid-line"/><text x="55" y="331.000" text-anchor="end" class="experiment-axis-tick">66</text>
-<line x1="65" x2="800" y1="274.818" y2="274.818" class="experiment-grid-line"/><text x="55" y="278.818" text-anchor="end" class="experiment-axis-tick">67</text>
-<line x1="65" x2="800" y1="222.636" y2="222.636" class="experiment-grid-line"/><text x="55" y="226.636" text-anchor="end" class="experiment-axis-tick">68</text>
-<line x1="65" x2="800" y1="170.455" y2="170.455" class="experiment-grid-line"/><text x="55" y="174.455" text-anchor="end" class="experiment-axis-tick">69</text>
-<line x1="65" x2="800" y1="118.273" y2="118.273" class="experiment-grid-line"/><text x="55" y="122.273" text-anchor="end" class="experiment-axis-tick">70</text>
-<line x1="65" x2="800" y1="66.091" y2="66.091" class="experiment-grid-line"/><text x="55" y="70.091" text-anchor="end" class="experiment-axis-tick">71</text>
-<line x1="65" x2="800" y1="40.000" y2="40.000" class="experiment-grid-line"/><text x="55" y="44.000" text-anchor="end" class="experiment-axis-tick">71.5</text>
-<line x1="65.000" x2="65.000" y1="327" y2="332" class="experiment-axis-line"/><text x="65.000" y="350" text-anchor="middle" class="experiment-axis-tick">0</text>
-<line x1="291.154" x2="291.154" y1="327" y2="332" class="experiment-axis-line"/><text x="291.154" y="350" text-anchor="middle" class="experiment-axis-tick">128</text>
-<line x1="517.308" x2="517.308" y1="327" y2="332" class="experiment-axis-line"/><text x="517.308" y="350" text-anchor="middle" class="experiment-axis-tick">256</text>
-<line x1="743.462" x2="743.462" y1="327" y2="332" class="experiment-axis-line"/><text x="743.462" y="350" text-anchor="middle" class="experiment-axis-tick">384</text>
-<path d="M65 40V327H800" class="experiment-axis-line"/>
-<line x1="291.154" x2="291.154" y1="40" y2="327" class="experiment-warmup-boundary"/>
-<text x="178.077" y="61" text-anchor="middle" class="experiment-warmup-label"><tspan x="178.077">Shared</tspan><tspan x="178.077" dy="17">warm-up</tspan></text>
-<text x="65" y="20" class="experiment-axis-title">Held-out accuracy (%)</text>
-<text x="432.500" y="382" text-anchor="middle" class="experiment-axis-title">Acquired pairs (item queries)</text>
-<path d="M291.154 237.856 L517.308 183.500 L743.462 156.322" class="experiment-policy-line" stroke="#65788b" stroke-dasharray="7 5"/>
-<path d="M291.154 237.856 L517.308 169.911 L743.462 112.158" class="experiment-policy-line" stroke="#3273dc"/>
-
-<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 128 acquired pairs; held-out accuracy 67.70833333333334 percent; mean of three paired allocation seeds." data-budget="128" data-policy="random" data-accuracy-mean="0.6770833333333334"><title>Random; 128 acquired pairs; held-out accuracy 67.70833333333334 percent; mean of three paired allocation seeds.</title><path d="M291.154 231.856l6 6-6 6-6-6z" class="experiment-marker" style="--point:#65788b"/><g class="experiment-tooltip" transform="translate(184.154 175.856)" aria-hidden="true"><rect width="300" height="64" rx="5"/><text x="12" y="25">Random · 128 pairs</text><text x="12" y="49">Mean accuracy: 67.7083%</text></g></g>
-<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 256 acquired pairs; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="256" data-policy="random" data-accuracy-mean="0.6875"><title>Random; 256 acquired pairs; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title><path d="M517.308 177.500l6 6-6 6-6-6z" class="experiment-marker" style="--point:#65788b"/><g class="experiment-tooltip" transform="translate(410.308 121.500)" aria-hidden="true"><rect width="300" height="64" rx="5"/><text x="12" y="25">Random · 256 pairs</text><text x="12" y="49">Mean accuracy: 68.7500%</text></g></g>
-<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 384 acquired pairs; held-out accuracy 69.27083333333334 percent; mean of three paired allocation seeds." data-budget="384" data-policy="random" data-accuracy-mean="0.6927083333333334"><title>Random; 384 acquired pairs; held-out accuracy 69.27083333333334 percent; mean of three paired allocation seeds.</title><path d="M743.462 150.322l6 6-6 6-6-6z" class="experiment-marker" style="--point:#65788b"/><g class="experiment-tooltip" transform="translate(556.000 94.322)" aria-hidden="true"><rect width="300" height="64" rx="5"/><text x="12" y="25">Random · 384 pairs</text><text x="12" y="49">Mean accuracy: 69.2708%</text></g></g>
-
-<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 128 acquired pairs; held-out accuracy 67.70833333333334 percent; mean of three paired allocation seeds." data-budget="128" data-policy="joint" data-accuracy-mean="0.6770833333333334"><title>Adaptive Joint; 128 acquired pairs; held-out accuracy 67.70833333333334 percent; mean of three paired allocation seeds.</title><circle cx="291.154" cy="237.856" r="5" class="experiment-marker" style="--point:#3273dc"/><g class="experiment-tooltip" transform="translate(184.154 175.856)" aria-hidden="true"><rect width="300" height="64" rx="5"/><text x="12" y="25">Adaptive Joint · 128 pairs</text><text x="12" y="49">Mean accuracy: 67.7083%</text></g></g>
-<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 256 acquired pairs; held-out accuracy 69.01041666666666 percent; mean of three paired allocation seeds." data-budget="256" data-policy="joint" data-accuracy-mean="0.6901041666666666"><title>Adaptive Joint; 256 acquired pairs; held-out accuracy 69.01041666666666 percent; mean of three paired allocation seeds.</title><circle cx="517.308" cy="169.911" r="5" class="experiment-marker" style="--point:#3273dc"/><g class="experiment-tooltip" transform="translate(410.308 107.911)" aria-hidden="true"><rect width="300" height="64" rx="5"/><text x="12" y="25">Adaptive Joint · 256 pairs</text><text x="12" y="49">Mean accuracy: 69.0104%</text></g></g>
-<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 384 acquired pairs; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds." data-budget="384" data-policy="joint" data-accuracy-mean="0.701171875"><title>Adaptive Joint; 384 acquired pairs; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds.</title><circle cx="743.462" cy="112.158" r="5" class="experiment-marker" style="--point:#3273dc"/><g class="experiment-tooltip" transform="translate(556.000 50.158)" aria-hidden="true"><rect width="300" height="64" rx="5"/><text x="12" y="25">Adaptive Joint · 384 pairs</text><text x="12" y="49">Mean accuracy: 70.1172%</text></g></g>
-
-
-
-
-
-</svg><svg class="experiment-chart experiment-chart-mobile" viewBox="0 0 360 368" role="group" aria-labelledby="experiment-curve-mobile-title experiment-curve-mobile-desc">
-<title id="experiment-curve-mobile-title">Held-out accuracy at 128, 256 and 384 acquired protein pairs</title>
-<desc id="experiment-curve-mobile-desc">The accuracy scale is truncated, from 66 to 71.5 percent. Random and Adaptive Joint share the same 128-pair warm-up. Points are recorded means across three paired allocation seeds with shared response banks. No confidence intervals are shown.</desc>
-<rect x="44" y="38" width="88.923" height="246" class="experiment-warmup-zone"/>
-<line x1="44" x2="333" y1="284.000" y2="284.000" class="experiment-grid-line"/><text x="34" y="288.000" text-anchor="end" class="experiment-axis-tick">66</text>
-<line x1="44" x2="333" y1="239.273" y2="239.273" class="experiment-grid-line"/><text x="34" y="243.273" text-anchor="end" class="experiment-axis-tick">67</text>
-<line x1="44" x2="333" y1="194.545" y2="194.545" class="experiment-grid-line"/><text x="34" y="198.545" text-anchor="end" class="experiment-axis-tick">68</text>
-<line x1="44" x2="333" y1="149.818" y2="149.818" class="experiment-grid-line"/><text x="34" y="153.818" text-anchor="end" class="experiment-axis-tick">69</text>
-<line x1="44" x2="333" y1="105.091" y2="105.091" class="experiment-grid-line"/><text x="34" y="109.091" text-anchor="end" class="experiment-axis-tick">70</text>
-<line x1="44" x2="333" y1="60.364" y2="60.364" class="experiment-grid-line"/><text x="34" y="64.364" text-anchor="end" class="experiment-axis-tick">71</text>
-<line x1="44" x2="333" y1="38.000" y2="38.000" class="experiment-grid-line"/><text x="34" y="42.000" text-anchor="end" class="experiment-axis-tick">71.5</text>
-<line x1="44.000" x2="44.000" y1="284" y2="289" class="experiment-axis-line"/><text x="44.000" y="307" text-anchor="middle" class="experiment-axis-tick">0</text>
-<line x1="132.923" x2="132.923" y1="284" y2="289" class="experiment-axis-line"/><text x="132.923" y="307" text-anchor="middle" class="experiment-axis-tick">128</text>
-<line x1="221.846" x2="221.846" y1="284" y2="289" class="experiment-axis-line"/><text x="221.846" y="307" text-anchor="middle" class="experiment-axis-tick">256</text>
-<line x1="310.769" x2="310.769" y1="284" y2="289" class="experiment-axis-line"/><text x="310.769" y="307" text-anchor="middle" class="experiment-axis-tick">384</text>
-<path d="M44 38V284H333" class="experiment-axis-line"/>
-<line x1="132.923" x2="132.923" y1="38" y2="284" class="experiment-warmup-boundary"/>
-<text x="88.462" y="59" text-anchor="middle" class="experiment-warmup-label"><tspan x="88.462">Shared</tspan><tspan x="88.462" dy="17">warm-up</tspan></text>
-<text x="44" y="20" class="experiment-axis-title">Held-out accuracy (%)</text>
-<text x="188.500" y="339" text-anchor="middle" class="experiment-axis-title">Acquired pairs (item queries)</text>
-<path d="M132.923 207.591 L221.846 161.000 L310.769 137.705" class="experiment-policy-line" stroke="#65788b" stroke-dasharray="7 5"/>
-<path d="M132.923 207.591 L221.846 149.352 L310.769 99.849" class="experiment-policy-line" stroke="#3273dc"/>
-
-<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 128 acquired pairs; held-out accuracy 67.70833333333334 percent; mean of three paired allocation seeds." data-budget="128" data-policy="random" data-accuracy-mean="0.6770833333333334"><title>Random; 128 acquired pairs; held-out accuracy 67.70833333333334 percent; mean of three paired allocation seeds.</title><path d="M132.923 201.591l6 6-6 6-6-6z" class="experiment-marker" style="--point:#65788b"/><g class="experiment-tooltip" transform="translate(27.423 145.591)" aria-hidden="true"><rect width="211" height="50" rx="5"/><text x="12" y="25">Random · 128 pairs</text><text x="12" y="49">Mean accuracy: 67.7083%</text></g></g>
-<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 256 acquired pairs; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="256" data-policy="random" data-accuracy-mean="0.6875"><title>Random; 256 acquired pairs; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title><path d="M221.846 155.000l6 6-6 6-6-6z" class="experiment-marker" style="--point:#65788b"/><g class="experiment-tooltip" transform="translate(56.000 99.000)" aria-hidden="true"><rect width="211" height="50" rx="5"/><text x="12" y="25">Random · 256 pairs</text><text x="12" y="49">Mean accuracy: 68.7500%</text></g></g>
-<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 384 acquired pairs; held-out accuracy 69.27083333333334 percent; mean of three paired allocation seeds." data-budget="384" data-policy="random" data-accuracy-mean="0.6927083333333334"><title>Random; 384 acquired pairs; held-out accuracy 69.27083333333334 percent; mean of three paired allocation seeds.</title><path d="M310.769 131.705l6 6-6 6-6-6z" class="experiment-marker" style="--point:#65788b"/><g class="experiment-tooltip" transform="translate(56.000 75.705)" aria-hidden="true"><rect width="211" height="50" rx="5"/><text x="12" y="25">Random · 384 pairs</text><text x="12" y="49">Mean accuracy: 69.2708%</text></g></g>
-<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 128 acquired pairs; held-out accuracy 67.70833333333334 percent; mean of three paired allocation seeds." data-budget="128" data-policy="joint" data-accuracy-mean="0.6770833333333334"><title>Adaptive Joint; 128 acquired pairs; held-out accuracy 67.70833333333334 percent; mean of three paired allocation seeds.</title><circle cx="132.923" cy="207.591" r="5" class="experiment-marker" style="--point:#3273dc"/><g class="experiment-tooltip" transform="translate(27.423 145.591)" aria-hidden="true"><rect width="211" height="50" rx="5"/><text x="12" y="25">Adaptive Joint · 128 pairs</text><text x="12" y="49">Mean accuracy: 67.7083%</text></g></g>
-<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 256 acquired pairs; held-out accuracy 69.01041666666666 percent; mean of three paired allocation seeds." data-budget="256" data-policy="joint" data-accuracy-mean="0.6901041666666666"><title>Adaptive Joint; 256 acquired pairs; held-out accuracy 69.01041666666666 percent; mean of three paired allocation seeds.</title><circle cx="221.846" cy="149.352" r="5" class="experiment-marker" style="--point:#3273dc"/><g class="experiment-tooltip" transform="translate(56.000 87.352)" aria-hidden="true"><rect width="211" height="50" rx="5"/><text x="12" y="25">Adaptive Joint · 256 pairs</text><text x="12" y="49">Mean accuracy: 69.0104%</text></g></g>
-<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 384 acquired pairs; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds." data-budget="384" data-policy="joint" data-accuracy-mean="0.701171875"><title>Adaptive Joint; 384 acquired pairs; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds.</title><circle cx="310.769" cy="99.849" r="5" class="experiment-marker" style="--point:#3273dc"/><g class="experiment-tooltip" transform="translate(56.000 37.849)" aria-hidden="true"><rect width="211" height="50" rx="5"/><text x="12" y="25">Adaptive Joint · 384 pairs</text><text x="12" y="49">Mean accuracy: 70.1172%</text></g></g>
-
-
-
-</svg></div>
-  <ul class="experiment-legend experiment-curve-legend" aria-label="Policies and accuracy at 384 pairs"><li><span class="experiment-key" style="--policy:#65788b"></span><span>Random</span><strong>69.27%</strong></li><li><span class="experiment-key" style="--policy:#3273dc"></span><span>Adaptive Joint</span><strong>70.12%</strong></li></ul>
-  <p class="experiment-axis-note">Accuracy axis: 66&ndash;71.5% (truncated). Three measured checkpoints.</p>
-  <figcaption class="experiment-plot-caption">Points show held-out accuracy at three measured checkpoints, averaged over three paired allocation seeds. At 384 verified items, Adaptive Joint reaches 70.12% versus 69.27% for Random, a gap of 0.85 percentage points.</figcaption>
-  <details class="experiment-data"><summary>See The Plotted Accuracy Values</summary><div class="experiment-data-scroll"><table><caption>Held-out accuracy. Values are means over three paired allocation seeds.</caption><thead><tr><th scope="col">Acquired Pairs</th><th scope="col">Random</th><th scope="col">Adaptive Joint</th></tr></thead><tbody><tr><th scope="row">128</th><td data-accuracy-mean="0.6770833333333334" title="Exact mean fraction: 0.6770833333333334">67.71%</td><td data-accuracy-mean="0.6770833333333334" title="Exact mean fraction: 0.6770833333333334">67.71%</td></tr><tr><th scope="row">256</th><td data-accuracy-mean="0.6875" title="Exact mean fraction: 0.6875">68.75%</td><td data-accuracy-mean="0.6901041666666666" title="Exact mean fraction: 0.6901041666666666">69.01%</td></tr><tr><th scope="row">384</th><td data-accuracy-mean="0.6927083333333334" title="Exact mean fraction: 0.6927083333333334">69.27%</td><td data-accuracy-mean="0.701171875" title="Exact mean fraction: 0.701171875">70.12%</td></tr></tbody></table></div></details>
-</figure></article><article class="experiment-block" id="objective-tradeoff-experiment" aria-labelledby="reference-tradeoff-heading"><h3 class="experiment-number" id="reference-tradeoff-heading">EXPERIMENT 4 &middot; Dual-Purpose Trade-off</h3><p>Four main policies are compared at 384 verified items. The two coordinates are construction SNR and held-out target improvement relative to the same 66.60% initial accuracy.</p><figure class="reference-card" aria-labelledby="reference-tradeoff-heading"><div class="reference-chart-wrap"><svg class="reference-chart reference-chart-desktop" viewBox="0 0 1000 480" role="img" aria-labelledby="reference-tradeoff-desktop-title reference-tradeoff-desktop-desc"><title id="reference-tradeoff-desktop-title">Final construction SNR and held-out learning gain for four main policies</title><desc id="reference-tradeoff-desktop-desc">Four main policies are displayed at 384 verified items: Random, Adaptive Joint, Benchmark-Only and Learning-Only. Markers are means over three paired allocation seeds; error bars are sample SD across seeds. Full six-policy results and ablations are retained in Additional Diagnostics. The target baseline is 66.6015625 percent.</desc>
+<p class="reference-note">Construction-bank SNR reuses the runs that informed acquisition. It describes discrimination on this cached bank; future independent-run performance is a separate evaluation. Scores on different selected benchmarks are not direct estimates of intrinsic model capability.</p></article><article class="experiment-block" id="final-reference-experiment" aria-labelledby="reference-final-heading"><h3 class="experiment-number" id="reference-final-heading">EXPERIMENT 2 &middot; Benchmark Discrimination: Final Results</h3><p>Both policies finish with 384 verified items. Choose the same allocation seed to compare the two fixed benchmarks; table uncertainty is run SD over three cached runs.</p><div class="reference-final" aria-labelledby="reference-final-heading"><div class="reference-seed-control"><label for="reference-seed">Allocation Seed</label><select id="reference-seed" aria-controls="reference-random-rows reference-joint-rows"><option value="101" selected>101</option><option value="211">211</option><option value="307">307</option></select></div><div class="reference-table-grid"><div class="reference-table-card"><h4>Random Selection</h4><table class="reference-model-table"><caption id="reference-random-caption">384 Items &#183; Allocation Seed 101</caption><thead><tr><th scope="col">Reference Agent</th><th scope="col">Accuracy (%)</th><th scope="col">Rank</th></tr></thead><tbody id="reference-random-rows"><tr><th scope="row">GPT-6.1 Terra</th><td>62.63 <span aria-label="plus or minus">&#177;</span> 0.26</td><td>1</td></tr><tr><th scope="row">GPT-6.1 Sol</th><td>61.59 <span aria-label="plus or minus">&#177;</span> 0.26</td><td>2</td></tr></tbody><tfoot><tr><td colspan="3">Set-Level SNR: <strong id="reference-random-snr">0.001356</strong></td></tr></tfoot></table></div><div class="reference-table-card"><h4>Adaptive Joint Selection</h4><table class="reference-model-table"><caption id="reference-joint-caption">384 Items &#183; Allocation Seed 101</caption><thead><tr><th scope="col">Reference Agent</th><th scope="col">Accuracy (%)</th><th scope="col">Rank</th></tr></thead><tbody id="reference-joint-rows"><tr><th scope="row">GPT-6.1 Terra</th><td>59.29 <span aria-label="plus or minus">&#177;</span> 0.40</td><td>1</td></tr><tr><th scope="row">GPT-6.1 Sol</th><td>56.94 <span aria-label="plus or minus">&#177;</span> 0.54</td><td>2</td></tr></tbody><tfoot><tr><td colspan="3">Set-Level SNR: <strong id="reference-joint-snr">0.006861</strong></td></tr></tfoot></table></div></div><p class="reference-note" id="reference-run-uncertainty">Accuracy is mean &#177; sample SD across three benchmark-level runs on the selected set. This SD describes agent runs within one benchmark; it does not combine allocation seeds. Ranks are within the same selected set. Each row profiles a fixed reference agent on that benchmark; target learning gain uses the separate held-out evaluation.</p></div></article><article class="experiment-block" id="learning-performance-experiment" aria-labelledby="experiment-curve-heading"><h3 class="experiment-number" id="experiment-curve-heading">EXPERIMENT 3 &middot; Learning Performance: Acquisition Process</h3><p>After the shared 128-item warm-up, held-out accuracy is evaluated every 8 verified items, giving 33 checkpoints through 384 items. Adaptive Joint and Random use the same memory updater and cached target responses.</p><figure class="experiment-plot learning-curve-main" aria-labelledby="experiment-curve-heading">
+  <div class="experiment-chart-wrap">
+<svg class="experiment-chart experiment-chart-desktop" viewBox="0 0 860 420" role="group" aria-labelledby="experiment-curve-desktop-title experiment-curve-desktop-desc">
+<title id="experiment-curve-desktop-title">Held-Out Accuracy Every Eight Verified Items</title>
+<desc id="experiment-curve-desktop-desc">Random and Adaptive Joint are evaluated at all 33 checkpoints from 128 to 384 verified items, every eight items. The plotted accuracy is the mean of three paired allocation seeds, using offline re-evaluations of the original retained memory states. Steps change only when an accepted memory update changes performance. The accuracy axis is truncated, from 66 to 71.5 percent. No confidence intervals are shown.</desc>
+<line x1="72" x2="810" y1="326" y2="326" class="experiment-grid-line"/><text x="62" y="332" text-anchor="end" class="experiment-axis-tick">66</text>
+<line x1="72" x2="810" y1="274.364" y2="274.364" class="experiment-grid-line"/><text x="62" y="280.364" text-anchor="end" class="experiment-axis-tick">67</text>
+<line x1="72" x2="810" y1="222.727" y2="222.727" class="experiment-grid-line"/><text x="62" y="228.727" text-anchor="end" class="experiment-axis-tick">68</text>
+<line x1="72" x2="810" y1="171.091" y2="171.091" class="experiment-grid-line"/><text x="62" y="177.091" text-anchor="end" class="experiment-axis-tick">69</text>
+<line x1="72" x2="810" y1="119.455" y2="119.455" class="experiment-grid-line"/><text x="62" y="125.455" text-anchor="end" class="experiment-axis-tick">70</text>
+<line x1="72" x2="810" y1="67.818" y2="67.818" class="experiment-grid-line"/><text x="62" y="73.818" text-anchor="end" class="experiment-axis-tick">71</text>
+<line x1="72" x2="810" y1="42" y2="42" class="experiment-grid-line"/><text x="62" y="48" text-anchor="end" class="experiment-axis-tick">71.5</text>
+<line x1="72" x2="72" y1="326" y2="332" class="experiment-axis-line"/><text x="72" y="356" text-anchor="middle" class="experiment-axis-tick">128</text>
+<line x1="256.5" x2="256.5" y1="326" y2="332" class="experiment-axis-line"/><text x="256.5" y="356" text-anchor="middle" class="experiment-axis-tick">192</text>
+<line x1="441" x2="441" y1="326" y2="332" class="experiment-axis-line"/><text x="441" y="356" text-anchor="middle" class="experiment-axis-tick">256</text>
+<line x1="625.5" x2="625.5" y1="326" y2="332" class="experiment-axis-line"/><text x="625.5" y="356" text-anchor="middle" class="experiment-axis-tick">320</text>
+<line x1="810" x2="810" y1="326" y2="332" class="experiment-axis-line"/><text x="810" y="356" text-anchor="middle" class="experiment-axis-tick">384</text>
+<path d="M72 42V326H810" class="experiment-axis-line"/>
+<text x="72" y="23" class="experiment-axis-title">Held-Out Accuracy (%)</text>
+<text x="441" y="391" text-anchor="middle" class="experiment-axis-title">Verified Items</text>
+<path d="M72 237.788 H95.062V234.426 H118.125V200.809 H141.188V200.809 H164.25V200.809 H187.312V200.809 H210.375V184 H233.438V184 H256.5V184 H279.562V184 H302.625V184 H325.688V184 H348.75V184 H371.812V184 H394.875V184 H417.938V184 H441V184 H464.062V184 H487.125V184 H510.188V170.553 H533.25V153.744 H556.312V153.744 H579.375V153.744 H602.438V153.744 H625.5V153.744 H648.562V167.191 H671.625V167.191 H694.688V167.191 H717.75V167.191 H740.812V167.191 H763.875V167.191 H786.938V157.106 H810V157.106" class="experiment-policy-line" data-policy="random" stroke="#65788b" stroke-dasharray="7 5"/>
+<path d="M72 237.788 H95.062V237.788 H118.125V237.788 H141.188V237.788 H164.25V220.979 H187.312V220.979 H210.375V220.979 H233.438V220.979 H256.5V220.979 H279.562V224.341 H302.625V224.341 H325.688V224.341 H348.75V224.341 H371.812V224.341 H394.875V224.341 H417.938V184 H441V170.553 H464.062V170.553 H487.125V170.553 H510.188V170.553 H533.25V143.659 H556.312V143.659 H579.375V143.659 H602.438V123.489 H625.5V123.489 H648.562V123.489 H671.625V103.318 H694.688V103.318 H717.75V113.403 H740.812V113.403 H763.875V113.403 H786.938V113.403 H810V113.403" class="experiment-policy-line" data-policy="joint" stroke="#3273dc"/>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 128 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds." data-budget="128" data-policy="random" data-accuracy-mean="0.6770833333333334">
+<title>Random; 128 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds.</title>
+<rect x="65" y="229.788" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M72 232.788l5 5-5 5-5-5z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(10 158.788)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 128 items</text><text x="12" y="52">Accuracy: 67.7083%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 136 verified items; held-out accuracy 67.7734375 percent; mean of three paired allocation seeds." data-budget="136" data-policy="random" data-accuracy-mean="0.677734375">
+<title>Random; 136 verified items; held-out accuracy 67.7734375 percent; mean of three paired allocation seeds.</title>
+<rect x="88.062" y="226.426" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M95.062 231.876l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(10 155.426)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 136 items</text><text x="12" y="52">Accuracy: 67.7734%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 144 verified items; held-out accuracy 68.42447917 percent; mean of three paired allocation seeds." data-budget="144" data-policy="random" data-accuracy-mean="0.6842447916666666">
+<title>Random; 144 verified items; held-out accuracy 68.42447917 percent; mean of three paired allocation seeds.</title>
+<rect x="111.125" y="192.809" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M118.125 198.259l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(10 121.809)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 144 items</text><text x="12" y="52">Accuracy: 68.4245%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 152 verified items; held-out accuracy 68.42447917 percent; mean of three paired allocation seeds." data-budget="152" data-policy="random" data-accuracy-mean="0.6842447916666666">
+<title>Random; 152 verified items; held-out accuracy 68.42447917 percent; mean of three paired allocation seeds.</title>
+<rect x="134.188" y="192.809" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M141.188 198.259l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(10 121.809)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 152 items</text><text x="12" y="52">Accuracy: 68.4245%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 160 verified items; held-out accuracy 68.42447917 percent; mean of three paired allocation seeds." data-budget="160" data-policy="random" data-accuracy-mean="0.6842447916666666">
+<title>Random; 160 verified items; held-out accuracy 68.42447917 percent; mean of three paired allocation seeds.</title>
+<rect x="157.25" y="192.809" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M164.25 198.259l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(14.25 121.809)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 160 items</text><text x="12" y="52">Accuracy: 68.4245%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 168 verified items; held-out accuracy 68.42447917 percent; mean of three paired allocation seeds." data-budget="168" data-policy="random" data-accuracy-mean="0.6842447916666666">
+<title>Random; 168 verified items; held-out accuracy 68.42447917 percent; mean of three paired allocation seeds.</title>
+<rect x="180.312" y="192.809" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M187.312 198.259l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(37.312 121.809)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 168 items</text><text x="12" y="52">Accuracy: 68.4245%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 176 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="176" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 176 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="203.375" y="176" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M210.375 181.45l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(60.375 105)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 176 items</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 184 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="184" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 184 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="226.438" y="176" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M233.438 181.45l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(83.438 105)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 184 items</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 192 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="192" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 192 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="249.5" y="176" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M256.5 181.45l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(106.5 105)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 192 items</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 200 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="200" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 200 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="272.562" y="176" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M279.562 181.45l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(129.562 105)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 200 items</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 208 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="208" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 208 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="295.625" y="176" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M302.625 181.45l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(152.625 105)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 208 items</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 216 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="216" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 216 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="318.688" y="176" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M325.688 181.45l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(175.688 105)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 216 items</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 224 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="224" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 224 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="341.75" y="176" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M348.75 181.45l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(198.75 105)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 224 items</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 232 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="232" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 232 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="364.812" y="176" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M371.812 181.45l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(221.812 105)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 232 items</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 240 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="240" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 240 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="387.875" y="176" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M394.875 181.45l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(244.875 105)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 240 items</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 248 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="248" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 248 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="410.938" y="176" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M417.938 181.45l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(267.938 105)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 248 items</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 256 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="256" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 256 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="434" y="176" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M441 179l5 5-5 5-5-5z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(291 105)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 256 items</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 264 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="264" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 264 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="457.062" y="176" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M464.062 181.45l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(314.062 105)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 264 items</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 272 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="272" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 272 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="480.125" y="176" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M487.125 181.45l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(337.125 105)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 272 items</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 280 verified items; held-out accuracy 69.01041667 percent; mean of three paired allocation seeds." data-budget="280" data-policy="random" data-accuracy-mean="0.6901041666666666">
+<title>Random; 280 verified items; held-out accuracy 69.01041667 percent; mean of three paired allocation seeds.</title>
+<rect x="503.188" y="162.553" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M510.188 168.003l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(360.188 91.553)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 280 items</text><text x="12" y="52">Accuracy: 69.0104%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 288 verified items; held-out accuracy 69.3359375 percent; mean of three paired allocation seeds." data-budget="288" data-policy="random" data-accuracy-mean="0.693359375">
+<title>Random; 288 verified items; held-out accuracy 69.3359375 percent; mean of three paired allocation seeds.</title>
+<rect x="526.25" y="145.744" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M533.25 151.194l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(383.25 74.744)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 288 items</text><text x="12" y="52">Accuracy: 69.3359%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 296 verified items; held-out accuracy 69.3359375 percent; mean of three paired allocation seeds." data-budget="296" data-policy="random" data-accuracy-mean="0.693359375">
+<title>Random; 296 verified items; held-out accuracy 69.3359375 percent; mean of three paired allocation seeds.</title>
+<rect x="549.312" y="145.744" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M556.312 151.194l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(406.312 74.744)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 296 items</text><text x="12" y="52">Accuracy: 69.3359%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 304 verified items; held-out accuracy 69.3359375 percent; mean of three paired allocation seeds." data-budget="304" data-policy="random" data-accuracy-mean="0.693359375">
+<title>Random; 304 verified items; held-out accuracy 69.3359375 percent; mean of three paired allocation seeds.</title>
+<rect x="572.375" y="145.744" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M579.375 151.194l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(429.375 74.744)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 304 items</text><text x="12" y="52">Accuracy: 69.3359%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 312 verified items; held-out accuracy 69.3359375 percent; mean of three paired allocation seeds." data-budget="312" data-policy="random" data-accuracy-mean="0.693359375">
+<title>Random; 312 verified items; held-out accuracy 69.3359375 percent; mean of three paired allocation seeds.</title>
+<rect x="595.438" y="145.744" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M602.438 151.194l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(452.438 74.744)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 312 items</text><text x="12" y="52">Accuracy: 69.3359%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 320 verified items; held-out accuracy 69.3359375 percent; mean of three paired allocation seeds." data-budget="320" data-policy="random" data-accuracy-mean="0.693359375">
+<title>Random; 320 verified items; held-out accuracy 69.3359375 percent; mean of three paired allocation seeds.</title>
+<rect x="618.5" y="145.744" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M625.5 151.194l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(475.5 74.744)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 320 items</text><text x="12" y="52">Accuracy: 69.3359%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 328 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds." data-budget="328" data-policy="random" data-accuracy-mean="0.6907552083333334">
+<title>Random; 328 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds.</title>
+<rect x="641.562" y="159.191" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M648.562 164.641l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(498.562 88.191)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 328 items</text><text x="12" y="52">Accuracy: 69.0755%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 336 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds." data-budget="336" data-policy="random" data-accuracy-mean="0.6907552083333334">
+<title>Random; 336 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds.</title>
+<rect x="664.625" y="159.191" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M671.625 164.641l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(521.625 88.191)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 336 items</text><text x="12" y="52">Accuracy: 69.0755%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 344 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds." data-budget="344" data-policy="random" data-accuracy-mean="0.6907552083333334">
+<title>Random; 344 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds.</title>
+<rect x="687.688" y="159.191" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M694.688 164.641l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(544.688 88.191)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 344 items</text><text x="12" y="52">Accuracy: 69.0755%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 352 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds." data-budget="352" data-policy="random" data-accuracy-mean="0.6907552083333334">
+<title>Random; 352 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds.</title>
+<rect x="710.75" y="159.191" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M717.75 164.641l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(550 88.191)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 352 items</text><text x="12" y="52">Accuracy: 69.0755%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 360 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds." data-budget="360" data-policy="random" data-accuracy-mean="0.6907552083333334">
+<title>Random; 360 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds.</title>
+<rect x="733.812" y="159.191" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M740.812 164.641l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(550 88.191)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 360 items</text><text x="12" y="52">Accuracy: 69.0755%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 368 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds." data-budget="368" data-policy="random" data-accuracy-mean="0.6907552083333334">
+<title>Random; 368 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds.</title>
+<rect x="756.875" y="159.191" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M763.875 164.641l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(550 88.191)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 368 items</text><text x="12" y="52">Accuracy: 69.0755%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 376 verified items; held-out accuracy 69.27083333 percent; mean of three paired allocation seeds." data-budget="376" data-policy="random" data-accuracy-mean="0.6927083333333334">
+<title>Random; 376 verified items; held-out accuracy 69.27083333 percent; mean of three paired allocation seeds.</title>
+<rect x="779.938" y="149.106" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M786.938 154.556l2.55 2.55-2.55 2.55-2.55-2.55z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(550 78.106)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 376 items</text><text x="12" y="52">Accuracy: 69.2708%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 384 verified items; held-out accuracy 69.27083333 percent; mean of three paired allocation seeds." data-budget="384" data-policy="random" data-accuracy-mean="0.6927083333333334">
+<title>Random; 384 verified items; held-out accuracy 69.27083333 percent; mean of three paired allocation seeds.</title>
+<rect x="803" y="149.106" width="14" height="16" fill="transparent" pointer-events="all"/>
+<path d="M810 152.106l5 5-5 5-5-5z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(550 78.106)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Random / 384 items</text><text x="12" y="52">Accuracy: 69.2708%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 128 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds." data-budget="128" data-policy="joint" data-accuracy-mean="0.6770833333333334">
+<title>Adaptive Joint; 128 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds.</title>
+<rect x="65" y="229.788" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="72" cy="237.788" r="5" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(10 158.788)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 128 items</text><text x="12" y="52">Accuracy: 67.7083%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 136 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds." data-budget="136" data-policy="joint" data-accuracy-mean="0.6770833333333334">
+<title>Adaptive Joint; 136 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds.</title>
+<rect x="88.062" y="229.788" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="95.062" cy="237.788" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(10 158.788)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 136 items</text><text x="12" y="52">Accuracy: 67.7083%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 144 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds." data-budget="144" data-policy="joint" data-accuracy-mean="0.6770833333333334">
+<title>Adaptive Joint; 144 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds.</title>
+<rect x="111.125" y="229.788" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="118.125" cy="237.788" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(10 158.788)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 144 items</text><text x="12" y="52">Accuracy: 67.7083%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 152 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds." data-budget="152" data-policy="joint" data-accuracy-mean="0.6770833333333334">
+<title>Adaptive Joint; 152 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds.</title>
+<rect x="134.188" y="229.788" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="141.188" cy="237.788" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(10 158.788)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 152 items</text><text x="12" y="52">Accuracy: 67.7083%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 160 verified items; held-out accuracy 68.03385417 percent; mean of three paired allocation seeds." data-budget="160" data-policy="joint" data-accuracy-mean="0.6803385416666666">
+<title>Adaptive Joint; 160 verified items; held-out accuracy 68.03385417 percent; mean of three paired allocation seeds.</title>
+<rect x="157.25" y="212.979" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="164.25" cy="220.979" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(14.25 141.979)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 160 items</text><text x="12" y="52">Accuracy: 68.0339%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 168 verified items; held-out accuracy 68.03385417 percent; mean of three paired allocation seeds." data-budget="168" data-policy="joint" data-accuracy-mean="0.6803385416666666">
+<title>Adaptive Joint; 168 verified items; held-out accuracy 68.03385417 percent; mean of three paired allocation seeds.</title>
+<rect x="180.312" y="212.979" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="187.312" cy="220.979" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(37.312 141.979)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 168 items</text><text x="12" y="52">Accuracy: 68.0339%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 176 verified items; held-out accuracy 68.03385417 percent; mean of three paired allocation seeds." data-budget="176" data-policy="joint" data-accuracy-mean="0.6803385416666666">
+<title>Adaptive Joint; 176 verified items; held-out accuracy 68.03385417 percent; mean of three paired allocation seeds.</title>
+<rect x="203.375" y="212.979" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="210.375" cy="220.979" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(60.375 141.979)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 176 items</text><text x="12" y="52">Accuracy: 68.0339%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 184 verified items; held-out accuracy 68.03385417 percent; mean of three paired allocation seeds." data-budget="184" data-policy="joint" data-accuracy-mean="0.6803385416666666">
+<title>Adaptive Joint; 184 verified items; held-out accuracy 68.03385417 percent; mean of three paired allocation seeds.</title>
+<rect x="226.438" y="212.979" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="233.438" cy="220.979" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(83.438 141.979)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 184 items</text><text x="12" y="52">Accuracy: 68.0339%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 192 verified items; held-out accuracy 68.03385417 percent; mean of three paired allocation seeds." data-budget="192" data-policy="joint" data-accuracy-mean="0.6803385416666666">
+<title>Adaptive Joint; 192 verified items; held-out accuracy 68.03385417 percent; mean of three paired allocation seeds.</title>
+<rect x="249.5" y="212.979" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="256.5" cy="220.979" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(106.5 141.979)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 192 items</text><text x="12" y="52">Accuracy: 68.0339%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 200 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds." data-budget="200" data-policy="joint" data-accuracy-mean="0.6796875">
+<title>Adaptive Joint; 200 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds.</title>
+<rect x="272.562" y="216.341" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="279.562" cy="224.341" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(129.562 145.341)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 200 items</text><text x="12" y="52">Accuracy: 67.9688%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 208 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds." data-budget="208" data-policy="joint" data-accuracy-mean="0.6796875">
+<title>Adaptive Joint; 208 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds.</title>
+<rect x="295.625" y="216.341" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="302.625" cy="224.341" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(152.625 145.341)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 208 items</text><text x="12" y="52">Accuracy: 67.9688%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 216 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds." data-budget="216" data-policy="joint" data-accuracy-mean="0.6796875">
+<title>Adaptive Joint; 216 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds.</title>
+<rect x="318.688" y="216.341" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="325.688" cy="224.341" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(175.688 145.341)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 216 items</text><text x="12" y="52">Accuracy: 67.9688%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 224 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds." data-budget="224" data-policy="joint" data-accuracy-mean="0.6796875">
+<title>Adaptive Joint; 224 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds.</title>
+<rect x="341.75" y="216.341" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="348.75" cy="224.341" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(198.75 145.341)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 224 items</text><text x="12" y="52">Accuracy: 67.9688%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 232 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds." data-budget="232" data-policy="joint" data-accuracy-mean="0.6796875">
+<title>Adaptive Joint; 232 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds.</title>
+<rect x="364.812" y="216.341" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="371.812" cy="224.341" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(221.812 145.341)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 232 items</text><text x="12" y="52">Accuracy: 67.9688%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 240 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds." data-budget="240" data-policy="joint" data-accuracy-mean="0.6796875">
+<title>Adaptive Joint; 240 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds.</title>
+<rect x="387.875" y="216.341" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="394.875" cy="224.341" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(244.875 145.341)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 240 items</text><text x="12" y="52">Accuracy: 67.9688%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 248 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="248" data-policy="joint" data-accuracy-mean="0.6875">
+<title>Adaptive Joint; 248 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="410.938" y="176" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="417.938" cy="184" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(267.938 105)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 248 items</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 256 verified items; held-out accuracy 69.01041667 percent; mean of three paired allocation seeds." data-budget="256" data-policy="joint" data-accuracy-mean="0.6901041666666666">
+<title>Adaptive Joint; 256 verified items; held-out accuracy 69.01041667 percent; mean of three paired allocation seeds.</title>
+<rect x="434" y="162.553" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="441" cy="170.553" r="5" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(291 91.553)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 256 items</text><text x="12" y="52">Accuracy: 69.0104%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 264 verified items; held-out accuracy 69.01041667 percent; mean of three paired allocation seeds." data-budget="264" data-policy="joint" data-accuracy-mean="0.6901041666666666">
+<title>Adaptive Joint; 264 verified items; held-out accuracy 69.01041667 percent; mean of three paired allocation seeds.</title>
+<rect x="457.062" y="162.553" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="464.062" cy="170.553" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(314.062 91.553)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 264 items</text><text x="12" y="52">Accuracy: 69.0104%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 272 verified items; held-out accuracy 69.01041667 percent; mean of three paired allocation seeds." data-budget="272" data-policy="joint" data-accuracy-mean="0.6901041666666666">
+<title>Adaptive Joint; 272 verified items; held-out accuracy 69.01041667 percent; mean of three paired allocation seeds.</title>
+<rect x="480.125" y="162.553" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="487.125" cy="170.553" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(337.125 91.553)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 272 items</text><text x="12" y="52">Accuracy: 69.0104%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 280 verified items; held-out accuracy 69.01041667 percent; mean of three paired allocation seeds." data-budget="280" data-policy="joint" data-accuracy-mean="0.6901041666666666">
+<title>Adaptive Joint; 280 verified items; held-out accuracy 69.01041667 percent; mean of three paired allocation seeds.</title>
+<rect x="503.188" y="162.553" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="510.188" cy="170.553" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(360.188 91.553)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 280 items</text><text x="12" y="52">Accuracy: 69.0104%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 288 verified items; held-out accuracy 69.53125 percent; mean of three paired allocation seeds." data-budget="288" data-policy="joint" data-accuracy-mean="0.6953125">
+<title>Adaptive Joint; 288 verified items; held-out accuracy 69.53125 percent; mean of three paired allocation seeds.</title>
+<rect x="526.25" y="135.659" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="533.25" cy="143.659" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(383.25 64.659)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 288 items</text><text x="12" y="52">Accuracy: 69.5312%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 296 verified items; held-out accuracy 69.53125 percent; mean of three paired allocation seeds." data-budget="296" data-policy="joint" data-accuracy-mean="0.6953125">
+<title>Adaptive Joint; 296 verified items; held-out accuracy 69.53125 percent; mean of three paired allocation seeds.</title>
+<rect x="549.312" y="135.659" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="556.312" cy="143.659" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(406.312 64.659)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 296 items</text><text x="12" y="52">Accuracy: 69.5312%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 304 verified items; held-out accuracy 69.53125 percent; mean of three paired allocation seeds." data-budget="304" data-policy="joint" data-accuracy-mean="0.6953125">
+<title>Adaptive Joint; 304 verified items; held-out accuracy 69.53125 percent; mean of three paired allocation seeds.</title>
+<rect x="572.375" y="135.659" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="579.375" cy="143.659" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(429.375 64.659)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 304 items</text><text x="12" y="52">Accuracy: 69.5312%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 312 verified items; held-out accuracy 69.921875 percent; mean of three paired allocation seeds." data-budget="312" data-policy="joint" data-accuracy-mean="0.69921875">
+<title>Adaptive Joint; 312 verified items; held-out accuracy 69.921875 percent; mean of three paired allocation seeds.</title>
+<rect x="595.438" y="115.489" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="602.438" cy="123.489" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(452.438 44.489)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 312 items</text><text x="12" y="52">Accuracy: 69.9219%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 320 verified items; held-out accuracy 69.921875 percent; mean of three paired allocation seeds." data-budget="320" data-policy="joint" data-accuracy-mean="0.69921875">
+<title>Adaptive Joint; 320 verified items; held-out accuracy 69.921875 percent; mean of three paired allocation seeds.</title>
+<rect x="618.5" y="115.489" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="625.5" cy="123.489" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(475.5 44.489)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 320 items</text><text x="12" y="52">Accuracy: 69.9219%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 328 verified items; held-out accuracy 69.921875 percent; mean of three paired allocation seeds." data-budget="328" data-policy="joint" data-accuracy-mean="0.69921875">
+<title>Adaptive Joint; 328 verified items; held-out accuracy 69.921875 percent; mean of three paired allocation seeds.</title>
+<rect x="641.562" y="115.489" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="648.562" cy="123.489" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(498.562 44.489)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 328 items</text><text x="12" y="52">Accuracy: 69.9219%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 336 verified items; held-out accuracy 70.3125 percent; mean of three paired allocation seeds." data-budget="336" data-policy="joint" data-accuracy-mean="0.703125">
+<title>Adaptive Joint; 336 verified items; held-out accuracy 70.3125 percent; mean of three paired allocation seeds.</title>
+<rect x="664.625" y="95.318" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="671.625" cy="103.318" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(521.625 24.318)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 336 items</text><text x="12" y="52">Accuracy: 70.3125%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 344 verified items; held-out accuracy 70.3125 percent; mean of three paired allocation seeds." data-budget="344" data-policy="joint" data-accuracy-mean="0.703125">
+<title>Adaptive Joint; 344 verified items; held-out accuracy 70.3125 percent; mean of three paired allocation seeds.</title>
+<rect x="687.688" y="95.318" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="694.688" cy="103.318" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(544.688 24.318)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 344 items</text><text x="12" y="52">Accuracy: 70.3125%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 352 verified items; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds." data-budget="352" data-policy="joint" data-accuracy-mean="0.701171875">
+<title>Adaptive Joint; 352 verified items; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds.</title>
+<rect x="710.75" y="105.403" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="717.75" cy="113.403" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(550 34.403)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 352 items</text><text x="12" y="52">Accuracy: 70.1172%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 360 verified items; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds." data-budget="360" data-policy="joint" data-accuracy-mean="0.701171875">
+<title>Adaptive Joint; 360 verified items; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds.</title>
+<rect x="733.812" y="105.403" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="740.812" cy="113.403" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(550 34.403)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 360 items</text><text x="12" y="52">Accuracy: 70.1172%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 368 verified items; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds." data-budget="368" data-policy="joint" data-accuracy-mean="0.701171875">
+<title>Adaptive Joint; 368 verified items; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds.</title>
+<rect x="756.875" y="105.403" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="763.875" cy="113.403" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(550 34.403)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 368 items</text><text x="12" y="52">Accuracy: 70.1172%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 376 verified items; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds." data-budget="376" data-policy="joint" data-accuracy-mean="0.701171875">
+<title>Adaptive Joint; 376 verified items; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds.</title>
+<rect x="779.938" y="105.403" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="786.938" cy="113.403" r="2.55" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(550 34.403)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 376 items</text><text x="12" y="52">Accuracy: 70.1172%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 384 verified items; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds." data-budget="384" data-policy="joint" data-accuracy-mean="0.701171875">
+<title>Adaptive Joint; 384 verified items; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds.</title>
+<rect x="803" y="105.403" width="14" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="810" cy="113.403" r="5" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(550 34.403)" aria-hidden="true"><rect width="300" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 384 items</text><text x="12" y="52">Accuracy: 70.1172%</text></g></g>
+</svg>
+<svg class="experiment-chart experiment-chart-mobile" viewBox="0 0 360 368" role="group" aria-labelledby="experiment-curve-mobile-title experiment-curve-mobile-desc">
+<title id="experiment-curve-mobile-title">Held-Out Accuracy Every Eight Verified Items</title>
+<desc id="experiment-curve-mobile-desc">Random and Adaptive Joint are evaluated at all 33 checkpoints from 128 to 384 verified items, every eight items. The plotted accuracy is the mean of three paired allocation seeds, using offline re-evaluations of the original retained memory states. Steps change only when an accepted memory update changes performance. The accuracy axis is truncated, from 66 to 71.5 percent. No confidence intervals are shown.</desc>
+<line x1="52" x2="335" y1="282" y2="282" class="experiment-grid-line"/><text x="42" y="288" text-anchor="end" class="experiment-axis-tick">66</text>
+<line x1="52" x2="335" y1="238.545" y2="238.545" class="experiment-grid-line"/><text x="42" y="244.545" text-anchor="end" class="experiment-axis-tick">67</text>
+<line x1="52" x2="335" y1="195.091" y2="195.091" class="experiment-grid-line"/><text x="42" y="201.091" text-anchor="end" class="experiment-axis-tick">68</text>
+<line x1="52" x2="335" y1="151.636" y2="151.636" class="experiment-grid-line"/><text x="42" y="157.636" text-anchor="end" class="experiment-axis-tick">69</text>
+<line x1="52" x2="335" y1="108.182" y2="108.182" class="experiment-grid-line"/><text x="42" y="114.182" text-anchor="end" class="experiment-axis-tick">70</text>
+<line x1="52" x2="335" y1="64.727" y2="64.727" class="experiment-grid-line"/><text x="42" y="70.727" text-anchor="end" class="experiment-axis-tick">71</text>
+<line x1="52" x2="335" y1="43" y2="43" class="experiment-grid-line"/><text x="42" y="49" text-anchor="end" class="experiment-axis-tick">71.5</text>
+<line x1="52" x2="52" y1="282" y2="288" class="experiment-axis-line"/><text x="52" y="312" text-anchor="middle" class="experiment-axis-tick">128</text>
+<line x1="193.5" x2="193.5" y1="282" y2="288" class="experiment-axis-line"/><text x="193.5" y="312" text-anchor="middle" class="experiment-axis-tick">256</text>
+<line x1="335" x2="335" y1="282" y2="288" class="experiment-axis-line"/><text x="335" y="312" text-anchor="middle" class="experiment-axis-tick">384</text>
+<path d="M52 43V282H335" class="experiment-axis-line"/>
+<text x="52" y="23" class="experiment-axis-title">Held-Out Accuracy (%)</text>
+<text x="193.5" y="347" text-anchor="middle" class="experiment-axis-title">Verified Items</text>
+<path d="M52 207.765 H60.844V204.936 H69.688V176.645 H78.531V176.645 H87.375V176.645 H96.219V176.645 H105.062V162.5 H113.906V162.5 H122.75V162.5 H131.594V162.5 H140.438V162.5 H149.281V162.5 H158.125V162.5 H166.969V162.5 H175.812V162.5 H184.656V162.5 H193.5V162.5 H202.344V162.5 H211.188V162.5 H220.031V151.184 H228.875V137.038 H237.719V137.038 H246.562V137.038 H255.406V137.038 H264.25V137.038 H273.094V148.355 H281.938V148.355 H290.781V148.355 H299.625V148.355 H308.469V148.355 H317.312V148.355 H326.156V139.867 H335V139.867" class="experiment-policy-line" data-policy="random" stroke="#65788b" stroke-dasharray="7 5"/>
+<path d="M52 207.765 H60.844V207.765 H69.688V207.765 H78.531V207.765 H87.375V193.62 H96.219V193.62 H105.062V193.62 H113.906V193.62 H122.75V193.62 H131.594V196.449 H140.438V196.449 H149.281V196.449 H158.125V196.449 H166.969V196.449 H175.812V196.449 H184.656V162.5 H193.5V151.184 H202.344V151.184 H211.188V151.184 H220.031V151.184 H228.875V128.551 H237.719V128.551 H246.562V128.551 H255.406V111.577 H264.25V111.577 H273.094V111.577 H281.938V94.602 H290.781V94.602 H299.625V103.089 H308.469V103.089 H317.312V103.089 H326.156V103.089 H335V103.089" class="experiment-policy-line" data-policy="joint" stroke="#3273dc"/>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 128 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds." data-budget="128" data-policy="random" data-accuracy-mean="0.6770833333333334">
+<title>Random; 128 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds.</title>
+<rect x="48" y="199.765" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M52 203.965l3.8 3.8-3.8 3.8-3.8-3.8z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(10 128.765)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 128</text><text x="12" y="52">Accuracy: 67.7083%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 136 verified items; held-out accuracy 67.7734375 percent; mean of three paired allocation seeds." data-budget="136" data-policy="random" data-accuracy-mean="0.677734375">
+<title>Random; 136 verified items; held-out accuracy 67.7734375 percent; mean of three paired allocation seeds.</title>
+<rect x="56.844" y="196.936" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M60.844 203.286l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(10 125.936)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 136</text><text x="12" y="52">Accuracy: 67.7734%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 144 verified items; held-out accuracy 68.42447917 percent; mean of three paired allocation seeds." data-budget="144" data-policy="random" data-accuracy-mean="0.6842447916666666">
+<title>Random; 144 verified items; held-out accuracy 68.42447917 percent; mean of three paired allocation seeds.</title>
+<rect x="65.688" y="168.645" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M69.688 174.995l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(10 97.645)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 144</text><text x="12" y="52">Accuracy: 68.4245%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 152 verified items; held-out accuracy 68.42447917 percent; mean of three paired allocation seeds." data-budget="152" data-policy="random" data-accuracy-mean="0.6842447916666666">
+<title>Random; 152 verified items; held-out accuracy 68.42447917 percent; mean of three paired allocation seeds.</title>
+<rect x="74.531" y="168.645" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M78.531 174.995l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(10 97.645)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 152</text><text x="12" y="52">Accuracy: 68.4245%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 160 verified items; held-out accuracy 68.42447917 percent; mean of three paired allocation seeds." data-budget="160" data-policy="random" data-accuracy-mean="0.6842447916666666">
+<title>Random; 160 verified items; held-out accuracy 68.42447917 percent; mean of three paired allocation seeds.</title>
+<rect x="83.375" y="168.645" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M87.375 174.995l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(10 97.645)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 160</text><text x="12" y="52">Accuracy: 68.4245%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 168 verified items; held-out accuracy 68.42447917 percent; mean of three paired allocation seeds." data-budget="168" data-policy="random" data-accuracy-mean="0.6842447916666666">
+<title>Random; 168 verified items; held-out accuracy 68.42447917 percent; mean of three paired allocation seeds.</title>
+<rect x="92.219" y="168.645" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M96.219 174.995l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(10 97.645)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 168</text><text x="12" y="52">Accuracy: 68.4245%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 176 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="176" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 176 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="101.062" y="154.5" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M105.062 160.85l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(10 83.5)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 176</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 184 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="184" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 184 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="109.906" y="154.5" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M113.906 160.85l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(10 83.5)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 184</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 192 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="192" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 192 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="118.75" y="154.5" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M122.75 160.85l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(10 83.5)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 192</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 200 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="200" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 200 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="127.594" y="154.5" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M131.594 160.85l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(10 83.5)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 200</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 208 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="208" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 208 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="136.438" y="154.5" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M140.438 160.85l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(15.438 83.5)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 208</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 216 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="216" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 216 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="145.281" y="154.5" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M149.281 160.85l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(24.281 83.5)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 216</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 224 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="224" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 224 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="154.125" y="154.5" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M158.125 160.85l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(33.125 83.5)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 224</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 232 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="232" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 232 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="162.969" y="154.5" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M166.969 160.85l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(41.969 83.5)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 232</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 240 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="240" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 240 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="171.812" y="154.5" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M175.812 160.85l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(50.812 83.5)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 240</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 248 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="248" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 248 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="180.656" y="154.5" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M184.656 160.85l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(59.656 83.5)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 248</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 256 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="256" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 256 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="189.5" y="154.5" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M193.5 158.7l3.8 3.8-3.8 3.8-3.8-3.8z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(68.5 83.5)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 256</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 264 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="264" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 264 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="198.344" y="154.5" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M202.344 160.85l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(77.344 83.5)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 264</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 272 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="272" data-policy="random" data-accuracy-mean="0.6875">
+<title>Random; 272 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="207.188" y="154.5" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M211.188 160.85l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(86.188 83.5)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 272</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 280 verified items; held-out accuracy 69.01041667 percent; mean of three paired allocation seeds." data-budget="280" data-policy="random" data-accuracy-mean="0.6901041666666666">
+<title>Random; 280 verified items; held-out accuracy 69.01041667 percent; mean of three paired allocation seeds.</title>
+<rect x="216.031" y="143.184" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M220.031 149.534l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(95.031 72.184)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 280</text><text x="12" y="52">Accuracy: 69.0104%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 288 verified items; held-out accuracy 69.3359375 percent; mean of three paired allocation seeds." data-budget="288" data-policy="random" data-accuracy-mean="0.693359375">
+<title>Random; 288 verified items; held-out accuracy 69.3359375 percent; mean of three paired allocation seeds.</title>
+<rect x="224.875" y="129.038" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M228.875 135.388l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(100 58.038)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 288</text><text x="12" y="52">Accuracy: 69.3359%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 296 verified items; held-out accuracy 69.3359375 percent; mean of three paired allocation seeds." data-budget="296" data-policy="random" data-accuracy-mean="0.693359375">
+<title>Random; 296 verified items; held-out accuracy 69.3359375 percent; mean of three paired allocation seeds.</title>
+<rect x="233.719" y="129.038" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M237.719 135.388l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(100 58.038)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 296</text><text x="12" y="52">Accuracy: 69.3359%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 304 verified items; held-out accuracy 69.3359375 percent; mean of three paired allocation seeds." data-budget="304" data-policy="random" data-accuracy-mean="0.693359375">
+<title>Random; 304 verified items; held-out accuracy 69.3359375 percent; mean of three paired allocation seeds.</title>
+<rect x="242.562" y="129.038" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M246.562 135.388l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(100 58.038)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 304</text><text x="12" y="52">Accuracy: 69.3359%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 312 verified items; held-out accuracy 69.3359375 percent; mean of three paired allocation seeds." data-budget="312" data-policy="random" data-accuracy-mean="0.693359375">
+<title>Random; 312 verified items; held-out accuracy 69.3359375 percent; mean of three paired allocation seeds.</title>
+<rect x="251.406" y="129.038" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M255.406 135.388l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(100 58.038)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 312</text><text x="12" y="52">Accuracy: 69.3359%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 320 verified items; held-out accuracy 69.3359375 percent; mean of three paired allocation seeds." data-budget="320" data-policy="random" data-accuracy-mean="0.693359375">
+<title>Random; 320 verified items; held-out accuracy 69.3359375 percent; mean of three paired allocation seeds.</title>
+<rect x="260.25" y="129.038" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M264.25 135.388l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(100 58.038)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 320</text><text x="12" y="52">Accuracy: 69.3359%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 328 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds." data-budget="328" data-policy="random" data-accuracy-mean="0.6907552083333334">
+<title>Random; 328 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds.</title>
+<rect x="269.094" y="140.355" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M273.094 146.705l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(100 69.355)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 328</text><text x="12" y="52">Accuracy: 69.0755%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 336 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds." data-budget="336" data-policy="random" data-accuracy-mean="0.6907552083333334">
+<title>Random; 336 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds.</title>
+<rect x="277.938" y="140.355" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M281.938 146.705l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(100 69.355)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 336</text><text x="12" y="52">Accuracy: 69.0755%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 344 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds." data-budget="344" data-policy="random" data-accuracy-mean="0.6907552083333334">
+<title>Random; 344 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds.</title>
+<rect x="286.781" y="140.355" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M290.781 146.705l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(100 69.355)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 344</text><text x="12" y="52">Accuracy: 69.0755%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 352 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds." data-budget="352" data-policy="random" data-accuracy-mean="0.6907552083333334">
+<title>Random; 352 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds.</title>
+<rect x="295.625" y="140.355" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M299.625 146.705l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(100 69.355)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 352</text><text x="12" y="52">Accuracy: 69.0755%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 360 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds." data-budget="360" data-policy="random" data-accuracy-mean="0.6907552083333334">
+<title>Random; 360 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds.</title>
+<rect x="304.469" y="140.355" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M308.469 146.705l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(100 69.355)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 360</text><text x="12" y="52">Accuracy: 69.0755%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 368 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds." data-budget="368" data-policy="random" data-accuracy-mean="0.6907552083333334">
+<title>Random; 368 verified items; held-out accuracy 69.07552083 percent; mean of three paired allocation seeds.</title>
+<rect x="313.312" y="140.355" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M317.312 146.705l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(100 69.355)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 368</text><text x="12" y="52">Accuracy: 69.0755%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 376 verified items; held-out accuracy 69.27083333 percent; mean of three paired allocation seeds." data-budget="376" data-policy="random" data-accuracy-mean="0.6927083333333334">
+<title>Random; 376 verified items; held-out accuracy 69.27083333 percent; mean of three paired allocation seeds.</title>
+<rect x="322.156" y="131.867" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M326.156 138.217l1.65 1.65-1.65 1.65-1.65-1.65z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(100 60.867)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 376</text><text x="12" y="52">Accuracy: 69.2708%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Random; 384 verified items; held-out accuracy 69.27083333 percent; mean of three paired allocation seeds." data-budget="384" data-policy="random" data-accuracy-mean="0.6927083333333334">
+<title>Random; 384 verified items; held-out accuracy 69.27083333 percent; mean of three paired allocation seeds.</title>
+<rect x="331" y="131.867" width="8" height="16" fill="transparent" pointer-events="all"/>
+<path d="M335 136.067l3.8 3.8-3.8 3.8-3.8-3.8z" class="experiment-marker" style="--point:#65788b"/>
+<g class="experiment-tooltip" transform="translate(100 60.867)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Random / 384</text><text x="12" y="52">Accuracy: 69.2708%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 128 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds." data-budget="128" data-policy="joint" data-accuracy-mean="0.6770833333333334">
+<title>Adaptive Joint; 128 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds.</title>
+<rect x="48" y="199.765" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="52" cy="207.765" r="3.8" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(10 128.765)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 128</text><text x="12" y="52">Accuracy: 67.7083%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 136 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds." data-budget="136" data-policy="joint" data-accuracy-mean="0.6770833333333334">
+<title>Adaptive Joint; 136 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds.</title>
+<rect x="56.844" y="199.765" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="60.844" cy="207.765" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(10 128.765)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 136</text><text x="12" y="52">Accuracy: 67.7083%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 144 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds." data-budget="144" data-policy="joint" data-accuracy-mean="0.6770833333333334">
+<title>Adaptive Joint; 144 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds.</title>
+<rect x="65.688" y="199.765" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="69.688" cy="207.765" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(10 128.765)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 144</text><text x="12" y="52">Accuracy: 67.7083%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 152 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds." data-budget="152" data-policy="joint" data-accuracy-mean="0.6770833333333334">
+<title>Adaptive Joint; 152 verified items; held-out accuracy 67.70833333 percent; mean of three paired allocation seeds.</title>
+<rect x="74.531" y="199.765" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="78.531" cy="207.765" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(10 128.765)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 152</text><text x="12" y="52">Accuracy: 67.7083%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 160 verified items; held-out accuracy 68.03385417 percent; mean of three paired allocation seeds." data-budget="160" data-policy="joint" data-accuracy-mean="0.6803385416666666">
+<title>Adaptive Joint; 160 verified items; held-out accuracy 68.03385417 percent; mean of three paired allocation seeds.</title>
+<rect x="83.375" y="185.62" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="87.375" cy="193.62" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(10 114.62)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 160</text><text x="12" y="52">Accuracy: 68.0339%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 168 verified items; held-out accuracy 68.03385417 percent; mean of three paired allocation seeds." data-budget="168" data-policy="joint" data-accuracy-mean="0.6803385416666666">
+<title>Adaptive Joint; 168 verified items; held-out accuracy 68.03385417 percent; mean of three paired allocation seeds.</title>
+<rect x="92.219" y="185.62" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="96.219" cy="193.62" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(10 114.62)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 168</text><text x="12" y="52">Accuracy: 68.0339%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 176 verified items; held-out accuracy 68.03385417 percent; mean of three paired allocation seeds." data-budget="176" data-policy="joint" data-accuracy-mean="0.6803385416666666">
+<title>Adaptive Joint; 176 verified items; held-out accuracy 68.03385417 percent; mean of three paired allocation seeds.</title>
+<rect x="101.062" y="185.62" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="105.062" cy="193.62" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(10 114.62)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 176</text><text x="12" y="52">Accuracy: 68.0339%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 184 verified items; held-out accuracy 68.03385417 percent; mean of three paired allocation seeds." data-budget="184" data-policy="joint" data-accuracy-mean="0.6803385416666666">
+<title>Adaptive Joint; 184 verified items; held-out accuracy 68.03385417 percent; mean of three paired allocation seeds.</title>
+<rect x="109.906" y="185.62" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="113.906" cy="193.62" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(10 114.62)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 184</text><text x="12" y="52">Accuracy: 68.0339%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 192 verified items; held-out accuracy 68.03385417 percent; mean of three paired allocation seeds." data-budget="192" data-policy="joint" data-accuracy-mean="0.6803385416666666">
+<title>Adaptive Joint; 192 verified items; held-out accuracy 68.03385417 percent; mean of three paired allocation seeds.</title>
+<rect x="118.75" y="185.62" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="122.75" cy="193.62" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(10 114.62)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 192</text><text x="12" y="52">Accuracy: 68.0339%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 200 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds." data-budget="200" data-policy="joint" data-accuracy-mean="0.6796875">
+<title>Adaptive Joint; 200 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds.</title>
+<rect x="127.594" y="188.449" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="131.594" cy="196.449" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(10 117.449)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 200</text><text x="12" y="52">Accuracy: 67.9688%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 208 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds." data-budget="208" data-policy="joint" data-accuracy-mean="0.6796875">
+<title>Adaptive Joint; 208 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds.</title>
+<rect x="136.438" y="188.449" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="140.438" cy="196.449" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(15.438 117.449)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 208</text><text x="12" y="52">Accuracy: 67.9688%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 216 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds." data-budget="216" data-policy="joint" data-accuracy-mean="0.6796875">
+<title>Adaptive Joint; 216 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds.</title>
+<rect x="145.281" y="188.449" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="149.281" cy="196.449" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(24.281 117.449)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 216</text><text x="12" y="52">Accuracy: 67.9688%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 224 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds." data-budget="224" data-policy="joint" data-accuracy-mean="0.6796875">
+<title>Adaptive Joint; 224 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds.</title>
+<rect x="154.125" y="188.449" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="158.125" cy="196.449" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(33.125 117.449)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 224</text><text x="12" y="52">Accuracy: 67.9688%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 232 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds." data-budget="232" data-policy="joint" data-accuracy-mean="0.6796875">
+<title>Adaptive Joint; 232 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds.</title>
+<rect x="162.969" y="188.449" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="166.969" cy="196.449" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(41.969 117.449)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 232</text><text x="12" y="52">Accuracy: 67.9688%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 240 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds." data-budget="240" data-policy="joint" data-accuracy-mean="0.6796875">
+<title>Adaptive Joint; 240 verified items; held-out accuracy 67.96875 percent; mean of three paired allocation seeds.</title>
+<rect x="171.812" y="188.449" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="175.812" cy="196.449" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(50.812 117.449)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 240</text><text x="12" y="52">Accuracy: 67.9688%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 248 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds." data-budget="248" data-policy="joint" data-accuracy-mean="0.6875">
+<title>Adaptive Joint; 248 verified items; held-out accuracy 68.75 percent; mean of three paired allocation seeds.</title>
+<rect x="180.656" y="154.5" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="184.656" cy="162.5" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(59.656 83.5)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 248</text><text x="12" y="52">Accuracy: 68.7500%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 256 verified items; held-out accuracy 69.01041667 percent; mean of three paired allocation seeds." data-budget="256" data-policy="joint" data-accuracy-mean="0.6901041666666666">
+<title>Adaptive Joint; 256 verified items; held-out accuracy 69.01041667 percent; mean of three paired allocation seeds.</title>
+<rect x="189.5" y="143.184" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="193.5" cy="151.184" r="3.8" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(68.5 72.184)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 256</text><text x="12" y="52">Accuracy: 69.0104%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 264 verified items; held-out accuracy 69.01041667 percent; mean of three paired allocation seeds." data-budget="264" data-policy="joint" data-accuracy-mean="0.6901041666666666">
+<title>Adaptive Joint; 264 verified items; held-out accuracy 69.01041667 percent; mean of three paired allocation seeds.</title>
+<rect x="198.344" y="143.184" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="202.344" cy="151.184" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(77.344 72.184)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 264</text><text x="12" y="52">Accuracy: 69.0104%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 272 verified items; held-out accuracy 69.01041667 percent; mean of three paired allocation seeds." data-budget="272" data-policy="joint" data-accuracy-mean="0.6901041666666666">
+<title>Adaptive Joint; 272 verified items; held-out accuracy 69.01041667 percent; mean of three paired allocation seeds.</title>
+<rect x="207.188" y="143.184" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="211.188" cy="151.184" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(86.188 72.184)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 272</text><text x="12" y="52">Accuracy: 69.0104%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 280 verified items; held-out accuracy 69.01041667 percent; mean of three paired allocation seeds." data-budget="280" data-policy="joint" data-accuracy-mean="0.6901041666666666">
+<title>Adaptive Joint; 280 verified items; held-out accuracy 69.01041667 percent; mean of three paired allocation seeds.</title>
+<rect x="216.031" y="143.184" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="220.031" cy="151.184" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(95.031 72.184)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 280</text><text x="12" y="52">Accuracy: 69.0104%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 288 verified items; held-out accuracy 69.53125 percent; mean of three paired allocation seeds." data-budget="288" data-policy="joint" data-accuracy-mean="0.6953125">
+<title>Adaptive Joint; 288 verified items; held-out accuracy 69.53125 percent; mean of three paired allocation seeds.</title>
+<rect x="224.875" y="120.551" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="228.875" cy="128.551" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(100 49.551)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 288</text><text x="12" y="52">Accuracy: 69.5312%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 296 verified items; held-out accuracy 69.53125 percent; mean of three paired allocation seeds." data-budget="296" data-policy="joint" data-accuracy-mean="0.6953125">
+<title>Adaptive Joint; 296 verified items; held-out accuracy 69.53125 percent; mean of three paired allocation seeds.</title>
+<rect x="233.719" y="120.551" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="237.719" cy="128.551" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(100 49.551)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 296</text><text x="12" y="52">Accuracy: 69.5312%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 304 verified items; held-out accuracy 69.53125 percent; mean of three paired allocation seeds." data-budget="304" data-policy="joint" data-accuracy-mean="0.6953125">
+<title>Adaptive Joint; 304 verified items; held-out accuracy 69.53125 percent; mean of three paired allocation seeds.</title>
+<rect x="242.562" y="120.551" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="246.562" cy="128.551" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(100 49.551)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 304</text><text x="12" y="52">Accuracy: 69.5312%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 312 verified items; held-out accuracy 69.921875 percent; mean of three paired allocation seeds." data-budget="312" data-policy="joint" data-accuracy-mean="0.69921875">
+<title>Adaptive Joint; 312 verified items; held-out accuracy 69.921875 percent; mean of three paired allocation seeds.</title>
+<rect x="251.406" y="103.577" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="255.406" cy="111.577" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(100 32.577)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 312</text><text x="12" y="52">Accuracy: 69.9219%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 320 verified items; held-out accuracy 69.921875 percent; mean of three paired allocation seeds." data-budget="320" data-policy="joint" data-accuracy-mean="0.69921875">
+<title>Adaptive Joint; 320 verified items; held-out accuracy 69.921875 percent; mean of three paired allocation seeds.</title>
+<rect x="260.25" y="103.577" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="264.25" cy="111.577" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(100 32.577)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 320</text><text x="12" y="52">Accuracy: 69.9219%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 328 verified items; held-out accuracy 69.921875 percent; mean of three paired allocation seeds." data-budget="328" data-policy="joint" data-accuracy-mean="0.69921875">
+<title>Adaptive Joint; 328 verified items; held-out accuracy 69.921875 percent; mean of three paired allocation seeds.</title>
+<rect x="269.094" y="103.577" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="273.094" cy="111.577" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(100 32.577)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 328</text><text x="12" y="52">Accuracy: 69.9219%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 336 verified items; held-out accuracy 70.3125 percent; mean of three paired allocation seeds." data-budget="336" data-policy="joint" data-accuracy-mean="0.703125">
+<title>Adaptive Joint; 336 verified items; held-out accuracy 70.3125 percent; mean of three paired allocation seeds.</title>
+<rect x="277.938" y="86.602" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="281.938" cy="94.602" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(100 15.602)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 336</text><text x="12" y="52">Accuracy: 70.3125%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 344 verified items; held-out accuracy 70.3125 percent; mean of three paired allocation seeds." data-budget="344" data-policy="joint" data-accuracy-mean="0.703125">
+<title>Adaptive Joint; 344 verified items; held-out accuracy 70.3125 percent; mean of three paired allocation seeds.</title>
+<rect x="286.781" y="86.602" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="290.781" cy="94.602" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(100 15.602)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 344</text><text x="12" y="52">Accuracy: 70.3125%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 352 verified items; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds." data-budget="352" data-policy="joint" data-accuracy-mean="0.701171875">
+<title>Adaptive Joint; 352 verified items; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds.</title>
+<rect x="295.625" y="95.089" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="299.625" cy="103.089" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(100 24.089)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 352</text><text x="12" y="52">Accuracy: 70.1172%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 360 verified items; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds." data-budget="360" data-policy="joint" data-accuracy-mean="0.701171875">
+<title>Adaptive Joint; 360 verified items; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds.</title>
+<rect x="304.469" y="95.089" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="308.469" cy="103.089" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(100 24.089)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 360</text><text x="12" y="52">Accuracy: 70.1172%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 368 verified items; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds." data-budget="368" data-policy="joint" data-accuracy-mean="0.701171875">
+<title>Adaptive Joint; 368 verified items; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds.</title>
+<rect x="313.312" y="95.089" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="317.312" cy="103.089" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(100 24.089)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 368</text><text x="12" y="52">Accuracy: 70.1172%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 376 verified items; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds." data-budget="376" data-policy="joint" data-accuracy-mean="0.701171875">
+<title>Adaptive Joint; 376 verified items; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds.</title>
+<rect x="322.156" y="95.089" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="326.156" cy="103.089" r="1.65" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(100 24.089)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 376</text><text x="12" y="52">Accuracy: 70.1172%</text></g></g>
+<g class="experiment-data-point" tabindex="0" role="img" aria-label="Adaptive Joint; 384 verified items; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds." data-budget="384" data-policy="joint" data-accuracy-mean="0.701171875">
+<title>Adaptive Joint; 384 verified items; held-out accuracy 70.1171875 percent; mean of three paired allocation seeds.</title>
+<rect x="331" y="95.089" width="8" height="16" fill="transparent" pointer-events="all"/>
+<circle cx="335" cy="103.089" r="3.8" class="experiment-marker" style="--point:#3273dc"/>
+<g class="experiment-tooltip" transform="translate(100 24.089)" aria-hidden="true"><rect width="250" height="68" rx="5"/><text x="12" y="26">Adaptive Joint / 384</text><text x="12" y="52">Accuracy: 70.1172%</text></g></g>
+</svg>
+  </div>
+  <ul class="experiment-legend experiment-curve-legend" aria-label="Policies and accuracy at 384 verified items">
+<li><span class="experiment-key" style="--policy:#65788b"></span><span>Random</span><strong>69.27%</strong></li>
+<li><span class="experiment-key" style="--policy:#3273dc"></span><span>Adaptive Joint</span><strong>70.12%</strong></li>
+  </ul>
+  <p class="experiment-axis-note">Accuracy axis: 66&ndash;71.5% (truncated). All 33 checkpoints, every 8 verified items.</p>
+  <figcaption class="experiment-plot-caption">Offline re-evaluation of the original retained memory states, averaged over three paired allocation seeds. The step curves change only when accepted memory updates change held-out performance.</figcaption>
+  <details class="experiment-data"><summary>See All 33 Accuracy Checkpoints</summary><div class="experiment-data-scroll"><table><caption>Held-Out Accuracy. Means over three paired allocation seeds.</caption><thead><tr><th scope="col">Verified Items</th><th scope="col">Random</th><th scope="col">Adaptive Joint</th></tr></thead><tbody>
+<tr><th scope="row">128</th><td data-accuracy-mean="0.6770833333333334" title="Exact mean fraction: 0.6770833333333334">67.71%</td><td data-accuracy-mean="0.6770833333333334" title="Exact mean fraction: 0.6770833333333334">67.71%</td></tr>
+<tr><th scope="row">136</th><td data-accuracy-mean="0.677734375" title="Exact mean fraction: 0.677734375">67.77%</td><td data-accuracy-mean="0.6770833333333334" title="Exact mean fraction: 0.6770833333333334">67.71%</td></tr>
+<tr><th scope="row">144</th><td data-accuracy-mean="0.6842447916666666" title="Exact mean fraction: 0.6842447916666666">68.42%</td><td data-accuracy-mean="0.6770833333333334" title="Exact mean fraction: 0.6770833333333334">67.71%</td></tr>
+<tr><th scope="row">152</th><td data-accuracy-mean="0.6842447916666666" title="Exact mean fraction: 0.6842447916666666">68.42%</td><td data-accuracy-mean="0.6770833333333334" title="Exact mean fraction: 0.6770833333333334">67.71%</td></tr>
+<tr><th scope="row">160</th><td data-accuracy-mean="0.6842447916666666" title="Exact mean fraction: 0.6842447916666666">68.42%</td><td data-accuracy-mean="0.6803385416666666" title="Exact mean fraction: 0.6803385416666666">68.03%</td></tr>
+<tr><th scope="row">168</th><td data-accuracy-mean="0.6842447916666666" title="Exact mean fraction: 0.6842447916666666">68.42%</td><td data-accuracy-mean="0.6803385416666666" title="Exact mean fraction: 0.6803385416666666">68.03%</td></tr>
+<tr><th scope="row">176</th><td data-accuracy-mean="0.6875" title="Exact mean fraction: 0.6875">68.75%</td><td data-accuracy-mean="0.6803385416666666" title="Exact mean fraction: 0.6803385416666666">68.03%</td></tr>
+<tr><th scope="row">184</th><td data-accuracy-mean="0.6875" title="Exact mean fraction: 0.6875">68.75%</td><td data-accuracy-mean="0.6803385416666666" title="Exact mean fraction: 0.6803385416666666">68.03%</td></tr>
+<tr><th scope="row">192</th><td data-accuracy-mean="0.6875" title="Exact mean fraction: 0.6875">68.75%</td><td data-accuracy-mean="0.6803385416666666" title="Exact mean fraction: 0.6803385416666666">68.03%</td></tr>
+<tr><th scope="row">200</th><td data-accuracy-mean="0.6875" title="Exact mean fraction: 0.6875">68.75%</td><td data-accuracy-mean="0.6796875" title="Exact mean fraction: 0.6796875">67.97%</td></tr>
+<tr><th scope="row">208</th><td data-accuracy-mean="0.6875" title="Exact mean fraction: 0.6875">68.75%</td><td data-accuracy-mean="0.6796875" title="Exact mean fraction: 0.6796875">67.97%</td></tr>
+<tr><th scope="row">216</th><td data-accuracy-mean="0.6875" title="Exact mean fraction: 0.6875">68.75%</td><td data-accuracy-mean="0.6796875" title="Exact mean fraction: 0.6796875">67.97%</td></tr>
+<tr><th scope="row">224</th><td data-accuracy-mean="0.6875" title="Exact mean fraction: 0.6875">68.75%</td><td data-accuracy-mean="0.6796875" title="Exact mean fraction: 0.6796875">67.97%</td></tr>
+<tr><th scope="row">232</th><td data-accuracy-mean="0.6875" title="Exact mean fraction: 0.6875">68.75%</td><td data-accuracy-mean="0.6796875" title="Exact mean fraction: 0.6796875">67.97%</td></tr>
+<tr><th scope="row">240</th><td data-accuracy-mean="0.6875" title="Exact mean fraction: 0.6875">68.75%</td><td data-accuracy-mean="0.6796875" title="Exact mean fraction: 0.6796875">67.97%</td></tr>
+<tr><th scope="row">248</th><td data-accuracy-mean="0.6875" title="Exact mean fraction: 0.6875">68.75%</td><td data-accuracy-mean="0.6875" title="Exact mean fraction: 0.6875">68.75%</td></tr>
+<tr><th scope="row">256</th><td data-accuracy-mean="0.6875" title="Exact mean fraction: 0.6875">68.75%</td><td data-accuracy-mean="0.6901041666666666" title="Exact mean fraction: 0.6901041666666666">69.01%</td></tr>
+<tr><th scope="row">264</th><td data-accuracy-mean="0.6875" title="Exact mean fraction: 0.6875">68.75%</td><td data-accuracy-mean="0.6901041666666666" title="Exact mean fraction: 0.6901041666666666">69.01%</td></tr>
+<tr><th scope="row">272</th><td data-accuracy-mean="0.6875" title="Exact mean fraction: 0.6875">68.75%</td><td data-accuracy-mean="0.6901041666666666" title="Exact mean fraction: 0.6901041666666666">69.01%</td></tr>
+<tr><th scope="row">280</th><td data-accuracy-mean="0.6901041666666666" title="Exact mean fraction: 0.6901041666666666">69.01%</td><td data-accuracy-mean="0.6901041666666666" title="Exact mean fraction: 0.6901041666666666">69.01%</td></tr>
+<tr><th scope="row">288</th><td data-accuracy-mean="0.693359375" title="Exact mean fraction: 0.693359375">69.34%</td><td data-accuracy-mean="0.6953125" title="Exact mean fraction: 0.6953125">69.53%</td></tr>
+<tr><th scope="row">296</th><td data-accuracy-mean="0.693359375" title="Exact mean fraction: 0.693359375">69.34%</td><td data-accuracy-mean="0.6953125" title="Exact mean fraction: 0.6953125">69.53%</td></tr>
+<tr><th scope="row">304</th><td data-accuracy-mean="0.693359375" title="Exact mean fraction: 0.693359375">69.34%</td><td data-accuracy-mean="0.6953125" title="Exact mean fraction: 0.6953125">69.53%</td></tr>
+<tr><th scope="row">312</th><td data-accuracy-mean="0.693359375" title="Exact mean fraction: 0.693359375">69.34%</td><td data-accuracy-mean="0.69921875" title="Exact mean fraction: 0.69921875">69.92%</td></tr>
+<tr><th scope="row">320</th><td data-accuracy-mean="0.693359375" title="Exact mean fraction: 0.693359375">69.34%</td><td data-accuracy-mean="0.69921875" title="Exact mean fraction: 0.69921875">69.92%</td></tr>
+<tr><th scope="row">328</th><td data-accuracy-mean="0.6907552083333334" title="Exact mean fraction: 0.6907552083333334">69.08%</td><td data-accuracy-mean="0.69921875" title="Exact mean fraction: 0.69921875">69.92%</td></tr>
+<tr><th scope="row">336</th><td data-accuracy-mean="0.6907552083333334" title="Exact mean fraction: 0.6907552083333334">69.08%</td><td data-accuracy-mean="0.703125" title="Exact mean fraction: 0.703125">70.31%</td></tr>
+<tr><th scope="row">344</th><td data-accuracy-mean="0.6907552083333334" title="Exact mean fraction: 0.6907552083333334">69.08%</td><td data-accuracy-mean="0.703125" title="Exact mean fraction: 0.703125">70.31%</td></tr>
+<tr><th scope="row">352</th><td data-accuracy-mean="0.6907552083333334" title="Exact mean fraction: 0.6907552083333334">69.08%</td><td data-accuracy-mean="0.701171875" title="Exact mean fraction: 0.701171875">70.12%</td></tr>
+<tr><th scope="row">360</th><td data-accuracy-mean="0.6907552083333334" title="Exact mean fraction: 0.6907552083333334">69.08%</td><td data-accuracy-mean="0.701171875" title="Exact mean fraction: 0.701171875">70.12%</td></tr>
+<tr><th scope="row">368</th><td data-accuracy-mean="0.6907552083333334" title="Exact mean fraction: 0.6907552083333334">69.08%</td><td data-accuracy-mean="0.701171875" title="Exact mean fraction: 0.701171875">70.12%</td></tr>
+<tr><th scope="row">376</th><td data-accuracy-mean="0.6927083333333334" title="Exact mean fraction: 0.6927083333333334">69.27%</td><td data-accuracy-mean="0.701171875" title="Exact mean fraction: 0.701171875">70.12%</td></tr>
+<tr><th scope="row">384</th><td data-accuracy-mean="0.6927083333333334" title="Exact mean fraction: 0.6927083333333334">69.27%</td><td data-accuracy-mean="0.701171875" title="Exact mean fraction: 0.701171875">70.12%</td></tr>
+</tbody></table></div></details>
+</figure>
+</article><article class="experiment-block" id="objective-tradeoff-experiment" aria-labelledby="reference-tradeoff-heading"><h3 class="experiment-number" id="reference-tradeoff-heading">EXPERIMENT 4 &middot; Dual-Purpose Trade-off</h3><p>Four main policies are compared at 384 verified items. The two coordinates are construction SNR and held-out target improvement relative to the same 66.60% initial accuracy.</p><figure class="reference-card" aria-labelledby="reference-tradeoff-heading"><div class="reference-chart-wrap"><svg class="reference-chart reference-chart-desktop" viewBox="0 0 1000 480" role="img" aria-labelledby="reference-tradeoff-desktop-title reference-tradeoff-desktop-desc"><title id="reference-tradeoff-desktop-title">Final construction SNR and held-out learning gain for four main policies</title><desc id="reference-tradeoff-desktop-desc">Four main policies are displayed at 384 verified items: Random, Adaptive Joint, Benchmark-Only and Learning-Only. Markers are means over three paired allocation seeds; error bars are sample SD across seeds. Full six-policy results and ablations are retained in Additional Diagnostics. The target baseline is 66.6015625 percent.</desc>
 <path class="reference-grid" d="M95 324.459H965"/><text x="83" y="333.459" text-anchor="end">2</text>
 <path class="reference-grid" d="M95 237.973H965"/><text x="83" y="246.973" text-anchor="end">3</text>
 <path class="reference-grid" d="M95 151.486H965"/><text x="83" y="160.486" text-anchor="end">4</text>
