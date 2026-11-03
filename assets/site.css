@@ -70,3 +70,5 @@
 @media(max-width:540px){#learning-performance-experiment .experiment-chart-wrap{padding-top:18px}#learning-performance-experiment .experiment-axis-note{margin:17px 20px!important}}
 
 #learning-performance-experiment .experiment-chart-mobile .experiment-tooltip text{font-size:20px}
+
+#memory-experiment.component-ablation{margin-top:50px;padding-top:28px;border-top:1px solid var(--line)}
