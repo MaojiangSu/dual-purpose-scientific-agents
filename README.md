@@ -40,9 +40,9 @@ Formula presentation uses pre-rendered KaTeX HTML/MathML, including the availabl
 
 ## Result Blocks And Shared Setup
 
-Each numbered block carries one primary result: harness improvement, benchmark SNR over rounds, the paired final reference tables, the two-objective trade-off, and the transfer diagnostic. Experiments 2-4 reuse the same equal-budget campaigns; they are result views, not new independent experiments. The shared overview keeps K=2, the 512-item pool, 128 warm-up items, 384-item endpoint and three allocation seeds visible. Full configuration and accounting are available in its expandable panel.
+Each numbered block carries one primary result: harness improvement, benchmark SNR over rounds, the paired final reference tables, and the two-objective trade-off. Experiments 2-4 reuse the same equal-budget campaigns; they are result views, not new independent experiments. The shared overview keeps K=2, the 512-item pool, 128 warm-up items, 384-item endpoint and three allocation seeds visible. Full configuration and accounting are available in its expandable panel.
 
-Keep plot titles below the numbered experiment title and avoid repeated internal section titles. Original learning/audit plots and the full strategies table live in additional diagnostics outside the numbered blocks. The transfer bars visualize only the already reported 69.79% and 66.67% accuracies, with the separate-configuration scope retained.
+Keep plot titles below the numbered experiment title and avoid repeated internal section titles. Original learning/audit plots and the full strategies table live in additional diagnostics outside the numbered blocks.
 
 The constructed selection demo has four candidate items. Item 4 has predicted values (0.30, 0.40), strictly below Item 2 at (0.58, 0.68). Its dashed card displays a computed Dominated badge and the dominating item. The weighted selector is unchanged; all weights from 0 to 1 prefer Item 2 over Item 4. Item 4 is a value-only point with no invented fitness or model responses.
 
