@@ -59,3 +59,14 @@
 .candidate.is-dominated{border-style:dashed;border-color:#b6c0c9;background:#f8fafb}
 .candidate.is-dominated .candidate-status{color:#4b5560}
 .candidate .candidate-dominance{font-size:16px!important;line-height:1.5!important;color:#46515c;margin:12px 0 0!important}
+
+/* Main learning process: one two-policy figure with three measured checkpoints. */
+#learning-performance-experiment .learning-curve-main{margin:20px 0}
+#learning-performance-experiment .experiment-chart-wrap{padding-top:22px}
+#learning-performance-experiment .experiment-curve-legend{grid-template-columns:repeat(2,minmax(0,1fr))}
+#learning-performance-experiment .experiment-axis-note{font-size:16px!important;margin:18px 26px!important}
+#learning-performance-experiment .experiment-chart-mobile text{font-size:22px}
+@media(max-width:900px){#learning-performance-experiment .experiment-curve-legend{grid-template-columns:1fr}}
+@media(max-width:540px){#learning-performance-experiment .experiment-chart-wrap{padding-top:18px}#learning-performance-experiment .experiment-axis-note{margin:17px 20px!important}}
+
+#learning-performance-experiment .experiment-chart-mobile .experiment-tooltip text{font-size:20px}
