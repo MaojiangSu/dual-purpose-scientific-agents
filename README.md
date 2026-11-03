@@ -1,65 +1,33 @@
 # Dual-Purpose Experimental Design
 
-Public project website: https://maojiangsu.github.io/dual-purpose-scientific-agents/
+Public project webpage: https://maojiangsu.github.io/dual-purpose-scientific-agents/
 
-This repository publishes only the static webpage, its browser-local interaction and presentation assets. Manuscript PDFs/LaTeX, experimental-code bundles and private assay/response records are not included.
+This repository publishes the static aggregate webpage and its browser interactions. Manuscript PDFs/LaTeX, raw assay labels, response banks and experimental-code bundles are maintained separately and are not included here.
 
-## Reading The Page
+## Page Structure
 
-The full paper title and author line lead into Abstract, a compact method loop, Motivation, Problem Setup, Method, the concrete protein example, the selection interaction and measured experiments. Abstract keeps its narrow reading column; all other body sections share a consistent left edge.
+The full paper title and Maojiang Su / Han Liu author line lead into Abstract, the compact Adaptive Experimental Design Loop, Motivation, Problem Setup, Method, the concrete protein example, the constructed selection interaction and Experimental Results. Problem Setup ends with the overall conditional Pareto problem. A separate Experimental Memory component ablation follows the three main results, then Citation. Additional diagnostic and theory/update-details panels are omitted from this presentation.
 
-The overview is titled The Adaptive Experimental Design Loop. Its central Our Method group contains value estimation and next-item selection. Candidate items, experimental verification and shared feedback provide the surrounding context, and a clear return arrow feeds new information into the next decision. Keep it concise and general: do not add protein variants, fixed measurement costs, run-level execution details or three rows of large panels. Agent updates remain batched.
+The overview remains concise and general. Its Our Method group contains value estimation and next-item selection; shared experimental feedback returns to the next decision. Preserve its compact geometry and clear loop, without adding run-level or fixed-cost details.
 
-Problem Setup defines scientific items, adaptive decision rounds, both objectives and the conditional continuation-policy Pareto problem. The Method section and constructed interaction explain selection and shared feedback. Detailed one-step Pareto candidates and the explicit benchmarking sample-value definition remain in the manuscript.
+## Current Results
 
-The selection interaction uses constructed illustrative values. Experiment plots retain recorded values and their scientific scope. The website author line and BibTeX use Maojiang Su and Han Liu.
+The three main panels are Benchmark Discrimination: Acquisition Process; Benchmark Discrimination: Final Results; and Learning Performance: Acquisition Process. They reuse the same equal-budget GB1 campaigns and focus on Adaptive Joint versus Random. The complete study recorded six policies and three allocation seeds. The matched reference panel has Terra and Sol, with Terra as the improving target.
+
+The shared setup has 512 candidate pairs, 96 validation pairs and 256 held-out pairs. Each campaign acquires 128 warm-up plus 256 subsequent items, ending at 384. The 768 measurement charges count acquisition per policy/seed; other label and LLM accounts remain separate. Validation supplies update-gating and learning feedback; held-out feedback is excluded from updating and selection.
+
+The SNR curve uses the fixed cached reference-run bank. Its observed advantage over Random peaks around 160 items and narrows overall at higher coverage. The graph stops at 384/512 items. Equality at full coverage follows from the same fixed pool and reference-run bank, rather than a measured 512-item result.
+
+The learning curve has 33 evaluated checkpoints, every eight items from 128 to 384. All 18 original policy/seed/budget results and 26 accepted-state validation scores reproduce exactly under the original CPU versions. The figure connects unchanged measured points with straight visual guides; it adds no intermediate score estimates. Three allocation seeds share the cached target response bank. Intermediate trajectories can cross and decrease; the final means remain 70.12% for Adaptive Joint and 69.27% for Random.
+
+The memory ablation is a separate frozen-snapshot GB1 study with no variants shared with the main study. Its complete search acquired 1,024 training pairs and selected the 256-pair snapshot with threshold 0.80 on validation. Frozen evaluation uses 256 held-out pairs with two fresh runs each. It compares with/without memory, while preserving the LLM weights and fallback prompt. Raw records and manuscript results are preserved separately from page presentation choices.
+
+## Selection Illustration
+
+The interaction is explicitly constructed. Four candidate items have predicted benchmarking/learning values. Item 4 at (0.30, 0.40) is strictly dominated by Item 2 at (0.58, 0.68); the card computes and displays this relation. Manual preference buttons select among the other candidates through the unchanged weighted score. The fourth point has no invented fitness or reference answers. This illustration performs no live model call or training.
 
 ## Typography And Preview
 
-Preserve the user's All-Atom Omni reference typography: Georgia/Times headings, system sans-serif body and 17px paragraphs. Ordinary interface text stays at least 16px on phones. Use responsive native HTML/CSS and vector arrows; do not shrink a wide bitmap to fit mobile. KaTeX supplies pre-rendered HTML/MathML and local mathematical fonts.
+Use Georgia/Times headings and system sans-serif body text, following the user's All-Atom Omni reference (https://jiale0402.github.io/all-atom-omni/). Body paragraphs are 17px; ordinary interface text remains at least 16px on phones. Main experiment headings are 28px desktop / 25px phone in the hero's serif family; internal headings remain smaller. Except for the Abstract reading column, body sections share one left edge. Accessible equations use local KaTeX HTML/MathML, and figures use responsive vectors.
 
-All assets are static, with no runtime LLM or font API. Preview with `python -m http.server 8000`; GitHub Pages publishes the root of main. The workflow is implemented in assets/workflow.css and assets/workflow.js.
-
-Layout reference: https://jiale0402.github.io/all-atom-omni/.
-
-Experiment themes are the actual section headings: use uppercase EXPERIMENT labels at a readable heading size and omit a second rhetorical question. Other navigation/section titles should be concise descriptive nouns. Preserve the sentence-case question inside the concrete task example.
-
-The shared study setup includes a configuration table and candidate-pool coverage bar. Keep 384 item-level decision rounds, 256 post-warm-up decisions, 32 post-warm-up memory batches and 47 total proposal records distinct. The 768 retrospective measurement charges apply per policy/seed to acquisition only. Pool percentages use 512 as denominator, and unacquired items are unqueried by the selection policy even though the independent evaluator can audit the full pool.
-
-## Construction-Bank Benchmark Results
-
-The main benchmark results include construction-bank SNR by post-warm-up decision round, two final reference-score tables and SNR versus held-out target learning gain. The completed matched panel is K=2 (Terra and Sol); the Qwen follow-up caches use a different split and cannot be merged into this experiment. Tables can switch allocation seeds 101, 211 and 307 while keeping the two compared policies on the same seed.
-
-Table uncertainty is sample SD across three aggregate runs on one fixed benchmark. Curve bands and policy error bars are sample SD across three allocation seeds, not confidence intervals or run SD. Existing construction runs informed acquisition and are intentionally reused to calculate the defined construction objective; no additional runs are required for that descriptive objective. Future-run robustness is a separate question.
-
-At the 384-item endpoint, Joint has 3.88 times Random's construction SNR and 0.85 percentage points higher held-out target accuracy. Static Joint has higher means on both objectives. With epsilon=0.02, the denominator is floor-dominated and higher SNR mainly reflects greater mean-score separation. Reference profiles are on different selected benchmarks; they are not intrinsic ability improvements. The learning curve is a main result; independent-run MSE and the full policy comparison remain in collapsed diagnostics.
-
-All displayed results are aggregate cached analysis. No model inference, new selection or training is performed in the browser or added by this update. Paper revision v015 and webpage revision v014 retain private versioned records separately.
-
-Formula presentation uses pre-rendered KaTeX HTML/MathML, including the available-information subscript. Conditional Pareto optimization places the operator beside its objective vector and the budget constraint on the second line. Numbered experiment titles use the same black Georgia/Times serif family as the hero, at 28px (25px on phones). Internal headings stay below them, at most 20px (19px on phones).
-
-## Result Blocks And Shared Setup
-
-Each numbered main result covers benchmark SNR over rounds, the paired final reference tables, held-out learning accuracy over budget, or the two-objective trade-off. A separate Experimental Memory ablation follows these four blocks. Experiments 1-4 reuse the same equal-budget campaigns; they are result views, not new independent experiments. The shared overview keeps K=2, the 512-item pool, 128 warm-up items, 384-item endpoint and three allocation seeds visible. Full configuration and accounting are available in its expandable panel.
-
-Keep plot titles below the numbered experiment title and avoid repeated internal section titles. The independent-run audit plot and full strategies table live in additional diagnostics outside the numbered blocks.
-
-The constructed selection demo has four candidate items. Item 4 has predicted values (0.30, 0.40), strictly below Item 2 at (0.58, 0.68). Its dashed card displays a computed Dominated badge and the dominating item. The weighted selector is unchanged; all weights from 0 to 1 prefer Item 2 over Item 4. Item 4 is a value-only point with no invented fitness or model responses.
-
-The Experimental Memory ablation is a separate frozen-snapshot study in the same GB1 setting: Validation selected the 256-pair memory and threshold 0.80 from 64/256/1,024-pair snapshots, with 1,024 training pairs acquired for the full search. Final evaluation uses 256 held-out pairs and two fresh runs per pair. Experiments 1-4 use a fresh split excluding all variants in this study and learn memory separately within each acquisition campaign; this ablation figure is not a checkpoint from their adaptive trajectories.
-
-The setup table uses Validation (96 pairs) and Held-Out (256 pairs). Validation evaluates memory candidates and supplies learning feedback. Held-Out reports generalization at prespecified budget checkpoints and is excluded from update and acquisition decisions. Prose uses validation set and held-out set.
-
-Experiment 1 leads with the observed budget-dependent advantage over Random: the largest absolute mean-SNR gap is around 160 verified items, and the mean-SNR ratios are 7.81 at 256 items and 3.88 at 384. The gap narrows overall with local fluctuations. The plot ends at 384/512 items. Identical construction SNR at full coverage follows from sharing the fixed item pool, reference-run bank and score definition; it is not a measured 512-item endpoint or a claim about learning-path equality.
-
-Experiments 1 and 2 share the title family Benchmark Discrimination. Their view labels are Acquisition Process and Final Results, respectively: one reports the SNR trajectory and the other the final fixed-benchmark reference-agent comparison. Their underlying campaigns and data remain the same.
-
-Experiment 4 displays four main strategies: Random, Adaptive Joint, Benchmark-Only and Learning-Only. Static Joint and Joint Without Learning Bonus are omitted from this main panel and its legend, while their complete results remain in Additional Diagnostics. The panel explicitly identifies the four-strategy subset, retains all remaining point/error-bar coordinates and links to the full comparison.
-
-Experiment 3 is Learning Performance: Acquisition Process, showing Adaptive Joint and Random at 33 budgets from 128 to 384 verified items in eight-item increments. Frozen accepted memory states are reconstructed under the original software versions and evaluated with cached held-out responses. The original 18 policy/seed/budget scores reproduce exactly. Retained memory is carried forward across rejected updates. Full six-policy endpoint results remain in diagnostics. Dual-Purpose Trade-off is Experiment 4. Experiments 1-4 are views of the same equal-budget campaigns.
-
-The four main results are EXP1 Benchmark Discrimination: Acquisition Process; EXP2 Benchmark Discrimination: Final Results; EXP3 Learning Performance: Acquisition Process; EXP4 Dual-Purpose Trade-off. The former Harness Improvement result follows them as ABLATION: Experimental Memory, using its own GB1 split and validation-selected frozen snapshot. It compares with/without memory, rather than acquisition policies. Keep the 1,024-pair full search versus 256-pair selected snapshot and separate held-out evaluation explicit.
-
-The dense learning curve is evaluated after each eight-item batch (33 checkpoints), using the original retained memory states. All 18 original held-out checkpoint results and 26 accepted-state validation scores reproduce exactly. Held-out scores are used for reporting only; original gate decisions, selection order and LLM responses remain frozen. Means are over three paired allocation seeds. Intermediate scores can decrease and the curves can cross; final means remain Random 69.27% and Adaptive Joint 70.12%. New LLM calls and acquisition queries are zero; CPU memory reconstruction is recorded separately.
-
-The learning plot connects all 33 evaluated checkpoints with straight line segments as visual guides. All markers, numeric values and the complete 33-row table remain unchanged. This display choice does not estimate additional scores between checkpoints or smooth the underlying measurements. The retained-state replay data remain available in the private versioned analysis.
+All assets are static. Preview with python -m http.server 8000; GitHub Pages publishes the root of main. No runtime LLM, remote font API, manuscript download or private-data service is required.

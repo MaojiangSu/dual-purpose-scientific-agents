@@ -72,3 +72,5 @@
 #learning-performance-experiment .experiment-chart-mobile .experiment-tooltip text{font-size:20px}
 
 #memory-experiment.component-ablation{margin-top:50px;padding-top:28px;border-top:1px solid var(--line)}
+
+#experiments>.container>.component-ablation:last-child{margin-bottom:0}
